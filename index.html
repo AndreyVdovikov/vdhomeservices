@@ -336,7 +336,9 @@ section.pad { padding: 96px 0; }
 
 /* ── REVIEWS ── */
 .reviews-bg { background:var(--warm-beige); padding:96px 0; }
-.rev-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.rev-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:18px; }
+.rev-grid .rev-card { grid-column:span 2; }
+.rev-grid .rev-card:nth-child(4):nth-last-child(2) { grid-column:2 / span 2; }
 .rev-card { background:white; border-radius:20px; padding:26px; box-shadow:var(--shadow-sm); transition:transform 0.25s, box-shadow 0.25s; }
 .rev-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-blue); }
 .rev-top { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
@@ -464,6 +466,7 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
   .why-cards { grid-template-columns:1fr 1fr; }
   .rating-card { grid-column:span 2; }
   .services-grid,.rev-grid { grid-template-columns:1fr; }
+  .rev-grid .rev-card, .rev-grid .rev-card:nth-child(4):nth-last-child(2) { grid-column:auto; }
   section.pad { padding:64px 0; }
   .cta-wrap { padding:56px 20px; }
   .map-card { height:280px; }
@@ -641,7 +644,7 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
         <label class="f-label" for="fphone">Phone Number</label>
         <input class="f-input" type="tel" id="fphone" placeholder="(813) 000-0000" autocomplete="tel">
         <label class="f-label" for="fissue">What needs fixing?</label>
-        <textarea class="f-input" id="fissue" placeholder="e.g. Leaky faucet, shelf mounting, fence gate…"></textarea>
+        <textarea class="f-input" id="fissue" placeholder="e.g. TV mounting, drywall patch, door repair…"></textarea>
         <label class="f-label">Add a Photo <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-light)">(optional)</span></label>
         <div class="upload-zone" id="dz" onclick="document.getElementById('photoInput').click()">
           <input type="file" id="photoInput" multiple accept="image/*" onchange="handleFiles(this.files)">
@@ -665,18 +668,12 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span class="marquee-item">📺 TV Mounting <span class="m-dot">·</span></span>
-    <span class="marquee-item">💡 Light Fixtures <span class="m-dot">·</span></span>
-    <span class="marquee-item">🔧 Plumbing Repairs <span class="m-dot">·</span></span>
-    <span class="marquee-item">⚡ Electrical Work <span class="m-dot">·</span></span>
     <span class="marquee-item">🏠 Drywall Repair <span class="m-dot">·</span></span>
     <span class="marquee-item">🎨 Painting <span class="m-dot">·</span></span>
     <span class="marquee-item">🍳 Kitchen Remodel <span class="m-dot">·</span></span>
     <span class="marquee-item">🪵 Wood Repair <span class="m-dot">·</span></span>
     <span class="marquee-item">🏗️ Cabinet Renovation <span class="m-dot">·</span></span>
     <span class="marquee-item">📺 TV Mounting <span class="m-dot">·</span></span>
-    <span class="marquee-item">💡 Light Fixtures <span class="m-dot">·</span></span>
-    <span class="marquee-item">🔧 Plumbing Repairs <span class="m-dot">·</span></span>
-    <span class="marquee-item">⚡ Electrical Work <span class="m-dot">·</span></span>
     <span class="marquee-item">🏠 Drywall Repair <span class="m-dot">·</span></span>
     <span class="marquee-item">🎨 Painting <span class="m-dot">·</span></span>
     <span class="marquee-item">🍳 Kitchen Remodel <span class="m-dot">·</span></span>
@@ -694,14 +691,11 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
     </div>
     <div class="services-grid">
       <div class="svc-card reveal"><div class="svc-emoji"><img src="images/services/tv.png" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">TV, Shelf & Curtain Rod Mounting</div><p class="svc-desc">TVs, shelves, curtain rods and all interior mounting — done level, secure, and clean.</p></div>
-      <div class="svc-card reveal d1"><div class="svc-emoji"><img src="images/services/lights.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Light Fixture Installation</div><p class="svc-desc">Ceiling fans, chandeliers, recessed lighting — full replacement and new installations.</p></div>
-      <div class="svc-card reveal d2"><div class="svc-emoji"><img src="images/services/plumbing.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Minor Plumbing Repairs</div><p class="svc-desc">Faucets, sinks, garbage disposals — fast fixes with no mess left behind.</p></div>
-      <div class="svc-card reveal"><div class="svc-emoji"><img src="images/services/electrical.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Minor Electrical Work</div><p class="svc-desc">Outlets, switches, bulb replacements and light electrical repairs done safely.</p></div>
       <div class="svc-card reveal d1"><div class="svc-emoji"><img src="images/services/drywall.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Drywall Repair</div><p class="svc-desc">Holes, cracks, water damage — patched and finished so smoothly you'll never know.</p></div>
       <div class="svc-card reveal d2"><div class="svc-emoji"><img src="images/services/wood.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Wood Rot & Damage Repair</div><p class="svc-desc">Rotten or damaged wooden elements restored or replaced — inside and outside.</p></div>
       <div class="svc-card reveal"><div class="svc-emoji"><img src="images/services/painting.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Interior & Exterior Painting</div><p class="svc-desc">Walls, ceilings, trim, fences — crisp lines and a flawless finish every time.</p></div>
       <div class="svc-card reveal d1"><div class="svc-emoji"><img src="images/services/cabinets.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Cabinet Painting & Renovation</div><p class="svc-desc">Kitchen and whole-house cabinet makeovers — fresh look without full replacement cost.</p></div>
-      <div class="svc-card reveal d2"><div class="svc-emoji"><img src="images/services/kitchen.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">New Kitchen Installation</div><p class="svc-desc">Full turnkey kitchen remodels — cabinets, countertops, tile, plumbing and lighting.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-emoji"><img src="images/services/kitchen.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">New Kitchen Installation</div><p class="svc-desc">Full turnkey kitchen remodels — cabinets, countertops, tile and finishing touches.</p></div>
     </div>
   </div>
 </section>
@@ -827,20 +821,6 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
         <div class="rev-stars">★★★★★</div>
         <p class="rev-text" style="font-weight:600;color:#2563a8;font-size:0.8rem;margin-bottom:6px;">Reasonable price</p>
         <p class="rev-text">I contacted Andrew around 8:00am, he was at my house around 1:00pm the same day to replace my shower door. Very polite and thorough workmanship. Highly recommend.</p>
-        <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
-      </div>
-
-      <!-- Desmond Lobo -->
-      <div class="rev-card reveal">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#5f6368,#3c4043)">D</div>
-          <div>
-            <div class="rev-name">Desmond Lobo <span style="background:#e8f0fe;color:#1a73e8;font-size:0.62rem;padding:2px 7px;border-radius:100px;font-weight:600;">Local Guide</span></div>
-            <div class="rev-date">Ceiling fan installation</div>
-          </div>
-        </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Installing 3 fans.</p>
         <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
       </div>
 
@@ -972,8 +952,6 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
         <div class="f-h">Services</div>
         <ul class="f-links">
           <li><a href="#services">Carpentry</a></li>
-          <li><a href="#services">Plumbing</a></li>
-          <li><a href="#services">Electrical</a></li>
           <li><a href="#services">Painting</a></li>
           <li><a href="#services">Drywall</a></li>
           <li><a href="#services">General Repairs</a></li>
