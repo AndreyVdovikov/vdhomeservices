@@ -303,7 +303,10 @@ section.pad { padding: 96px 0; }
 .svc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue-mid),var(--blue-bright)); transform:scaleX(0); transform-origin:left; transition:transform 0.3s; }
 .svc-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-blue); }
 .svc-card:hover::before { transform:scaleX(1); }
-.svc-emoji { width:52px; height:52px; background:var(--blue-pale); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:18px; transition:background 0.2s; }
+.svc-emoji { width:84px; height:84px; background:var(--blue-pale); border-radius:22px; display:flex; align-items:center; justify-content:center; margin-bottom:20px; transition:background 0.2s, transform 0.25s; }
+.svc-emoji img { width:62px; height:62px; display:block; }
+.svc-card:hover .svc-emoji img { transform:scale(1.08) rotate(-3deg); }
+.svc-emoji img { transition:transform 0.25s; }
 .svc-card:hover .svc-emoji { background:var(--blue-light); }
 .svc-name { font-family:'Fraunces',serif; font-size:1.08rem; font-weight:600; color:var(--blue-deep); margin-bottom:8px; }
 .svc-desc { font-size:0.82rem; color:var(--text-mid); line-height:1.7; }
@@ -690,15 +693,15 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
       <p class="section-desc">From small fixes to bigger projects — every job gets my full attention and quality workmanship.</p>
     </div>
     <div class="services-grid">
-      <div class="svc-card reveal"><div class="svc-emoji" style="background:none;padding:0;width:56px;height:56px;"><img src="images/img-03.jpg" alt="TV mounting icon" style="width:56px;height:56px;object-fit:contain;border-radius:10px;"></div><div class="svc-name">TV, Shelf & Curtain Rod Mounting</div><p class="svc-desc">TVs, shelves, curtain rods and all interior mounting — done level, secure, and clean.</p></div>
-      <div class="svc-card reveal d1"><div class="svc-emoji">💡</div><div class="svc-name">Light Fixture Installation</div><p class="svc-desc">Ceiling fans, chandeliers, recessed lighting — full replacement and new installations.</p></div>
-      <div class="svc-card reveal d2"><div class="svc-emoji">🔧</div><div class="svc-name">Minor Plumbing Repairs</div><p class="svc-desc">Faucets, sinks, garbage disposals — fast fixes with no mess left behind.</p></div>
-      <div class="svc-card reveal"><div class="svc-emoji">⚡</div><div class="svc-name">Minor Electrical Work</div><p class="svc-desc">Outlets, switches, bulb replacements and light electrical repairs done safely.</p></div>
-      <div class="svc-card reveal d1"><div class="svc-emoji">🏠</div><div class="svc-name">Drywall Repair</div><p class="svc-desc">Holes, cracks, water damage — patched and finished so smoothly you'll never know.</p></div>
-      <div class="svc-card reveal d2"><div class="svc-emoji">🪵</div><div class="svc-name">Wood Rot & Damage Repair</div><p class="svc-desc">Rotten or damaged wooden elements restored or replaced — inside and outside.</p></div>
-      <div class="svc-card reveal"><div class="svc-emoji">🎨</div><div class="svc-name">Interior & Exterior Painting</div><p class="svc-desc">Walls, ceilings, trim, fences — crisp lines and a flawless finish every time.</p></div>
-      <div class="svc-card reveal d1"><div class="svc-emoji">🍳</div><div class="svc-name">Cabinet Painting & Renovation</div><p class="svc-desc">Kitchen and whole-house cabinet makeovers — fresh look without full replacement cost.</p></div>
-      <div class="svc-card reveal d2"><div class="svc-emoji">🏗️</div><div class="svc-name">New Kitchen Installation</div><p class="svc-desc">Full turnkey kitchen remodels — cabinets, countertops, tile, plumbing and lighting.</p></div>
+      <div class="svc-card reveal"><div class="svc-emoji"><img src="images/services/tv.png" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">TV, Shelf & Curtain Rod Mounting</div><p class="svc-desc">TVs, shelves, curtain rods and all interior mounting — done level, secure, and clean.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-emoji"><img src="images/services/lights.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Light Fixture Installation</div><p class="svc-desc">Ceiling fans, chandeliers, recessed lighting — full replacement and new installations.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-emoji"><img src="images/services/plumbing.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Minor Plumbing Repairs</div><p class="svc-desc">Faucets, sinks, garbage disposals — fast fixes with no mess left behind.</p></div>
+      <div class="svc-card reveal"><div class="svc-emoji"><img src="images/services/electrical.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Minor Electrical Work</div><p class="svc-desc">Outlets, switches, bulb replacements and light electrical repairs done safely.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-emoji"><img src="images/services/drywall.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Drywall Repair</div><p class="svc-desc">Holes, cracks, water damage — patched and finished so smoothly you'll never know.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-emoji"><img src="images/services/wood.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Wood Rot & Damage Repair</div><p class="svc-desc">Rotten or damaged wooden elements restored or replaced — inside and outside.</p></div>
+      <div class="svc-card reveal"><div class="svc-emoji"><img src="images/services/painting.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Interior & Exterior Painting</div><p class="svc-desc">Walls, ceilings, trim, fences — crisp lines and a flawless finish every time.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-emoji"><img src="images/services/cabinets.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Cabinet Painting & Renovation</div><p class="svc-desc">Kitchen and whole-house cabinet makeovers — fresh look without full replacement cost.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-emoji"><img src="images/services/kitchen.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">New Kitchen Installation</div><p class="svc-desc">Full turnkey kitchen remodels — cabinets, countertops, tile, plumbing and lighting.</p></div>
     </div>
   </div>
 </section>
