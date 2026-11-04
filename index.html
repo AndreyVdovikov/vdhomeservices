@@ -1029,6 +1029,51 @@ dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('ove
 dz.addEventListener('dragleave', () => dz.classList.remove('over'));
 dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); handleFiles(e.dataTransfer.files); });
 
+// Combine selected photos into one small JPEG (EmailJS free plan allows ~50KB attachments)
+function buildPhotoSheet(list) {
+  return new Promise(resolve => {
+    if (!list || !list.length) return resolve(null);
+    const imgs = [];
+    let left = list.length;
+    const done = () => { if (--left === 0) draw(); };
+    list.forEach((f, i) => {
+      const url = URL.createObjectURL(f);
+      const im = new Image();
+      im.onload = () => { imgs[i] = im; URL.revokeObjectURL(url); done(); };
+      im.onerror = () => { imgs[i] = null; URL.revokeObjectURL(url); done(); };
+      im.src = url;
+    });
+    function draw() {
+      const ok = imgs.filter(Boolean);
+      if (!ok.length) return resolve(null);
+      const cols = ok.length === 1 ? 1 : 2;
+      const rows = Math.ceil(ok.length / cols);
+      const W = ok.length === 1 ? 900 : 1000, cw = W / cols, ch = ok.length === 1 ? 675 : 400;
+      const c = document.createElement('canvas');
+      c.width = W; c.height = ch * rows;
+      const x = c.getContext('2d');
+      x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+      ok.forEach((im, i) => {
+        const cx = (i % cols) * cw, cy = Math.floor(i / cols) * ch;
+        const s = Math.min(cw / im.width, ch / im.height);
+        const w = im.width * s, hh = im.height * s;
+        x.drawImage(im, cx + (cw - w) / 2, cy + (ch - hh) / 2, w, hh);
+      });
+      let q = 0.7, out = c.toDataURL('image/jpeg', q);
+      while (out.length > 62000 && q > 0.1) { q -= 0.08; out = c.toDataURL('image/jpeg', q); }
+      // still too big: shrink canvas
+      let scale = 0.8;
+      while (out.length > 62000 && scale > 0.3) {
+        const c2 = document.createElement('canvas');
+        c2.width = Math.round(c.width * scale); c2.height = Math.round(c.height * scale);
+        c2.getContext('2d').drawImage(c, 0, 0, c2.width, c2.height);
+        out = c2.toDataURL('image/jpeg', 0.5); scale -= 0.15;
+      }
+      resolve(out.length <= 62000 ? out : null);
+    }
+  });
+}
+
 // Submit with EmailJS
 function submitForm() {
   const name  = document.getElementById('fname').value.trim();
@@ -1056,12 +1101,15 @@ function submitForm() {
   const templateParams = {
     from_name:    name,
     phone:        phone,
-    message:      issue || 'No description provided',
+    message:      (issue || 'No description provided') + (files.length ? '\n\n[' + files.length + ' photo(s) attached]' : ''),
     to_email:     'vdovikov001@gmail.com',
     reply_to:     phone,
   };
 
-  emailjs.send('service_984008h', 'template_5dybn6g', templateParams)
+  buildPhotoSheet(files).then(sheet => {
+    if (sheet) templateParams.photo = sheet;
+    return emailjs.send('service_984008h', 'template_5dybn6g', templateParams);
+  })
     .then(() => {
       document.getElementById('formBody').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'flex';
