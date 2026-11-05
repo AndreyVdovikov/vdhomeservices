@@ -371,6 +371,35 @@ section.pad { padding: 96px 0; }
 }
 .rev-all-link:hover { background:var(--blue-pale); border-color:var(--blue-mid); }
 
+
+/* Review carousels */
+.rev-block { margin-top:56px; }
+.rev-block:first-of-type { margin-top:40px; }
+.rev-block-head { display:flex; align-items:center; flex-wrap:wrap; gap:10px 22px; margin-bottom:14px; }
+.rev-src { display:flex; align-items:center; gap:10px; }
+.rev-src-name { font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--blue-deep); margin:0; }
+.src-badge { display:inline-flex; align-items:center; justify-content:center; width:15px; height:15px; border-radius:4px; color:#fff; font-size:0.62rem; font-weight:800; flex-shrink:0; }
+.src-badge.lg { width:26px; height:26px; border-radius:7px; font-size:0.95rem; }
+.lg-badge { white-space:nowrap; display:inline-block; background:#e8f0fe; color:#1a73e8; font-size:0.62rem; padding:2px 7px; border-radius:100px; font-weight:600; margin-left:6px; }
+.rev-rating { display:flex; align-items:center; gap:8px; font-size:0.9rem; color:var(--text-dark); }
+.rev-stars-lg { color:#f59e0b; font-size:1.15rem; letter-spacing:1px; line-height:1; }
+.rev-stars-lg.partial { background:linear-gradient(90deg,#f59e0b var(--pct),#d6dbe3 var(--pct)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; }
+.rev-count { color:var(--text-light); font-size:0.82rem; }
+.rev-head-right { margin-left:auto; display:flex; align-items:center; gap:8px; }
+.rev-ext { color:var(--blue-mid); font-weight:600; font-size:0.82rem; text-decoration:none; margin-right:8px; }
+.rev-ext:hover { text-decoration:underline; }
+.rev-arrow { width:38px; height:38px; border-radius:50%; border:1.5px solid rgba(37,99,168,0.25); background:#fff; color:var(--blue-mid); font-size:1.05rem; cursor:pointer; transition:all 0.2s; }
+.rev-arrow:hover { background:var(--blue-mid); color:#fff; }
+.rev-note { font-size:0.8rem; color:var(--text-light); margin:0 0 6px; }
+.rev-track { display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:8px 4px 18px; margin:0 -4px; -webkit-overflow-scrolling:touch; }
+.rev-track::-webkit-scrollbar { display:none; }
+.rev-track .rev-card { flex:0 0 calc((100% - 54px)/4); scroll-snap-align:start; padding:22px; display:flex; flex-direction:column; }
+.rev-track .rev-text { flex:1; }
+.rev-tag { font-weight:600; color:#2563a8; font-size:0.78rem; margin:0 0 6px; line-height:1.4; }
+.rev-empty { color:var(--text-light); font-style:italic; }
+@media(max-width:1100px) { .rev-track .rev-card { flex-basis:calc((100% - 36px)/3); } }
+@media(max-width:900px) { .rev-track .rev-card { flex-basis:82%; } .rev-head-right { margin-left:0; width:100%; } .rev-block { margin-top:44px; } }
+
 /* ── CONTACT ── */
 .contact-bg { background:var(--warm-white); padding:96px 0; }
 .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:stretch; }
@@ -825,247 +854,418 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
     <div class="reveal">
       <div class="section-tag">Reviews</div>
       <h2 class="section-title">What neighbors<br>are <em>saying</em></h2>
-      <p class="section-desc">Real reviews from real people in Wesley Chapel and nearby.</p>
+      <p class="section-desc">Real reviews from real customers on Google, Facebook, Yelp and Thumbtack.</p>
     </div>
-    <div class="rev-grid">
-
-      <!-- Joseph Gabriella -->
-      <div class="rev-card reveal">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#65a30d,#3f6212)">J</div>
-          <div>
-            <div class="rev-name">Joseph Gabriella</div>
-            <div class="rev-date">Cabinets &amp; countertop</div>
-          </div>
+    <div class="rev-block reveal" id="rev-google">
+      <div class="rev-block-head">
+        <div class="rev-src"><svg width="22" height="22" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><h3 class="rev-src-name">Google</h3></div>
+        <div class="rev-rating"><span class="rev-stars-lg partial" style="--pct:94%">★★★★★</span><b>4.7</b><span class="rev-count">· 26 reviews on Google</span></div>
+        <div class="rev-head-right"><a class="rev-ext" href="https://share.google/M3UsYRjfswcYytOnC" target="_blank" rel="noopener">View all 26 on Google →</a>
+          <button class="rev-arrow" data-dir="-1" aria-label="Previous reviews">&#8592;</button>
+          <button class="rev-arrow" data-dir="1" aria-label="Next reviews">&#8594;</button>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Andrew removed my old cabinets and put in new ones along with a new Formica countertop and sink / faucet. He is polite, honest, and his fees are very reasonable. I highly recommend him.</p>
-        <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
       </div>
-
-      <!-- Austin Coker -->
-      <div class="rev-card reveal d1">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#7e22ce,#581c87)">A</div>
-          <div>
-            <div class="rev-name">Austin Coker</div>
-            <div class="rev-date">TV mounting &amp; furniture assembly</div>
+      <div class="rev-track">
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#65a30d,#3f6212)">J</div>
+            <div>
+              <div class="rev-name">Joseph Gabriella</div>
+              <div class="rev-date">Cabinets &amp; countertop</div>
+            </div>
           </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Andrew removed my old cabinets and put in new ones along with a new Formica countertop and sink / faucet. He is polite, honest, and his fees are very reasonable. I highly recommend him.</p>
+          <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">He mounted the tv and put together my chair and dresser and desk! He's amazing and would use him again for anything I need</p>
-        <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
-      </div>
-
-      <!-- Faith Belcher -->
-      <div class="rev-card reveal d2">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#f97316,#ea580c)">F</div>
-          <div>
-            <div class="rev-name">Faith Belcher <span style="background:#e8f0fe;color:#1a73e8;font-size:0.62rem;padding:2px 7px;border-radius:100px;font-weight:600;">Local Guide</span></div>
-            <div class="rev-date">Shower door replacement</div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#7e22ce,#581c87)">A</div>
+            <div>
+              <div class="rev-name">Austin Coker</div>
+              <div class="rev-date">TV mounting &amp; furniture assembly</div>
+            </div>
           </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">He mounted the tv and put together my chair and dresser and desk! He's amazing and would use him again for anything I need</p>
+          <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text" style="font-weight:600;color:#2563a8;font-size:0.8rem;margin-bottom:6px;">Reasonable price</p>
-        <p class="rev-text">I contacted Andrew around 8:00am, he was at my house around 1:00pm the same day to replace my shower door. Very polite and thorough workmanship. Highly recommend.</p>
-        <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
-      </div>
-
-      <!-- Alee Malik -->
-      <div class="rev-card reveal d1">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#dc2626,#991b1b)">A</div>
-          <div>
-            <div class="rev-name">Alee Malik</div>
-            <div class="rev-date">Furniture assembly</div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#f97316,#ea580c)">F</div>
+            <div>
+              <div class="rev-name">Faith Belcher <span class="lg-badge">Local Guide</span></div>
+              <div class="rev-date">Shower door replacement</div>
+            </div>
           </div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-tag">Reasonable price</p>
+          <p class="rev-text">I contacted Andrew around 8:00am, he was at my house around 1:00pm the same day to replace my shower door. Very polite and thorough workmanship. Highly recommend.</p>
+          <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Andrew is great energy and he's fully committed to even finish the toughest jobs! I had a table that was impossible to build and he figured it out even without proper instructions. 100% recommend.</p>
-        <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
-      </div>
-
-      <!-- Susan Cline -->
-      <div class="rev-card reveal d2">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#c084fc,#7c3aed)">S</div>
-          <div>
-            <div class="rev-name">Susan Cline</div>
-            <div class="rev-date">Home repairs</div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#dc2626,#991b1b)">A</div>
+            <div>
+              <div class="rev-name">Alee Malik</div>
+              <div class="rev-date">Furniture assembly</div>
+            </div>
           </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Andrew is great energy and he's fully committed to even finish the toughest jobs! I had a table that was impossible to build and he figured it out even without proper instructions. 100% recommend.</p>
+          <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Andrew was incredible! Fast response, reasonable priced and fixed everything we needed! We will absolutely use him again!!</p>
-        <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
-      </div>
-    </div>
-    <div style="text-align:center" class="reveal">
-      <a href="https://share.google/M3UsYRjfswcYytOnC" target="_blank" class="rev-all-link">View all 26 reviews on Google →</a>
-    </div>
-
-    <div class="reveal" style="margin-top:72px">
-      <div class="section-tag">More Reviews</div>
-      <h3 class="section-title" style="font-size:clamp(1.5rem,3vw,2rem)">From our <em>Yelp</em> customers</h3>
-      <p class="section-desc">Real reviews left by customers on Yelp. Yelp's automated filter keeps them out of its star rating, but every one is from a real job.</p>
-    </div>
-    <div class="rev-grid yelp-grid">
-      <div class="rev-card reveal">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#f97316,#ea580c)">S</div>
-          <div>
-            <div class="rev-name">Sandy M.</div>
-            <div class="rev-date">Sep 22, 2025</div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#2563a8,#1a3a5c)">S</div>
+            <div>
+              <div class="rev-name">Susan Cline</div>
+              <div class="rev-date">Home repairs</div>
+            </div>
           </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Andrew was incredible! Fast response, reasonable priced and fixed everything we needed! We will absolutely use him again!!</p>
+          <div class="rev-footer"><svg width="13" height="13" viewBox="0 0 24 24" style="flex-shrink:0"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google Review</div>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Wonderful quality and service--prompt, dependable, and a true professional to trust. The best!</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
-      </div>
-      <div class="rev-card reveal d1">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#5f6368,#3c4043)">G</div>
-          <div>
-            <div class="rev-name">Gary H.</div>
-            <div class="rev-date">Jul 9, 2025</div>
-          </div>
-        </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Communicate well about what's being done, price is more than reasonable, very professional in how he approaches what's being asked of him.</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
-      </div>
-      <div class="rev-card reveal d2">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#2563a8,#1a3a5c)">P</div>
-          <div>
-            <div class="rev-name">Paul C.</div>
-            <div class="rev-date">Jul 8, 2025</div>
-          </div>
-        </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">I hired Andrew for a few projects, and he's been incredibly prompt, professional, and thorough. His work is excellent, pricing is honest and fair, and he goes above and beyond to get the job done right. I was especially impressed with his communication and attention to detail. I'll definitely be using his services again--highly recommend!</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
-      </div>
-      <div class="rev-card reveal">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#7e22ce,#581c87)">A</div>
-          <div>
-            <div class="rev-name">Artem</div>
-            <div class="rev-date">Jun 27, 2025</div>
-          </div>
-        </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Andrew painted the room qualitatively and inexpensively, even though the ceiling was quite high - I recommend it</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
-      </div>
-      <div class="rev-card reveal d1">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#65a30d,#3f6212)">N</div>
-          <div>
-            <div class="rev-name">Nick L.</div>
-            <div class="rev-date">Jun 21, 2025</div>
-          </div>
-        </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Needed a project done, Andrew was quick to respond, very punctual and tackles the job flawlessly.. Thanks Andrew.. Will be utilizing him regularly moving forward .</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
-      </div>
-      <div class="rev-card reveal d2">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#dc2626,#991b1b)">C</div>
-          <div>
-            <div class="rev-name">Chris E.</div>
-            <div class="rev-date">Jun 19, 2025</div>
-          </div>
-        </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Great service excellent work, honest and fair pricing Andrew was very prompt in responding and did quality work Highly recommend!!</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
-      </div>
-      <div class="rev-card reveal">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#c084fc,#7c3aed)">J</div>
-          <div>
-            <div class="rev-name">Joanne H.</div>
-            <div class="rev-date">Jun 17, 2025</div>
-          </div>
-        </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">I highly recommend this business. I was completely impressed with their professionalism and customer service.</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
       </div>
     </div>
-    <div class="reveal" style="margin-top:72px">
-      <div class="section-tag">More Reviews</div>
-      <h3 class="section-title" style="font-size:clamp(1.5rem,3vw,2rem)">From our <em>Facebook</em> customers</h3>
-      <p class="section-desc">Reviews left by customers on Facebook.</p>
+    <div class="rev-block reveal" id="rev-facebook">
+      <div class="rev-block-head">
+        <div class="rev-src"><span class="src-badge lg" style="background:#1877f2;font-family:Arial,sans-serif">f</span><h3 class="rev-src-name">Facebook</h3></div>
+        <div class="rev-rating"><span class="rev-stars-lg">★★★★★</span><b>5.0</b><span class="rev-count">· 9 reviews</span></div>
+        <div class="rev-head-right">
+          <button class="rev-arrow" data-dir="-1" aria-label="Previous reviews">&#8592;</button>
+          <button class="rev-arrow" data-dir="1" aria-label="Next reviews">&#8594;</button>
+        </div>
+      </div>
+      <div class="rev-track">
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#7e22ce,#581c87)">Y</div>
+            <div>
+              <div class="rev-name">Yuliya</div>
+              <div class="rev-date">Aug 6, 2026</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">On time, professional, and great work. Highly recommend!</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#1877f2;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#f97316,#ea580c)">V</div>
+            <div>
+              <div class="rev-name">Valerich</div>
+              <div class="rev-date">May 12, 2026</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">I highly recommend this particular specialist; he can connect any type of equipment or household appliance, and he can even install a kitchen setup. He works quickly, and his pricing is fair. Thank you.</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#1877f2;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#dc2626,#991b1b)">B</div>
+            <div>
+              <div class="rev-name">Bobby</div>
+              <div class="rev-date">Feb 19, 2026</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-tag">Communication</p>
+          <p class="rev-text">Solid communication, reliable and great work. 100% reccomend.</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#1877f2;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#2563a8,#1a3a5c)">C</div>
+            <div>
+              <div class="rev-name">Carlos</div>
+              <div class="rev-date">Jan 5, 2026</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-tag">Punctuality · Communication · Price · As described</p>
+          <p class="rev-text">Did all the work I needed and more!!!</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#1877f2;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#c084fc,#7c3aed)">S</div>
+            <div>
+              <div class="rev-name">Scott</div>
+              <div class="rev-date">Dec 21, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">The job he came to do was unexpectedly complicated but he stuck with it and finished it well excellent work!!</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#1877f2;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#5f6368,#3c4043)">C</div>
+            <div>
+              <div class="rev-name">Charlie DuBose</div>
+              <div class="rev-date">Facebook recommendation</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Andrew did an awesome job repairing my deck and painting it. looks good! fast and friendly as well.</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#1877f2;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#65a30d,#3f6212)">B</div>
+            <div>
+              <div class="rev-name">Bobby</div>
+              <div class="rev-date">Sep 12, 2026</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-tag">Punctuality · Communication · Price · As described</p>
+          <p class="rev-text"><span class="rev-empty">Rated 5 stars — no written review.</span></p>
+          <div class="rev-footer"><span class="src-badge" style="background:#1877f2;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#7e22ce,#581c87)">D</div>
+            <div>
+              <div class="rev-name">Dayana</div>
+              <div class="rev-date">Oct 5, 2026</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text"><span class="rev-empty">Rated 5 stars — no written review.</span></p>
+          <div class="rev-footer"><span class="src-badge" style="background:#1877f2;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#f97316,#ea580c)">D</div>
+            <div>
+              <div class="rev-name">Diana</div>
+              <div class="rev-date">Jan 10, 2026</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text"><span class="rev-empty">Rated 5 stars — no written review.</span></p>
+          <div class="rev-footer"><span class="src-badge" style="background:#1877f2;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        </div>
+      </div>
     </div>
-    <div class="rev-grid">
-      <div class="rev-card reveal">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#f97316,#ea580c)">Y</div>
-          <div>
-            <div class="rev-name">Yuliya</div>
-            <div class="rev-date">Aug 6, 2026</div>
-          </div>
+    <div class="rev-block reveal" id="rev-yelp">
+      <div class="rev-block-head">
+        <div class="rev-src"><span class="src-badge lg" style="background:#d32323;font-family:inherit">y</span><h3 class="rev-src-name">Yelp</h3></div>
+        <div class="rev-rating"><span class="rev-stars-lg">★★★★★</span><b>5.0</b><span class="rev-count">· 7 reviews</span></div>
+        <div class="rev-head-right"><a class="rev-ext" href="https://www.yelp.com/not_recommended_reviews/andrew-home-services-wesley-chapel" target="_blank" rel="noopener">See on Yelp →</a>
+          <button class="rev-arrow" data-dir="-1" aria-label="Previous reviews">&#8592;</button>
+          <button class="rev-arrow" data-dir="1" aria-label="Next reviews">&#8594;</button>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">On time, professional, and great work. Highly recommend!</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#1877f2;color:#fff;font-size:0.65rem;font-weight:800;flex-shrink:0;font-family:Arial,sans-serif">f</span> Facebook Review</div>
       </div>
-      <div class="rev-card reveal d1">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#2563a8,#1a3a5c)">C</div>
-          <div>
-            <div class="rev-name">Charlie DuBose</div>
-            <div class="rev-date">Facebook recommendation</div>
+      <p class="rev-note">Yelp's automated filter keeps these out of its star rating, but every one is from a real job.</p>
+      <div class="rev-track">
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#f97316,#ea580c)">S</div>
+            <div>
+              <div class="rev-name">Sandy M.</div>
+              <div class="rev-date">Sep 22, 2025</div>
+            </div>
           </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Wonderful quality and service--prompt, dependable, and a true professional to trust. The best!</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#d32323;font-family:inherit">y</span> Yelp Review</div>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">Andrew did an awesome job repairing my deck and painting it. looks good! fast and friendly as well.</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#1877f2;color:#fff;font-size:0.65rem;font-weight:800;flex-shrink:0;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#dc2626,#991b1b)">G</div>
+            <div>
+              <div class="rev-name">Gary H.</div>
+              <div class="rev-date">Jul 9, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Communicate well about what's being done, price is more than reasonable, very professional in how he approaches what's being asked of him.</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#d32323;font-family:inherit">y</span> Yelp Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#2563a8,#1a3a5c)">P</div>
+            <div>
+              <div class="rev-name">Paul C.</div>
+              <div class="rev-date">Jul 8, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">I hired Andrew for a few projects, and he's been incredibly prompt, professional, and thorough. His work is excellent, pricing is honest and fair, and he goes above and beyond to get the job done right. I was especially impressed with his communication and attention to detail. I'll definitely be using his services again--highly recommend!</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#d32323;font-family:inherit">y</span> Yelp Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#c084fc,#7c3aed)">A</div>
+            <div>
+              <div class="rev-name">Artem</div>
+              <div class="rev-date">Jun 27, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Andrew painted the room qualitatively and inexpensively, even though the ceiling was quite high - I recommend it</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#d32323;font-family:inherit">y</span> Yelp Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#5f6368,#3c4043)">N</div>
+            <div>
+              <div class="rev-name">Nick L.</div>
+              <div class="rev-date">Jun 21, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Needed a project done, Andrew was quick to respond, very punctual and tackles the job flawlessly.. Thanks Andrew.. Will be utilizing him regularly moving forward .</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#d32323;font-family:inherit">y</span> Yelp Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#65a30d,#3f6212)">C</div>
+            <div>
+              <div class="rev-name">Chris E.</div>
+              <div class="rev-date">Jun 19, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Great service excellent work, honest and fair pricing Andrew was very prompt in responding and did quality work Highly recommend!!</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#d32323;font-family:inherit">y</span> Yelp Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#7e22ce,#581c87)">J</div>
+            <div>
+              <div class="rev-name">Joanne H.</div>
+              <div class="rev-date">Jun 17, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">I highly recommend this business. I was completely impressed with their professionalism and customer service.</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#d32323;font-family:inherit">y</span> Yelp Review</div>
+        </div>
       </div>
-      <div class="rev-card reveal d2">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#65a30d,#3f6212)">B</div>
-          <div>
-            <div class="rev-name">Bobby</div>
-            <div class="rev-date">Feb 19, 2026</div>
-          </div>
+    </div>
+    <div class="rev-block reveal" id="rev-thumbtack">
+      <div class="rev-block-head">
+        <div class="rev-src"><span class="src-badge lg" style="background:#009fd9;font-family:inherit">t</span><h3 class="rev-src-name">Thumbtack</h3></div>
+        <div class="rev-rating"><span class="rev-stars-lg">★★★★★</span><b>5.0</b><span class="rev-count">· 6 reviews</span></div>
+        <div class="rev-head-right">
+          <button class="rev-arrow" data-dir="-1" aria-label="Previous reviews">&#8592;</button>
+          <button class="rev-arrow" data-dir="1" aria-label="Next reviews">&#8594;</button>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text" style="font-weight:600;color:#2563a8;font-size:0.8rem;margin-bottom:6px;">Communication</p>
-        <p class="rev-text">Solid communication, reliable and great work. 100% reccomend.</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#1877f2;color:#fff;font-size:0.65rem;font-weight:800;flex-shrink:0;font-family:Arial,sans-serif">f</span> Facebook Review</div>
       </div>
-      <div class="rev-card reveal">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#7e22ce,#581c87)">C</div>
-          <div>
-            <div class="rev-name">Carlos</div>
-            <div class="rev-date">Jan 5, 2026</div>
+      <div class="rev-track">
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#dc2626,#991b1b)">T</div>
+            <div>
+              <div class="rev-name">Tom C.</div>
+              <div class="rev-date">Mar 9, 2025 · Verified</div>
+            </div>
           </div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-tag">Handyman</p>
+          <p class="rev-text">Andrey is a very good worker. He stayed late making sure the jobs were done perfect. He has a limited understanding of English but we did communicate well. I would recommend Andrey to anyone looking for a good painter. We plan to keep him on our to do list.</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#009fd9;font-family:inherit">t</span> Thumbtack Review</div>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text" style="font-weight:600;color:#2563a8;font-size:0.8rem;margin-bottom:6px;">Punctuality · Communication · Price · As described</p>
-        <p class="rev-text">Did all the work I needed and more!!!</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#1877f2;color:#fff;font-size:0.65rem;font-weight:800;flex-shrink:0;font-family:Arial,sans-serif">f</span> Facebook Review</div>
-      </div>
-      <div class="rev-card reveal d1">
-        <div class="rev-top">
-          <div class="rev-av" style="background:linear-gradient(135deg,#dc2626,#991b1b)">S</div>
-          <div>
-            <div class="rev-name">Scott</div>
-            <div class="rev-date">Dec 21, 2025</div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#2563a8,#1a3a5c)">N</div>
+            <div>
+              <div class="rev-name">Nicholas F.</div>
+              <div class="rev-date">Feb 18, 2025 · Verified</div>
+            </div>
           </div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-tag">Handyman</p>
+          <p class="rev-text">Andrew was on time, and did an excellent job in both projects.</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#009fd9;font-family:inherit">t</span> Thumbtack Review</div>
         </div>
-        <div class="rev-stars">★★★★★</div>
-        <p class="rev-text">The job he came to do was unexpectedly complicated but he stuck with it and finished it well excellent work!!</p>
-        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#1877f2;color:#fff;font-size:0.65rem;font-weight:800;flex-shrink:0;font-family:Arial,sans-serif">f</span> Facebook Review</div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#c084fc,#7c3aed)">V</div>
+            <div>
+              <div class="rev-name">Victor L.</div>
+              <div class="rev-date">Feb 11, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">I would like to acknowledge the excellent work! Andrew installed the shelf in the storage unit quickly and qualitatively!</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#009fd9;font-family:inherit">t</span> Thumbtack Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#5f6368,#3c4043)">T</div>
+            <div>
+              <div class="rev-name">Tom M.</div>
+              <div class="rev-date">Feb 11, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Thank you Andrew for a job well done. He arrived on time as agreed and assembled the TV stand. He did it quickly and neatly. The cost of the work corresponded to the stated price.</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#009fd9;font-family:inherit">t</span> Thumbtack Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#65a30d,#3f6212)">A</div>
+            <div>
+              <div class="rev-name">Abdel B.</div>
+              <div class="rev-date">Feb 9, 2025 · Verified</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          <p class="rev-tag">Handyman</p>
+          <p class="rev-text">Andrew and his partner were super professional, kind and flexible. It was a pleasure using their service. Highly recommend.</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#009fd9;font-family:inherit">t</span> Thumbtack Review</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-top">
+            <div class="rev-av" style="background:linear-gradient(135deg,#7e22ce,#581c87)">B</div>
+            <div>
+              <div class="rev-name">Bradley T.</div>
+              <div class="rev-date">Feb 8, 2025</div>
+            </div>
+          </div>
+          <div class="rev-stars">★★★★★</div>
+          
+          <p class="rev-text">Let me tell you, this guy Andrew is an absolute pro! Right off the bat, he showed up exactly when he said he would (which, let's be honest, is pretty rare here in Tampa Bay, especially during tourist season!). He came fully equipped with his professional tools. His attention to detail was outstanding - every piece of furniture was assembled with incredible precision…</p>
+          <div class="rev-footer"><span class="src-badge" style="background:#009fd9;font-family:inherit">t</span> Thumbtack Review</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+<script>
+document.querySelectorAll('.rev-block').forEach(function(b){
+  var t=b.querySelector('.rev-track');
+  b.querySelectorAll('.rev-arrow').forEach(function(a){
+    a.addEventListener('click',function(){ t.scrollBy({left:(+a.dataset.dir)*t.clientWidth*0.9,behavior:'smooth'}); });
+  });
+});
+</script>
 
 <!-- WHY US -->
 <section class="why-bg">
