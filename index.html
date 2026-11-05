@@ -352,6 +352,8 @@ section.pad { padding: 96px 0; }
 .rev-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:18px; }
 .rev-grid .rev-card { grid-column:span 2; }
 .rev-grid .rev-card:nth-child(4):nth-last-child(2) { grid-column:2 / span 2; }
+.yelp-grid .rev-card:nth-child(4):nth-last-child(2) { grid-column:span 2; }
+.yelp-grid .rev-card:nth-child(7):last-child { grid-column:3 / span 2; }
 .rev-card { background:white; border-radius:20px; padding:26px; box-shadow:var(--shadow-sm); transition:transform 0.25s, box-shadow 0.25s; }
 .rev-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-blue); }
 .rev-top { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
@@ -507,7 +509,7 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
   .rating-card { grid-column:span 2; }
   .services-grid,.rev-grid { grid-template-columns:1fr; }
   .services-grid .svc-card, .services-grid .svc-card:nth-child(7):nth-last-child(2) { grid-column:auto; }
-  .rev-grid .rev-card, .rev-grid .rev-card:nth-child(4):nth-last-child(2) { grid-column:auto; }
+  .rev-grid .rev-card, .rev-grid .rev-card:nth-child(4):nth-last-child(2), .yelp-grid .rev-card:nth-child(7):last-child { grid-column:auto; }
   section.pad { padding:64px 0; }
   .cta-wrap { padding:56px 20px; }
   .map-card { height:280px; }
@@ -900,6 +902,98 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
     </div>
     <div style="text-align:center" class="reveal">
       <a href="https://share.google/M3UsYRjfswcYytOnC" target="_blank" class="rev-all-link">View all 26 reviews on Google →</a>
+    </div>
+
+    <div class="reveal" style="margin-top:72px">
+      <div class="section-tag">More Reviews</div>
+      <h3 class="section-title" style="font-size:clamp(1.5rem,3vw,2rem)">From our <em>Yelp</em> customers</h3>
+      <p class="section-desc">Real reviews left by customers on Yelp. Yelp's automated filter keeps them out of its star rating, but every one is from a real job.</p>
+    </div>
+    <div class="rev-grid yelp-grid">
+      <div class="rev-card reveal">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#f97316,#ea580c)">S</div>
+          <div>
+            <div class="rev-name">Sandy M.</div>
+            <div class="rev-date">Sep 22, 2025</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">Wonderful quality and service--prompt, dependable, and a true professional to trust. The best!</p>
+        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
+      </div>
+      <div class="rev-card reveal d1">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#5f6368,#3c4043)">G</div>
+          <div>
+            <div class="rev-name">Gary H.</div>
+            <div class="rev-date">Jul 9, 2025</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">Communicate well about what's being done, price is more than reasonable, very professional in how he approaches what's being asked of him.</p>
+        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
+      </div>
+      <div class="rev-card reveal d2">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#2563a8,#1a3a5c)">P</div>
+          <div>
+            <div class="rev-name">Paul C.</div>
+            <div class="rev-date">Jul 8, 2025</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">I hired Andrew for a few projects, and he's been incredibly prompt, professional, and thorough. His work is excellent, pricing is honest and fair, and he goes above and beyond to get the job done right. I was especially impressed with his communication and attention to detail. I'll definitely be using his services again--highly recommend!</p>
+        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#7e22ce,#581c87)">A</div>
+          <div>
+            <div class="rev-name">Artem</div>
+            <div class="rev-date">Jun 27, 2025</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">Andrew painted the room qualitatively and inexpensively, even though the ceiling was quite high - I recommend it</p>
+        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
+      </div>
+      <div class="rev-card reveal d1">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#65a30d,#3f6212)">N</div>
+          <div>
+            <div class="rev-name">Nick L.</div>
+            <div class="rev-date">Jun 21, 2025</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">Needed a project done, Andrew was quick to respond, very punctual and tackles the job flawlessly.. Thanks Andrew.. Will be utilizing him regularly moving forward .</p>
+        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
+      </div>
+      <div class="rev-card reveal d2">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#dc2626,#991b1b)">C</div>
+          <div>
+            <div class="rev-name">Chris E.</div>
+            <div class="rev-date">Jun 19, 2025</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">Great service excellent work, honest and fair pricing Andrew was very prompt in responding and did quality work Highly recommend!!</p>
+        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
+      </div>
+      <div class="rev-card reveal">
+        <div class="rev-top">
+          <div class="rev-av" style="background:linear-gradient(135deg,#c084fc,#7c3aed)">J</div>
+          <div>
+            <div class="rev-name">Joanne H.</div>
+            <div class="rev-date">Jun 17, 2025</div>
+          </div>
+        </div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">I highly recommend this business. I was completely impressed with their professionalism and customer service.</p>
+        <div class="rev-footer"><span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:4px;background:#d32323;color:#fff;font-size:0.6rem;font-weight:800;flex-shrink:0">y</span> Yelp Review</div>
+      </div>
     </div>
   </div>
 </section>
