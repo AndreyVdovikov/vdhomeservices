@@ -1019,7 +1019,7 @@ dz.addEventListener('dragleave', () => dz.classList.remove('over'));
 dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); handleFiles(e.dataTransfer.files); });
 
 // Upload customer photos to an image host and return links (EmailJS free plan has no attachments)
-const IMGBB_KEY = 'YOUR_IMGBB_KEY';
+const IMGBB_KEY = '898415147d3d93549969294a89b294d5';
 function shrinkPhoto(file) {
   return new Promise(resolve => {
     const url = URL.createObjectURL(file), im = new Image();
