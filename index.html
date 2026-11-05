@@ -1018,49 +1018,36 @@ dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('ove
 dz.addEventListener('dragleave', () => dz.classList.remove('over'));
 dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); handleFiles(e.dataTransfer.files); });
 
-// Combine selected photos into one small JPEG (EmailJS free plan allows ~50KB attachments)
-function buildPhotoSheet(list) {
+// Upload customer photos to an image host and return links (EmailJS free plan has no attachments)
+const IMGBB_KEY = 'YOUR_IMGBB_KEY';
+function shrinkPhoto(file) {
   return new Promise(resolve => {
-    if (!list || !list.length) return resolve(null);
-    const imgs = [];
-    let left = list.length;
-    const done = () => { if (--left === 0) draw(); };
-    list.forEach((f, i) => {
-      const url = URL.createObjectURL(f);
-      const im = new Image();
-      im.onload = () => { imgs[i] = im; URL.revokeObjectURL(url); done(); };
-      im.onerror = () => { imgs[i] = null; URL.revokeObjectURL(url); done(); };
-      im.src = url;
-    });
-    function draw() {
-      const ok = imgs.filter(Boolean);
-      if (!ok.length) return resolve(null);
-      const cols = ok.length === 1 ? 1 : 2;
-      const rows = Math.ceil(ok.length / cols);
-      const W = ok.length === 1 ? 900 : 1000, cw = W / cols, ch = ok.length === 1 ? 675 : 400;
+    const url = URL.createObjectURL(file), im = new Image();
+    im.onload = () => {
+      const s = Math.min(1, 1600 / Math.max(im.width, im.height));
       const c = document.createElement('canvas');
-      c.width = W; c.height = ch * rows;
-      const x = c.getContext('2d');
-      x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
-      ok.forEach((im, i) => {
-        const cx = (i % cols) * cw, cy = Math.floor(i / cols) * ch;
-        const s = Math.min(cw / im.width, ch / im.height);
-        const w = im.width * s, hh = im.height * s;
-        x.drawImage(im, cx + (cw - w) / 2, cy + (ch - hh) / 2, w, hh);
-      });
-      let q = 0.7, out = c.toDataURL('image/jpeg', q);
-      while (out.length > 62000 && q > 0.1) { q -= 0.08; out = c.toDataURL('image/jpeg', q); }
-      // still too big: shrink canvas
-      let scale = 0.8;
-      while (out.length > 62000 && scale > 0.3) {
-        const c2 = document.createElement('canvas');
-        c2.width = Math.round(c.width * scale); c2.height = Math.round(c.height * scale);
-        c2.getContext('2d').drawImage(c, 0, 0, c2.width, c2.height);
-        out = c2.toDataURL('image/jpeg', 0.5); scale -= 0.15;
-      }
-      resolve(out.length <= 62000 ? out : null);
-    }
+      c.width = Math.round(im.width * s); c.height = Math.round(im.height * s);
+      c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url);
+      resolve(c.toDataURL('image/jpeg', 0.82).split(',')[1]);
+    };
+    im.onerror = () => { URL.revokeObjectURL(url); resolve(null); };
+    im.src = url;
   });
+}
+async function uploadPhotos(list) {
+  if (!list || !list.length || IMGBB_KEY.indexOf('YOUR_') === 0) return [];
+  const out = await Promise.all(list.map(async f => {
+    try {
+      const b64 = await shrinkPhoto(f);
+      if (!b64) return null;
+      const fd = new FormData(); fd.append('image', b64);
+      const r = await fetch('https://api.imgbb.com/1/upload?expiration=15552000&key=' + IMGBB_KEY, { method: 'POST', body: fd });
+      const j = await r.json();
+      return j && j.success ? j.data.url : null;
+    } catch (e) { console.error('Photo upload failed', e); return null; }
+  }));
+  return out.filter(Boolean);
 }
 
 // Submit with EmailJS
@@ -1090,21 +1077,18 @@ function submitForm() {
   const templateParams = {
     from_name:    name,
     phone:        phone,
-    message:      (issue || 'No description provided') + (files.length ? '\n\n[' + files.length + ' photo(s) attached]' : ''),
+    message:      (issue || 'No description provided'),
     to_email:     'vdovikov001@gmail.com',
     reply_to:     phone,
   };
 
-  buildPhotoSheet(files).then(sheet => {
-    if (!sheet) return emailjs.send('service_984008h', 'template_5dybn6g', templateParams);
-    return emailjs.send('service_984008h', 'template_5dybn6g', Object.assign({}, templateParams, { photo: sheet }))
-      .catch(err => {
-        // Photo could not be attached: still deliver the request so the lead is not lost
-        console.error('EmailJS photo error:', err);
-        const fallback = Object.assign({}, templateParams);
-        fallback.message += '\n\n[Customer added photo(s), but they could not be attached. Please ask for them by phone/text.]';
-        return emailjs.send('service_984008h', 'template_5dybn6g', fallback);
-      });
+  uploadPhotos(files).then(links => {
+    if (links.length) {
+      templateParams.message += '\n\nPhotos:\n' + links.join('\n');
+    } else if (files.length) {
+      templateParams.message += '\n\n[Customer added photo(s), but they could not be uploaded. Please ask for them by phone/text.]';
+    }
+    return emailjs.send('service_984008h', 'template_5dybn6g', templateParams);
   })
     .then(() => {
       document.getElementById('formBody').style.display = 'none';
