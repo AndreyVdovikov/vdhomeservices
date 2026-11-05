@@ -475,6 +475,25 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
 .d3 { transition-delay:0.3s; }
 
 /* ── MOBILE ── */
+/* Hero: image sets the height, form stretches to match (desktop) */
+@media(min-width:901px) {
+  .hero { min-height:0; padding-top:68px; grid-template-columns:1fr 430px; align-items:stretch; }
+  .hero-left { min-height:0; padding:10px; align-items:center; }
+  .hero-left img { height:auto; }
+  .hero-right { padding:10px 14px 10px 4px; align-items:stretch; }
+  .form-card { max-width:none; display:flex; flex-direction:column; }
+  .form-body { flex:1; display:flex; flex-direction:column; padding:18px 26px 22px; }
+  textarea.f-input { flex:1; height:auto; min-height:56px; }
+  .form-success { flex:1; }
+  .hero { grid-template-columns:1fr 400px; }
+  .form-head { padding:16px 26px 14px; }
+  .form-body .f-label { margin-bottom:4px; }
+  .form-body .f-input { padding:9px 14px; margin-bottom:9px; }
+  .form-body textarea.f-input { margin-bottom:9px; min-height:44px; }
+  .upload-zone { padding:8px; margin-bottom:10px; }
+  .upload-icon { font-size:1.25rem; margin-bottom:2px; }
+  .btn-send { padding:12px; }
+}
 @media(max-width:900px) {
   nav { padding:0 20px; }
   .nav-links { display:none; }
