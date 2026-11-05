@@ -670,6 +670,59 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
   .gal-arrow { width: 36px; height: 36px; font-size: 1rem; }
 }
 
+
+/* ── HERO ART (pure HTML/CSS, responsive) ── */
+.hero-left.hero-art {
+  position:relative; overflow:hidden; display:block; text-align:left;
+  padding:0; min-height:0;
+  background:
+    radial-gradient(60% 40% at 78% 14%, rgba(255,255,255,.9) 0, rgba(255,255,255,0) 70%),
+    radial-gradient(40% 25% at 18% 8%, rgba(255,255,255,.75) 0, rgba(255,255,255,0) 70%),
+    linear-gradient(180deg,#4aa3ee 0%,#8fcaf6 52%,#c7e6fb 70%,#79c14b 70.2%,#4d9a2f 100%);
+}
+.hero-art .ha-main { position:relative; z-index:2; display:flex; flex-direction:column; gap:18px; height:100%; box-sizing:border-box; padding:clamp(18px,2.2vw,30px) clamp(16px,2.2vw,30px); width:62%; }
+.hero-art .ha-brand { display:flex; align-items:center; gap:clamp(10px,1.4vw,18px); }
+.hero-art .ha-logo { width:clamp(56px,6vw,88px); height:clamp(56px,6vw,88px); border-radius:50%; object-fit:cover; flex-shrink:0; box-shadow:0 6px 18px rgba(10,40,90,.35); }
+.hero-art .ha-title { margin:0; display:flex; flex-direction:column; line-height:.95; font-family:'Plus Jakarta Sans',sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:-.01em; }
+.hero-art .ha-t1 { font-size:clamp(2.2rem,4.8vw,4.3rem); color:#1456c9; -webkit-text-stroke:clamp(2px,.28vw,4px) #fbbf24; paint-order:stroke fill; text-shadow:0 .05em 0 #0a2f73, 0 .12em .35em rgba(0,0,0,.28); }
+.hero-art .ha-t2 { font-size:clamp(1.05rem,2.15vw,1.95rem); color:#fbbf24; -webkit-text-stroke:clamp(1.5px,.2vw,3px) #0f3a8a; paint-order:stroke fill; text-shadow:0 .06em 0 #0a2f73, 0 .12em .3em rgba(0,0,0,.28); margin-top:.1em; }
+.hero-art .ha-list { list-style:none; margin:0; padding:clamp(12px,1.5vw,20px) clamp(14px,1.8vw,24px); display:flex; flex-direction:column; gap:clamp(5px,.8vw,9px); background:rgba(255,255,255,.82); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border-radius:18px; box-shadow:0 10px 30px rgba(10,40,90,.22); font-weight:700; color:#10223b; font-size:clamp(.78rem,1.18vw,1.02rem); line-height:1.25; }
+.hero-art .ha-list li { display:flex; align-items:center; gap:10px; }
+.hero-art .ha-check { width:1.35em; height:1.35em; flex-shrink:0; border-radius:50%; background:#16a34a; position:relative; }
+.hero-art .ha-check::after { content:''; position:absolute; left:34%; top:20%; width:26%; height:48%; border:solid #fff; border-width:0 .17em .17em 0; transform:rotate(45deg); }
+.hero-art .ha-rating { display:inline-flex; align-items:center; gap:12px; align-self:flex-start; margin-top:auto; padding:8px 18px 8px 12px; background:rgba(255,255,255,.92); border-radius:100px; box-shadow:0 8px 22px rgba(10,40,90,.25); text-decoration:none; color:#10223b; transition:transform .2s; }
+.hero-art .ha-rating:hover { transform:translateY(-2px); }
+.hero-art .ha-rating-txt { display:flex; flex-direction:column; line-height:1.1; }
+.hero-art .ha-rating-txt b { font-size:clamp(1rem,1.5vw,1.25rem); font-weight:800; }
+.hero-art .ha-stars { color:#f59e0b; font-size:clamp(.9rem,1.3vw,1.1rem); letter-spacing:1px; background:linear-gradient(90deg,#f59e0b 94%,#d6dbe3 94%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-art .ha-person { position:absolute; right:0; bottom:0; height:92%; width:auto; max-width:56%; object-fit:cover; object-position:left bottom; z-index:1;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 24%),linear-gradient(to bottom,transparent 0,#000 10%); -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent 0,#000 24%),linear-gradient(to bottom,transparent 0,#000 10%); mask-composite:intersect; }
+.hero-art .ha-bubble { position:absolute; z-index:3; top:clamp(14px,2vw,26px); right:clamp(14px,2vw,28px); font-family:'Plus Jakarta Sans',sans-serif; font-weight:900; text-transform:uppercase; font-size:clamp(1.1rem,2.5vw,2.3rem); color:#fbbf24; -webkit-text-stroke:clamp(1px,.15vw,2px) #0f3a8a; paint-order:stroke fill; text-shadow:0 .06em 0 #0a2f73; background:#fff; border:3px solid #1456c9; border-radius:18px; padding:.18em .55em .22em; text-decoration:none; box-shadow:0 8px 22px rgba(10,40,90,.3); line-height:1; }
+.hero-art .ha-bubble::after { content:''; position:absolute; left:14%; bottom:-14px; width:20px; height:20px; background:#fff; border-right:3px solid #1456c9; border-bottom:3px solid #1456c9; transform:rotate(45deg) skew(10deg,10deg); }
+.hero-art .ha-bubble:hover { transform:translateY(-2px); }
+.hero-art .ha-phone { position:absolute; z-index:3; right:0; bottom:0; display:flex; align-items:center; gap:10px; padding:clamp(8px,1.1vw,14px) clamp(14px,2vw,28px) clamp(8px,1.1vw,14px) clamp(10px,1.4vw,18px); background:linear-gradient(135deg,#1456c9,#0b3d91); color:#fff; border-top-left-radius:22px; text-decoration:none; font-family:'Plus Jakarta Sans',sans-serif; font-weight:900; font-size:clamp(1.15rem,2.5vw,2.2rem); letter-spacing:.01em; white-space:nowrap; box-shadow:-6px -6px 20px rgba(10,40,90,.22); }
+.hero-art .ha-phone-ic { display:inline-flex; align-items:center; justify-content:center; width:1.5em; height:1.5em; background:#fff; color:#1456c9; border-radius:12px; font-size:.78em; }
+@media(min-width:901px) {
+  .hero-left.hero-art { min-height:620px; padding:0; }
+  .hero-art .ha-main { min-height:620px; }
+}
+@media(max-width:900px) {
+  .hero { grid-template-rows:auto auto; }
+  .hero-left.hero-art { min-height:0; display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; padding:78px 16px 0; }
+  .hero-art .ha-main { display:contents; }
+  .hero-art .ha-brand { order:1; }
+  .hero-art .ha-t1 { font-size:clamp(2.6rem,12vw,4rem); }
+  .hero-art .ha-t2 { font-size:clamp(1.1rem,5.2vw,1.7rem); }
+  .hero-art .ha-bubble { order:2; position:relative; top:auto; right:auto; align-self:flex-start; margin:18px 0 0 4px; font-size:1.45rem; }
+  .hero-art .ha-person { order:3; position:relative; right:auto; bottom:auto; height:auto; width:100%; max-width:none; aspect-ratio:562/520; object-position:center top; margin:-6px 0 0;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 10%,#000 86%,transparent 100%); mask-image:linear-gradient(to bottom,transparent 0,#000 10%,#000 86%,transparent 100%); -webkit-mask-composite:source-over; mask-composite:add; }
+  .hero-art .ha-list { order:4; margin-top:-18px; position:relative; z-index:3; font-size:.9rem; }
+  .hero-art .ha-rating { order:5; margin:16px 0 0; }
+  .hero-art .ha-phone { order:6; position:relative; right:auto; bottom:auto; justify-content:center; margin:16px -16px 0; border-radius:0; font-size:1.7rem; padding:16px; }
+  .hero-art .ha-brand { margin-top:2px; }
+}
+@media(min-width:600px) and (max-width:900px) { .hero-art .ha-person { max-width:520px; align-self:center; } .hero-art .ha-list { align-self:center; width:100%; max-width:560px; box-sizing:border-box; } .hero-art .ha-brand { justify-content:center; } .hero-art .ha-bubble { align-self:center; } .hero-art .ha-rating { align-self:center; } }
 </style>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="text/javascript">
@@ -700,9 +753,21 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
 <section class="hero" id="home">
 
   <!-- LEFT: full photo -->
-  <div class="hero-left">
-    <img src="images/img-02.jpg" alt="Andrew — your local handyman">
-
+  <div class="hero-left hero-art">
+    <div class="ha-main">
+      <div class="ha-brand">
+        <img class="ha-logo" src="images/img-01.png" alt="" width="84" height="84">
+        <h1 class="ha-title"><span class="ha-t1">Andrew</span><span class="ha-t2">Handyman Services</span></h1>
+      </div>
+      <ul class="ha-list"><li><span class="ha-check"></span>Shelves, curtain rods, TVs &amp; interior mounting</li><li><span class="ha-check"></span>Drywall repair</li><li><span class="ha-check"></span>Rotten or damaged wood repair</li><li><span class="ha-check"></span>Interior &amp; exterior painting</li><li><span class="ha-check"></span>Cabinet painting &amp; renovation</li><li><span class="ha-check"></span>New kitchens</li><li><span class="ha-check"></span>Hurricane shutters</li><li><span class="ha-check"></span>Media walls &amp; accent walls</li><li><span class="ha-check"></span>Deck &amp; fence repair</li></ul>
+      <a class="ha-rating" href="https://share.google/M3UsYRjfswcYytOnC" target="_blank" rel="noopener" aria-label="4.7 rating on Google">
+        <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        <span class="ha-rating-txt"><b>4.7 Rating</b><span class="ha-stars" aria-hidden="true">★★★★★</span></span>
+      </a>
+    </div>
+    <a class="ha-bubble" href="sms:+16562311836">Text to Book</a>
+    <img class="ha-person" src="images/hero-andrew.jpg" alt="Andrew, your local handyman, giving a thumbs up" width="562" height="604">
+    <a class="ha-phone" href="tel:+16562311836"><span class="ha-phone-ic">&#9742;</span><span>656 231 18 36</span></a>
   </div>
 
   <!-- RIGHT: form -->
