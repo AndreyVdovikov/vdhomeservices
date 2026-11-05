@@ -305,7 +305,9 @@ section.pad { padding: 96px 0; }
 .section-desc { font-size:0.97rem; color:var(--text-mid); max-width:520px; line-height:1.75; margin-bottom:48px; }
 
 /* ── SERVICES ── */
-.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.services-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:20px; }
+.services-grid .svc-card { grid-column:span 2; }
+.services-grid .svc-card:nth-child(7):nth-last-child(2) { grid-column:2 / span 2; }
 .svc-card {
   background:white; border:1px solid rgba(37,99,168,0.08);
   border-radius:20px; padding:32px 26px;
@@ -485,6 +487,7 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
   .why-cards { grid-template-columns:1fr 1fr; }
   .rating-card { grid-column:span 2; }
   .services-grid,.rev-grid { grid-template-columns:1fr; }
+  .services-grid .svc-card, .services-grid .svc-card:nth-child(7):nth-last-child(2) { grid-column:auto; }
   .rev-grid .rev-card, .rev-grid .rev-card:nth-child(4):nth-last-child(2) { grid-column:auto; }
   section.pad { padding:64px 0; }
   .cta-wrap { padding:56px 20px; }
@@ -693,6 +696,8 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
     <span class="marquee-item">🍳 Kitchen Remodel <span class="m-dot">·</span></span>
     <span class="marquee-item">🪵 Wood Repair <span class="m-dot">·</span></span>
     <span class="marquee-item">🏗️ Cabinet Renovation <span class="m-dot">·</span></span>
+    <span class="marquee-item">🌀 Hurricane Shutters <span class="m-dot">·</span></span>
+    <span class="marquee-item">📺 Media Walls <span class="m-dot">·</span></span>
     <span class="marquee-item">📺 TV Mounting <span class="m-dot">·</span></span>
     <span class="marquee-item">🏠 Drywall Repair <span class="m-dot">·</span></span>
     <span class="marquee-item">🎨 Painting <span class="m-dot">·</span></span>
@@ -716,6 +721,8 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
       <div class="svc-card reveal"><div class="svc-emoji"><img src="images/services/painting.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Interior & Exterior Painting</div><p class="svc-desc">Walls, ceilings, trim, fences — crisp lines and a flawless finish every time.</p></div>
       <div class="svc-card reveal d1"><div class="svc-emoji"><img src="images/services/cabinets.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Cabinet Painting & Renovation</div><p class="svc-desc">Kitchen and whole-house cabinet makeovers — fresh look without full replacement cost.</p></div>
       <div class="svc-card reveal d2"><div class="svc-emoji"><img src="images/services/kitchen.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">New Kitchen Installation</div><p class="svc-desc">Full turnkey kitchen remodels — cabinets, countertops, tile and finishing touches.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-emoji"><img src="images/services/shutters.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Hurricane Shutters</div><p class="svc-desc">Roll-down, accordion and motorized shutters — installed to protect your home through storm season.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-emoji"><img src="images/services/media-wall.svg" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">Media & Accent Walls</div><p class="svc-desc">TV walls, fireplaces and custom accent wall designs — a statement feature for your living room.</p></div>
     </div>
   </div>
 </section>
