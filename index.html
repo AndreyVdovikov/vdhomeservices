@@ -386,7 +386,15 @@ section.pad { padding: 96px 0; }
 .cinfo-lbl { font-size:0.68rem; color:var(--text-light); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; }
 .cinfo-val { font-weight:600; font-size:0.9rem; color:var(--text-dark); margin-top:1px; }
 
-/* Map card — clickable */
+/* Map embed */
+.map-embed { background:white; border-radius:24px; overflow:hidden; box-shadow:var(--shadow-blue); border:1px solid rgba(37,99,168,0.1); display:flex; flex-direction:column; height:380px; }
+.map-embed iframe { flex:1; width:100%; border:0; min-height:0; }
+.map-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; border-top:1px solid #eef2f7; }
+.map-bar .map-name, .map-bar .map-addr { position:static; }
+.map-btn { background:var(--blue-mid); color:#fff; padding:9px 16px; border-radius:10px; font-size:0.78rem; font-weight:700; text-decoration:none; white-space:nowrap; }
+.map-btn:hover { background:var(--blue-deep); }
+
+/* Map card — clickable (legacy) */
 .map-card {
   background:white; border-radius:24px; height:380px;
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
@@ -481,6 +489,7 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
   section.pad { padding:64px 0; }
   .cta-wrap { padding:56px 20px; }
   .map-card { height:280px; }
+  .map-embed { height:340px; }
   .why-bg .section-wrap { padding:0 20px; }
   .reviews-bg .section-wrap { padding:0 20px; }
   .contact-bg .section-wrap { padding:0 20px; }
@@ -927,14 +936,13 @@ footer { background:var(--blue-deep); padding:56px 0 32px; }
           </div>
         </div>
       </div>
-      <a href="https://maps.google.com/?q=27380+Bonterra+Lp+Wesley+Chapel+FL+33544" target="_blank" class="map-card reveal">
-        <div class="map-grid-bg"></div>
-        <div class="map-radial"></div>
-        <div class="map-pin">📍</div>
-        <div class="map-name">Andrew Handyman Services</div>
-        <div class="map-addr">27380 Bonterra Lp, Wesley Chapel, FL 33544</div>
-        <div class="map-open-btn">Open in Google Maps ↗</div>
-      </a>
+      <div class="map-embed reveal">
+        <iframe title="Andrew Handyman Services on Google Maps" src="https://www.google.com/maps?q=27380+Bonterra+Lp,+Wesley+Chapel,+FL+33544&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <div class="map-bar">
+          <div><div class="map-name">Andrew Handyman Services</div><div class="map-addr">27380 Bonterra Lp, Wesley Chapel, FL 33544</div></div>
+          <a class="map-btn" href="https://maps.google.com/?q=27380+Bonterra+Lp+Wesley+Chapel+FL+33544" target="_blank" rel="noopener">Directions ↗</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
