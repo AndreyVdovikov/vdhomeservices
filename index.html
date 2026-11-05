@@ -1096,8 +1096,15 @@ function submitForm() {
   };
 
   buildPhotoSheet(files).then(sheet => {
-    if (sheet) templateParams.photo = sheet;
-    return emailjs.send('service_984008h', 'template_5dybn6g', templateParams);
+    if (!sheet) return emailjs.send('service_984008h', 'template_5dybn6g', templateParams);
+    return emailjs.send('service_984008h', 'template_5dybn6g', Object.assign({}, templateParams, { photo: sheet }))
+      .catch(err => {
+        // Photo could not be attached: still deliver the request so the lead is not lost
+        console.error('EmailJS photo error:', err);
+        const fallback = Object.assign({}, templateParams);
+        fallback.message += '\n\n[Customer added photo(s), but they could not be attached. Please ask for them by phone/text.]';
+        return emailjs.send('service_984008h', 'template_5dybn6g', fallback);
+      });
   })
     .then(() => {
       document.getElementById('formBody').style.display = 'none';
