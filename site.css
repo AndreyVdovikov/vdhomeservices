@@ -802,3 +802,6 @@ a.svc-card:hover .svc-more { text-decoration:underline; }
 .wf-num { font-family:'Fraunces',serif; font-size:2.1rem; font-weight:700; color:var(--blue-mid); line-height:1; margin-bottom:8px; }
 .wf-lbl { font-size:.82rem; color:var(--text-mid); line-height:1.45; font-weight:500; }
 @media(max-width:900px) { .welcome-sec { padding:56px 0 24px; } .welcome-grid { grid-template-columns:1fr; gap:36px; } }
+
+.rev-total{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;font-size:.95rem;color:var(--text-mid)}
+.rev-total b{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--blue-deep)}
