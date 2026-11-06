@@ -7,11 +7,20 @@ import os, json, html
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261105c'   # bump to bust browser cache of site.css/site.js
+VER = '20261106a'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
 S = [
+ dict(slug='christmas-light-installation', name='Christmas Light Installation', short='Christmas Lights', h1='Christmas Light Installation', icon='christmas-lights.svg', photo=None,
+  desc="Professional Christmas light installation in Wesley Chapel, FL: commercial-grade C9 lights in any color, cut to fit, installed, taken down in January and stored for you. Call Andrew Handyman Services.",
+  lead="Professional C9 Christmas lights in any color, cut to fit your home, installed, taken down in January and stored until next season. No tangled wires, no leftover cut ends and no ladder falls for you. Serving Wesley Chapel and nearby communities.",
+  bullets=["Professional C9 bulbs in any color or color mix you like","Lights cut and measured to fit your roofline and your home","Installation on roofline, eaves, gutters and other areas","No leftover cut pieces, no tangled strands and no climbing a ladder yourself","Take-down in January","Storage until next holiday season, so you do not need to find room in your garage","The lights belong to you, unlike with companies that rent them: you own what we install"],
+  faq=[("Who owns the lights?","You do. Unlike companies that rent lights and take them back, the lights we install are yours, and we store them for you after take-down."),
+       ("When do you take the lights down and where do they go?","We take them down in January and store them until the next holiday season, ready to be installed again."),
+       ("Can I choose the colors?","Yes. Warm white, cool white, multicolor or any color mix that you like. Tell me what you have in mind and we will plan it together."),
+       ("How much does it cost?","The price depends on the size of your home and the areas you want lit. Call or text (656) 231-1836 and I will give you a price.")],
+  related=['fence-repair','painting','wood-rot-repair']),
  dict(slug='tv-shelf-mounting', name='TV, Shelf & Curtain Rod Mounting', short='TV & Shelf Mounting', h1='TV, Shelf & Curtain Rod Mounting', icon='tv.png', photo=None,
   desc="TV mounting, shelf and curtain rod installation in Wesley Chapel, FL and nearby. Level, secure and clean. Call Andrew Handyman Services for a free estimate.",
   lead="Wall-mounting done level, secure and clean. I mount TVs, shelves, curtain rods, mirrors and other interior items for homeowners in Wesley Chapel and the surrounding Tampa Bay area.",
@@ -96,6 +105,8 @@ S = [
 BY = {s['slug']: s for s in S}
 
 def esc(t): return html.escape(t, quote=True)
+
+def low(t): return t.replace('Christmas','Christmas_').lower().replace('christmas_','Christmas')
 
 ICON = lambda s: f"/images/services/{s['icon']}"
 
@@ -260,7 +271,7 @@ def page(s):
     <div class="reveal">
       <div class="section-tag">Service area</div>
       <h2 class="section-title">{esc(s["short"])} near <em>you</em></h2>
-      <p class="sp-p">Andrew Handyman Services is based in Wesley Chapel and provides {esc(s["short"].lower())} across the northern Tampa Bay area, including {AREAS_TXT} and nearby neighborhoods.</p>
+      <p class="sp-p">Andrew Handyman Services is based in Wesley Chapel and provides {esc(low(s["short"]))} across the northern Tampa Bay area, including {AREAS_TXT} and nearby neighborhoods.</p>
       <div class="area-chips">{chips}</div>
       <p class="sp-p">Not sure if I cover your address? Call or text {PHONE_DISPLAY} and I will let you know.</p>
     </div>
@@ -284,7 +295,7 @@ def page(s):
 
 <section class="cta-wrap">
   <div class="cta-inner">
-    <h2 class="cta-title">Ready for {esc(s["short"].lower())}?</h2>
+    <h2 class="cta-title">Ready for {esc(low(s["short"]))}?</h2>
     <p class="cta-text">Send a quick request or call. I will get back to you fast with a clear estimate.</p>
     <div class="cta-btns">
       <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
