@@ -7,7 +7,7 @@ import os, json, html
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261107d'   # bump to bust browser cache of site.css/site.js
+VER = '20261107e'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -148,6 +148,7 @@ def nav_html():
       <div class="nav-dd-menu">{items}</div>
     </li>
     <li><a href="/#reviews">Reviews</a></li>
+    <li><a href="/faq/">FAQ</a></li>
     <li><a href="/#contact">Area</a></li>
     <li><a href="tel:{PHONE_TEL}" class="nav-call">📞 {PHONE_DISPLAY}</a></li>
   </ul>
@@ -157,7 +158,7 @@ def nav_html():
   <div class="nm-h">Services</div>
   <div class="nm-list">{mob}</div>
   <div class="nm-h">More</div>
-  <div class="nm-list"><a href="/#reviews">Reviews</a><a href="/#contact">Service Area &amp; Contact</a></div>
+  <div class="nm-list"><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
   <a href="tel:{PHONE_TEL}" class="nm-call">📞 Call {PHONE_DISPLAY}</a>
 </div>
 '''
@@ -182,6 +183,7 @@ def footer_html():
         <div class="f-contact-row">📞 <a href="tel:{PHONE_TEL}" style="color:inherit;text-decoration:none">{PHONE_DISPLAY}</a></div>
         <div class="f-contact-row">📍 Wesley Chapel, FL 33544</div>
         <div class="f-contact-row">🕘 Opens 9 AM Tue–Sat</div>
+        <div class="f-contact-row">❓ <a href="/faq/" style="color:inherit;text-decoration:none">FAQ</a></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -344,12 +346,103 @@ def page(s):
 '''
     return head(title, s['desc'], url, extra) + body
 
+
+FAQ = [
+ ("About Andrew & my service", [
+  ("Who is Andrew Handyman Services?","I am Andrew, a local handyman based in Wesley Chapel, FL. I help homeowners with repairs, painting, mounting, remodeling and seasonal projects like Christmas lights. Every job is handled by me personally."),
+  ("Which areas do you serve?","Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa and nearby neighborhoods. If you are not sure whether I cover your address, call or text (656) 231-1836."),
+  ("What services do you offer?","TV, shelf and curtain rod mounting, drywall repair, wood rot and damage repair, interior and exterior painting, cabinet painting and renovation, new kitchen installation, hurricane shutters, media and accent walls, deck repair, fence repair and Christmas light installation."),
+  ("What are your hours?","I open at 9 AM, Tuesday through Saturday. You can send a request through the website or text me at any time, and I will get back to you as soon as I can."),
+ ]),
+ ("Estimates & booking", [
+  ("Is the estimate really free?","Yes. Estimates are free, and you get a clear price before any work starts, so there are no surprises on the final bill."),
+  ("How do I book?","Fill in the form at the top of the home page, call or text (656) 231-1836. I usually get back to you within a few hours."),
+  ("Can I send photos of the job?","Yes. The request form has a photo upload, and you can also text photos to (656) 231-1836. Photos help me give you a more accurate estimate."),
+  ("Do you give prices over the phone or online?","I do not publish fixed prices, because every home and job is different. Call or text with a few details and a photo, and I will give you a free estimate."),
+  ("Do I need to buy the materials myself?","It depends on the job. You can pick your own materials, such as a TV mount, paint or cabinets, or I can recommend and supply them. Either way I tell you everything in the estimate before work starts."),
+  ("How long will my job take?","Small jobs such as a TV mount or a drywall patch are often done in a few hours. Larger jobs such as cabinets, kitchens or media walls take longer, and I give you a timeline in the estimate."),
+ ]),
+ ("Repairs & installations", [
+  ("Can you mount a TV on any wall and hide the wires?","I mount TVs of all sizes on drywall, brick and stone, including above a fireplace and on a lanai. I hide cords in a cord cover or route them behind the wall with a cable pass-through kit. I do not install new outlets."),
+  ("Will a drywall repair be visible afterwards?","I match the texture and prime the repair so it blends in. I can also paint the wall so the repair disappears completely."),
+  ("Do you repair rotted wood or replace it?","Small damaged spots can often be repaired. When the wood is too far gone I replace the board. I show you what I find and explain which option makes sense."),
+  ("Is painting my cabinets better than replacing them?","If your cabinet boxes are solid, painting or renovating is usually far less expensive and still changes the whole look of the room. I will tell you honestly if replacement is the better choice."),
+  ("Is it worth repairing my fence or deck instead of replacing it?","If the posts and frame are solid, repairing damaged sections is usually much cheaper than replacing everything. I tell you honestly when a section or a full replacement makes more sense."),
+  ("Do hurricane shutters need a permit?","Shutter projects often do. I walk you through what applies to your address before we start. Atlantic hurricane season runs June 1 to November 30, so booking early gives you the most choice."),
+  ("Can you build a media or accent wall to my own design?","Yes. Bring a photo or an idea and I will tell you what is possible and give you a clear estimate. I can also mount the TV as part of the wall."),
+ ]),
+ ("Christmas light installation", [
+  ("Who owns the Christmas lights?","You do. Unlike companies that rent lights and take them back, the lights we install are yours, and we store them for you after take-down."),
+  ("What does the Christmas light service include?","Professional C9 lights in any color, cut to fit your home and installed, with no leftover pieces, no tangled strands and no ladder work for you. In January I take the lights down and store them until the next season."),
+  ("Can I choose the colors?","Yes. Warm white, cool white, multicolor or any color mix that you like."),
+ ]),
+ ("Licenses, trust & reviews", [
+  ("Do you do electrical or plumbing work?","No. Work that legally requires a licensed electrician or plumber is not part of my service. I can tell you what to line up with a licensed professional so your project stays on schedule."),
+  ("Where can I read reviews?","On Google (4.7 stars, 26 reviews), Facebook, Yelp and Thumbtack. All 48 reviews from the four platforms are on the home page in the Reviews section."),
+  ("What if I am not sure my project is something you do?","Just ask. Call or text (656) 231-1836 or send a photo, and I will tell you honestly whether I can help or who you should call instead."),
+ ]),
+]
+
+def faq_page():
+    url = DOMAIN + '/faq/'
+    title = 'FAQ | Andrew Handyman Services, Wesley Chapel FL'
+    desc = 'Answers about Andrew Handyman Services in Wesley Chapel, FL: free estimates, service areas, TV mounting, drywall, painting, cabinets, fences, decks and Christmas lights.'
+    qa = [x for _, items in FAQ for x in items]
+    ld = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in qa]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
+        {"@type":"ListItem","position":2,"name":"FAQ","item":url}]}
+    extra = f'<script type="application/ld+json">{json.dumps(ld)}</script>\n<script type="application/ld+json">{json.dumps(bc)}</script>\n'
+    secs = ''
+    for i,(gt,items) in enumerate(FAQ):
+        cls = ' sp-alt' if i % 2 else ''
+        det = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in items)
+        secs += f'<section class="sp-sec{cls}"><div class="section-wrap faq-wrap"><div class="reveal"><h2 class="section-title">{esc(gt)}</h2><div class="sp-faq">{det}</div></div></div></section>\n'
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> FAQ</div>
+      <h1 class="sp-h1">Frequently asked <em>questions</em></h1>
+      <p class="sp-lead">Quick answers about estimates, booking, my services and service area. Can't find yours? Call or text {PHONE_DISPLAY}.</p>
+      <div class="sp-actions">
+        <a class="btn-cta" href="/#home">Get a free estimate</a>
+        <a class="btn-ghost-cta" href="tel:{PHONE_TEL}">📞 {PHONE_DISPLAY}</a>
+        <a class="btn-ghost-cta" href="sms:{PHONE_TEL}">💬 Text to book</a>
+      </div>
+    </div>
+  </div>
+</section>
+{secs}
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Still have a question?</h2>
+    <p class="cta-text">Send a quick request or call. I will get back to you fast.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="/#home" class="btn-ghost-cta">Book Online ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(title, desc, url, extra) + body
+
 def main():
     for s in S:
         d = os.path.join('services', s['slug'])
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(page(s))
-    urls = [DOMAIN + '/'] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S]
+    os.makedirs('faq', exist_ok=True)
+    open('faq/index.html','w',encoding='utf-8').write(faq_page())
+    urls = [DOMAIN + '/', DOMAIN + '/faq/'] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n'
     open('sitemap.xml', 'w').write(sm)
     open('tools/_nav.html', 'w', encoding='utf-8').write(nav_html())
