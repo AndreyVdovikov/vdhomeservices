@@ -7,27 +7,47 @@ import os, json, html
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261106a'   # bump to bust browser cache of site.css/site.js
+VER = '20261107a'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
 S = [
  dict(slug='christmas-light-installation', name='Christmas Light Installation', short='Christmas Lights', h1='Christmas Light Installation', icon='christmas-lights.svg', photo=None,
-  desc="Professional Christmas light installation in Wesley Chapel, FL: commercial-grade C9 lights in any color, cut to fit, installed, taken down in January and stored for you. Call Andrew Handyman Services.",
-  lead="Professional C9 Christmas lights in any color, cut to fit your home, installed, taken down in January and stored until next season. No tangled wires, no leftover cut ends and no ladder falls for you. Serving Wesley Chapel and nearby communities.",
-  bullets=["Professional C9 bulbs in any color or color mix you like","Lights cut and measured to fit your roofline and your home","Installation on roofline, eaves, gutters and other areas","No leftover cut pieces, no tangled strands and no climbing a ladder yourself","Take-down in January","Storage until next holiday season, so you do not need to find room in your garage","The lights belong to you, unlike with companies that rent them: you own what we install"],
+  title='Christmas Light Installation Wesley Chapel FL – Install, Takedown & Storage',
+  desc="Christmas light installation in Wesley Chapel, FL: professional C9 roofline lights in any color, cut to fit, installed, taken down in January and stored. The lights are yours. Free estimate.",
+  lead="Professional C9 holiday lighting in any color, cut to fit your home, installed, taken down in January and stored until next season. No tangled wires, no leftover cut ends and no ladder falls for you. Call for a free estimate.",
+  bullets=["Professional C9 roofline lights in any color or color mix you like","Lights cut and measured to fit your roofline and your home","Installation on roofline, eaves, gutters and other areas","No leftover cut pieces, no tangled strands and no climbing a ladder yourself","Take-down in January","Storage until next holiday season, so you do not need to find room in your garage","The lights belong to you, unlike with companies that rent them"],
+  more_tag="How it works", more=("Four steps, <em>no ladder for you</em>",[("📏","Free estimate","Tell me about your home and what you would like lit. I give you a clear estimate for free: call or text (656) 231-1836."),("💡","Cut to fit and installed","Professional C9 lights in the colors you choose, cut to your size and installed neatly."),("📦","Taken down in January","When the season is over I take everything down, with no tangled strands and nothing left on your roof."),("🏠","Stored for next year","I keep your lights until the next holiday season. They are yours, so next year they are ready to go back up.")]),
   faq=[("Who owns the lights?","You do. Unlike companies that rent lights and take them back, the lights we install are yours, and we store them for you after take-down."),
        ("When do you take the lights down and where do they go?","We take them down in January and store them until the next holiday season, ready to be installed again."),
        ("Can I choose the colors?","Yes. Warm white, cool white, multicolor or any color mix that you like. Tell me what you have in mind and we will plan it together."),
-       ("How much does it cost?","The price depends on the size of your home and the areas you want lit. Call or text (656) 231-1836 and I will give you a price.")],
-  related=['fence-repair','painting','wood-rot-repair']),
+       ("How do I get an estimate for holiday lighting?","Estimates are free. The price depends on the size of your home and the areas you want lit, so call or text (656) 231-1836 and I will take care of it."),
+       ("Do you also serve Land O' Lakes?","Yes. See my Christmas light installation page for Land O' Lakes, or call to check your address.")],
+  related=['christmas-light-installation-land-o-lakes','fence-repair','painting']),
+ dict(slug='christmas-light-installation-land-o-lakes', name="Christmas Light Installation Land O' Lakes", short="Christmas Lights Land O' Lakes", h1='Christmas Light Installation', city="Land O' Lakes", hidden=True, parent='christmas-light-installation', icon='christmas-lights.svg', photo=None,
+  title="Christmas Light Installation Land O' Lakes FL | Install, Takedown & Storage",
+  desc="Christmas light installation in Land O' Lakes, FL: professional C9 lights in any color, cut to fit your roofline, installed, taken down in January and stored. Free estimate from Andrew Handyman Services.",
+  lead="Land O' Lakes homeowners: get professional C9 Christmas lights cut to fit your house, installed, taken down in January and stored for next year. You keep the lights, and you never touch a ladder. Call for a free estimate.",
+  area_note="Land O' Lakes is a short drive from my base in Wesley Chapel, so I can schedule installs and January take-downs without long waits.",
+  bullets=["C9 holiday lights for roofline, eaves and gutters in any color","Lights cut to the size of your home, with no leftover pieces","Neat, safe installation, with no ladder work for you","January take-down once the season is over","Storage until next year, so your garage stays free","The lights are yours to keep, not rented"],
+  more_tag="Land O' Lakes", more=("Holiday lights for <em>your Land O' Lakes home</em>",[("📍","Close to home","I am based in Wesley Chapel, right next door, and I work in Land O' Lakes regularly."),("🎨","Your colors, your design","Classic warm white, bright cool white, red and green or a mix of colors. You choose the look."),("🪜","No ladder, no tangles","I do the climbing and the cutting. After the season the lights come down cleanly instead of in a knot."),("🎁","Yours next year too","Because the lights belong to you, next season we hang them again from storage.")]),
+  faq=[("Do you install Christmas lights in Land O' Lakes?","Yes. I install roofline and eave C9 lights in Land O' Lakes and nearby areas. Call or text (656) 231-1836 to check your address."),
+       ("Are the lights rented or do I own them?","You own them. We install them, take them down in January and store them for you until next season."),
+       ("What does an estimate cost?","Nothing. Estimates are free. Call or text and I will tell you what to expect for your home."),
+       ("When should I book?","Earlier is better, as the holiday season fills up. Call or text me as soon as you decide, and I will schedule your installation.")],
+  related=['christmas-light-installation','fence-repair','painting']),
  dict(slug='tv-shelf-mounting', name='TV, Shelf & Curtain Rod Mounting', short='TV & Shelf Mounting', h1='TV, Shelf & Curtain Rod Mounting', icon='tv.png', photo=None,
-  desc="TV mounting, shelf and curtain rod installation in Wesley Chapel, FL and nearby. Level, secure and clean. Call Andrew Handyman Services for a free estimate.",
-  lead="Wall-mounting done level, secure and clean. I mount TVs, shelves, curtain rods, mirrors and other interior items for homeowners in Wesley Chapel and the surrounding Tampa Bay area.",
-  bullets=["TV mounting with fixed, tilting or full-motion brackets","Floating shelves and heavy-duty shelving, anchored into studs or rated anchors","Curtain rods, blinds and drapery hardware","Mirrors, art and picture frames hung level","Soundbars and other small wall-mounted items","Neat finish: cord covers and a clean work area when I leave"],
-  faq=[("Do I need to buy the mount myself?","You can supply your own bracket, or I can point you to a mount that fits your TV and wall. I confirm everything before I start so there are no surprises."),
-       ("Can you mount a TV on any wall?","Most drywall, brick and stucco walls work well. I check what is behind the wall first and tell you upfront if a wall is not a good fit."),
-       ("How long does it take?","A standard TV mount is usually done within an hour or two. Shelves and curtain rods are quicker, and larger jobs are quoted ahead of time.")],
+  title='TV Mounting Wesley Chapel FL – Any Size, Over Fireplace, Hidden Wires',
+  desc="TV mounting in Wesley Chapel, FL: 43 to 98 inch TVs, over brick or stone fireplaces, lanai and outdoor walls, with hidden wires. Shelves and curtain rods too. Free estimate.",
+  lead="TV mounting for every size, from 43 to 98 inches, on drywall, brick, stone and lanai walls, with neat, hidden wires. I also hang shelves and curtain rods in Wesley Chapel and nearby. Call for a free estimate.",
+  bullets=["TV mounting for any size, including 65, 75, 85 and larger screens","Fixed, tilting and full-motion brackets, installed level and secure","TVs above brick or stone fireplaces","Samsung Frame and other thin TVs","Floating shelves and heavy-duty shelving, anchored properly","Curtain rods, blinds and drapery hardware, including high ceilings","Cords hidden in a cord cover or through the wall with a cable pass-through kit"],
+  more_tag="TV mounting", more=("Every size, <em>every wall</em>",[("📺","Big screens","I mount 43 to 98 inch TVs, including 65, 75 and 85 inch models. Large TVs are heavy, so I plan the lift and the bracket carefully before the TV goes up."),("🔥","Over the fireplace","Brick and stone fireplaces are common in Wesley Chapel homes. I use the right anchors and show you the best height before I drill."),("🔌","Hidden wires","Cords go into a cord cover or behind the wall with a pass-through kit, so you see a clean TV and no cables."),("🌴","Lanai & outdoor","Outdoor TVs on a lanai or screened porch are mounted on a bracket that is rated for the wall and the location.")]),
+  faq=[("How much does it cost to mount a 65 inch TV?","Estimates are free. The price depends on the size of the TV, the wall (drywall, brick or stone) and whether you want the wires hidden. Call or text (656) 231-1836 and I will give you a clear number."),
+       ("Do I need to buy the mount myself?","You can supply your own bracket, or I can point you to a mount that fits your TV and wall. I confirm everything before I start so there are no surprises."),
+       ("Can you mount a TV above a brick or stone fireplace?","Yes. I check the surface and use the right anchors. If a fireplace is too hot or the wall is not a good fit, I tell you before I start."),
+       ("Can you mount a TV outside on a lanai?","Yes, on a suitable wall with a bracket and TV that are made for outdoor use. Call me with the details of your lanai."),
+       ("Can you hide the wires?","I hide the cords in a cord cover or route them behind the wall with a cable pass-through kit. I do not install new outlets."),
+       ("How long does it take?","A standard TV mount is usually done within an hour or two. Larger screens, fireplaces and wire concealment take longer, and I tell you the time ahead.")],
   related=['media-accent-walls','drywall-repair','painting']),
  dict(slug='drywall-repair', name='Drywall Repair', short='Drywall Repair', h1='Drywall Repair', icon='drywall.svg', photo=None,
   desc="Drywall repair in Wesley Chapel, FL: holes, cracks, water damage and texture matching. Smooth, paint-ready results from Andrew Handyman Services.",
@@ -106,13 +126,14 @@ BY = {s['slug']: s for s in S}
 
 def esc(t): return html.escape(t, quote=True)
 
-def low(t): return t.replace('Christmas','Christmas_').lower().replace('christmas_','Christmas')
+def low(t): return t.replace('Christmas','Christmas_').replace('TV','TV_').lower().replace('christmas_','Christmas').replace('tv_','TV')
 
 ICON = lambda s: f"/images/services/{s['icon']}"
 
 def nav_html():
-    items = ''.join(f'<a href="/services/{s["slug"]}/"><img src="{ICON(s)}" alt="" width="26" height="26" loading="lazy"><span>{esc(s["name"])}</span></a>' for s in S)
-    mob = ''.join(f'<a href="/services/{s["slug"]}/">{esc(s["name"])}</a>' for s in S)
+    VIS = [x for x in S if not x.get('hidden')]
+    items = ''.join(f'<a href="/services/{s["slug"]}/"><img src="{ICON(s)}" alt="" width="26" height="26" loading="lazy"><span>{esc(s["name"])}</span></a>' for s in VIS)
+    mob = ''.join(f'<a href="/services/{s["slug"]}/">{esc(s["name"])}</a>' for s in VIS)
     return f'''<!-- NAV -->
 <nav id="nav">
   <a href="/" class="nav-logo">
@@ -142,7 +163,7 @@ def nav_html():
 '''
 
 def footer_html():
-    links = ''.join(f'<li><a href="/services/{s["slug"]}/">{esc(s["name"])}</a></li>' for s in S)
+    links = ''.join(f'<li><a href="/services/{s["slug"]}/">{esc(s["name"])}</a></li>' for s in S if not s.get('hidden'))
     return f'''<!-- FOOTER -->
 <footer>
   <div class="section-wrap">
@@ -200,8 +221,9 @@ def head(title, desc, url, extra=''):
 
 def page(s):
     url = f'{DOMAIN}/services/{s["slug"]}/'
-    title = f'{s["h1"]} in Wesley Chapel, FL | Andrew Handyman Services'
-    ld = {"@context":"https://schema.org","@type":"Service","name":f'{s["h1"]} in Wesley Chapel, FL',"serviceType":s['h1'],
+    city = s.get('city', 'Wesley Chapel')
+    title = s.get('title') or f'{s["h1"]} in {city}, FL | Andrew Handyman Services'
+    ld = {"@context":"https://schema.org","@type":"Service","name":f'{s["h1"]} in {city}, FL',"serviceType":s['h1'],
           "description":s['desc'],"url":url,
           "provider":{"@type":"HomeAndConstructionBusiness","name":"Andrew Handyman Services","telephone":"+1-656-231-1836","url":DOMAIN+"/"},
           "areaServed":[{"@type":"City","name":a} for a in AREAS]}
@@ -218,6 +240,16 @@ def page(s):
         side = f'<div class="sp-side-card"><img src="{ICON(s)}" alt="" width="96" height="96"><h3>Free estimate</h3><p>Tell me what you need and I will get back to you within a few hours.</p><a class="btn-cta" href="/#home">Request an estimate</a><a class="sp-call" href="tel:{PHONE_TEL}">or call {PHONE_DISPLAY}</a></div>'
     faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in s['faq'])
     rel = ''.join(f'<a href="/services/{r}/" class="svc-card"><div class="svc-emoji"><img src="{ICON(BY[r])}" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">{esc(BY[r]["name"])}</div><span class="svc-more">Learn more →</span></a>' for r in s['related'])
+    sshort = s['h1'] if s.get('city') else s['short']
+    par = BY.get(s.get('parent'))
+    crumb_parent = f'<a href="/services/{par["slug"]}/">{esc(par["short"])}</a> <span>›</span> ' if par else ''
+    more = ''
+    a_why, a_area, a_rel = ' sp-alt', '', ' sp-alt'
+    if s.get('more'):
+        mt, cards = s['more']
+        mc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{ic}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for ic,t,p in cards)
+        more = f'<section class="sp-sec sp-alt"><div class="section-wrap"><div class="reveal"><div class="section-tag">{esc(s.get("more_tag","Details"))}</div><h2 class="section-title">{mt}</h2></div><div class="sp-why">{mc}</div></div></section>\n'
+        a_why, a_area, a_rel = '', ' sp-alt', ''
     chips = ''.join(f'<span class="area-chip">{esc(a)}</span>' for a in AREAS)
     body = f'''<body>
 {nav_html()}
@@ -225,8 +257,8 @@ def page(s):
 <section class="sp-hero">
   <div class="section-wrap sp-hero-inner">
     <div>
-      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/#services">Services</a> <span>›</span> {esc(s["short"])}</div>
-      <h1 class="sp-h1">{esc(s["h1"])} in <em>Wesley Chapel, FL</em></h1>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/#services">Services</a> <span>›</span> {crumb_parent}{esc(s["short"])}</div>
+      <h1 class="sp-h1">{esc(s["h1"])} in <em>{esc(city)}, FL</em></h1>
       <p class="sp-lead">{esc(s["lead"])}</p>
       <div class="sp-actions">
         <a class="btn-cta" href="/#home">Get a free estimate</a>
@@ -251,7 +283,7 @@ def page(s):
   </div>
 </section>
 
-<section class="sp-sec sp-alt">
+{more}<section class="sp-sec{a_why}">
   <div class="section-wrap">
     <div class="reveal">
       <div class="section-tag">Why Andrew</div>
@@ -266,12 +298,12 @@ def page(s):
   </div>
 </section>
 
-<section class="sp-sec">
+<section class="sp-sec{a_area}">
   <div class="section-wrap sp-two">
     <div class="reveal">
       <div class="section-tag">Service area</div>
-      <h2 class="section-title">{esc(s["short"])} near <em>you</em></h2>
-      <p class="sp-p">Andrew Handyman Services is based in Wesley Chapel and provides {esc(low(s["short"]))} across the northern Tampa Bay area, including {AREAS_TXT} and nearby neighborhoods.</p>
+      <h2 class="section-title">{esc(sshort)} near <em>you</em></h2>
+      <p class="sp-p">{esc(s.get('area_note',''))} Andrew Handyman Services is based in Wesley Chapel and provides {esc(low(sshort))} in {esc(city)} and across the northern Tampa Bay area, including {AREAS_TXT} and nearby neighborhoods.</p>
       <div class="area-chips">{chips}</div>
       <p class="sp-p">Not sure if I cover your address? Call or text {PHONE_DISPLAY} and I will let you know.</p>
     </div>
@@ -283,7 +315,7 @@ def page(s):
   </div>
 </section>
 
-<section class="sp-sec sp-alt">
+<section class="sp-sec{a_rel}">
   <div class="section-wrap">
     <div class="reveal">
       <div class="section-tag">More services</div>
@@ -295,7 +327,7 @@ def page(s):
 
 <section class="cta-wrap">
   <div class="cta-inner">
-    <h2 class="cta-title">Ready for {esc(low(s["short"]))}?</h2>
+    <h2 class="cta-title">Ready for {esc(low(sshort))}?</h2>
     <p class="cta-text">Send a quick request or call. I will get back to you fast with a clear estimate.</p>
     <div class="cta-btns">
       <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
