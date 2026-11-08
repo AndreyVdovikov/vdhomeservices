@@ -21,7 +21,7 @@
 {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Andrew Handyman Services","url":"https://andrewhandy.com/","telephone":"+1-656-231-1836","image":"https://andrewhandy.com/images/img-02.jpg","areaServed":{"@type":"City","name":"Wesley Chapel, FL"},"address":{"@type":"PostalAddress","addressLocality":"Wesley Chapel","addressRegion":"FL","addressCountry":"US"}}
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css?v=20261108b">
+<link rel="stylesheet" href="/site.css?v=20261108c">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="text/javascript">
   (function(){
@@ -168,9 +168,9 @@
     <div class="bar">
     <div class="tabs" role="tablist" aria-label="Part of the house">
       <button class="tab" role="tab" id="hx-tab-out" aria-selected="true" data-scene="out">Outside</button>
-      <button class="tab" role="tab" id="hx-tab-in" aria-selected="false" data-scene="in">Inside</button>
+      <button class="tab" role="tab" id="hx-tab-in" aria-selected="false" data-scene="in" data-nudge="👉 Great! Now check inside">Inside</button>
     </div>
-    <button class="toggle" id="hx-nightBtn" aria-pressed="false">Night + Christmas lights</button>
+    <button class="toggle" id="hx-nightBtn" data-nudge="✨ Try night mode" aria-pressed="false">Night + Christmas lights</button>
     <div class="progress"><span id="hx-count">0 of 0 found</span><span class="pbar"><i id="hx-pfill"></i></span></div>
   </div>
 
@@ -265,7 +265,7 @@
       </g>
 
       <!-- roof lights (christmas) -->
-      <g class="hs" data-id="hx-lights" tabindex="0" role="button" aria-label="Roofline Christmas lights">
+      <g class="hs" data-id="lights" tabindex="0" role="button" aria-label="Roofline Christmas lights">
         <path d="M228 268 L298 196 L774 196 L832 268" fill="none" stroke="#14223b" stroke-width="2.2" opacity=".0"/>
         <rect class="hl" x="224" y="258" width="616" height="20" rx="6"/><rect class="hl" x="226" y="190" width="612" height="14" rx="6"/>
         <g transform="translate(360 268)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
@@ -1185,6 +1185,6 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-<script src="/site.js?v=20261108b" defer></script>
+<script src="/site.js?v=20261108c" defer></script>
 </body>
 </html>

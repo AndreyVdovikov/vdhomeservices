@@ -118,3 +118,24 @@ nightBtn.addEventListener('click', () => {
 });
 
 })();
+
+/* house explorer nudges */
+(function(){
+  var root=document.getElementById('house'); if(!root) return;
+  var tabIn=document.getElementById('hx-tab-in'), night=document.getElementById('hx-nightBtn'), out=document.getElementById('hx-scene-out');
+  if(!tabIn||!night||!out) return;
+  var dismissed={in:false,night:false}, seenView=false, t0=0;
+  function nudge(el,key,on){ if(on&&dismissed[key]) return; el.classList.toggle('hx-nudge',!!on); }
+  tabIn.addEventListener('click',function(){dismissed.in=true;nudge(tabIn,'in',false);});
+  night.addEventListener('click',function(){dismissed.night=true;nudge(night,'night',false);});
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting&&!seenView){seenView=true;t0=Date.now();} }); },{threshold:.4}).observe(root);
+  } else { seenView=true; t0=Date.now(); }
+  setInterval(function(){
+    var outside=out.querySelectorAll('.hs'), done=out.querySelectorAll('.hs.seen').length===outside.length;
+    var inside=!out.hasAttribute('hidden');
+    if(done&&inside) nudge(tabIn,'in',true);
+    else if(!inside) nudge(tabIn,'in',false);
+    if(seenView&&inside&&Date.now()-t0>25000) nudge(night,'night',true);
+  },700);
+})();
