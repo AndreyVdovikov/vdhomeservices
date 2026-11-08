@@ -811,3 +811,6 @@ a.svc-card:hover .svc-more { text-decoration:underline; }
 .about-guarantee b{color:var(--blue-deep)}
 .about-h3{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--blue-deep);margin:6px 0 12px}
 a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);color:#fff}
+
+.nav-dd-loc{min-width:260px}
+.footer-grid .f-areas a:hover{text-decoration:underline}

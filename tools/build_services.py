@@ -2,12 +2,14 @@
 """Generates /services/<slug>/index.html pages, shared nav/footer snippets and sitemap.xml.
 Run from the repo root:  python3 tools/build_services.py
 """
-import os, json, html
+import os, sys, json, html
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from locations_data import LOCS
 
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261107g'   # bump to bust browser cache of site.css/site.js
+VER = '20261107i'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -132,6 +134,8 @@ ICON = lambda s: f"/images/services/{s['icon']}"
 
 def nav_html():
     VIS = [x for x in S if not x.get('hidden')]
+    mobloc = ''.join(f'<a href="/locations/{l["slug"]}/">{esc(l["name"])}</a>' for l in LOCS)
+    locitems = ''.join(f'<a href="/locations/{l["slug"]}/">{esc(l["name"])}</a>' for l in LOCS)
     items = ''.join(f'<a href="/services/{s["slug"]}/"><img src="{ICON(s)}" alt="" width="26" height="26" loading="lazy"><span>{esc(s["name"])}</span></a>' for s in VIS)
     mob = ''.join(f'<a href="/services/{s["slug"]}/">{esc(s["name"])}</a>' for s in VIS)
     return f'''<!-- NAV -->
@@ -144,11 +148,15 @@ def nav_html():
   </a>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
+    <li><a href="/about/">About</a></li>
     <li class="nav-dd">
       <a href="/#services" class="nav-dd-toggle" aria-haspopup="true">Services <span class="nav-caret">&#9662;</span></a>
       <div class="nav-dd-menu">{items}</div>
     </li>
-    <li><a href="/about/">About</a></li>
+    <li class="nav-dd">
+      <a href="/#contact" class="nav-dd-toggle" aria-haspopup="true">Locations <span class="nav-caret">&#9662;</span></a>
+      <div class="nav-dd-menu nav-dd-loc">{locitems}</div>
+    </li>
     <li><a href="/#reviews">Reviews</a></li>
     <li><a href="/faq/">FAQ</a></li>
     <li><a href="/#contact">Area</a></li>
@@ -157,15 +165,19 @@ def nav_html():
   <button class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile"><span></span><span></span><span></span></button>
 </nav>
 <div class="nav-mobile" id="navMobile">
+  <div class="nm-list"><a href="/">Home</a><a href="/about/">About</a></div>
   <div class="nm-h">Services</div>
   <div class="nm-list">{mob}</div>
+  <div class="nm-h">Locations</div>
+  <div class="nm-list">{mobloc}</div>
   <div class="nm-h">More</div>
-  <div class="nm-list"><a href="/">Home</a><a href="/about/">About</a><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
+  <div class="nm-list"><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
   <a href="tel:{PHONE_TEL}" class="nm-call">📞 Call {PHONE_DISPLAY}</a>
 </div>
 '''
 
 def footer_html():
+    locs_f = ', '.join(f'<a href="/locations/{l["slug"]}/" style="color:inherit">{esc(l["city"].split(",")[0])}</a>' for l in LOCS)
     links = ''.join(f'<li><a href="/services/{s["slug"]}/">{esc(s["name"])}</a></li>' for s in S if not s.get('hidden'))
     return f'''<!-- FOOTER -->
 <footer>
@@ -174,7 +186,7 @@ def footer_html():
       <div>
         <div class="f-brand">Andrew Handyman</div>
         <p class="f-tagline">Your trusted local handyman in Wesley Chapel, FL — quality work, honest pricing, always on time.</p>
-        <p class="f-areas">Serving {AREAS_TXT} and nearby.</p>
+        <p class="f-areas">Serving {locs_f} and nearby.</p>
       </div>
       <div>
         <div class="f-h">Services</div>
@@ -530,16 +542,113 @@ def about_page():
 '''
     return head(title, desc, url, extra) + body
 
+
+def loc_page(l):
+    url = f'{DOMAIN}/locations/{l["slug"]}/'
+    city = l['city']
+    title = f'Handyman in {city}, FL | Andrew Handyman Services'
+    desc = f'{l["intro"]} Free estimate: call or text (656) 231-1836.'
+    if len(desc) > 300: desc = desc[:297].rsplit(' ',1)[0] + '...'
+    faq = l['faq'] + [(f'How do I get a free estimate in {city}?', 'Fill in the request form on my website, or call or text (656) 231-1836. Photos help me give you a more accurate estimate. I usually get back to you within a few hours.')]
+    ld = {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Andrew Handyman Services","url":DOMAIN+"/","telephone":PHONE_TEL,
+          "areaServed":{"@type":"City","name":city},"address":{"@type":"PostalAddress","addressLocality":"Wesley Chapel","addressRegion":"FL","postalCode":"33544","addressCountry":"US"}}
+    fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in faq]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
+        {"@type":"ListItem","position":2,"name":f"Handyman in {city}","item":url}]}
+    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (ld, fq, bc))
+    cards = ''.join(f'<a href="/services/{r}/" class="svc-card"><div class="svc-emoji"><img src="{ICON(BY[r])}" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">{esc(BY[r]["name"])}</div><span class="svc-more">Learn more →</span></a>' for r in l['focus'])
+    det = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in faq)
+    near = ''.join(f'<a class="area-chip about-svc" href="/locations/{n}/">{esc(next(x["city"] for x in LOCS if x["slug"]==n))}</a>' for n in l['near'])
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> Handyman in {esc(city)}</div>
+      <h1 class="sp-h1">Handyman in <em>{esc(city)}, FL</em></h1>
+      <p class="sp-lead">{esc(l["intro"])}</p>
+      <div class="sp-actions">
+        <a class="btn-cta" href="/#home">Get a free estimate</a>
+        <a class="btn-ghost-cta" href="tel:{PHONE_TEL}">📞 {PHONE_DISPLAY}</a>
+        <a class="btn-ghost-cta" href="sms:{PHONE_TEL}">💬 Text to book</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sp-sec">
+  <div class="section-wrap sp-two">
+    <div class="reveal">
+      <div class="section-tag">{esc(l["group"])}</div>
+      <h2 class="section-title">Your local handyman in <em>{esc(city)}</em></h2>
+      <p class="sp-p">{esc(l["local"])}</p>
+      <p class="sp-p">Every job starts with a free, clear estimate and is backed by my personal guarantee. If you are not completely satisfied with the work, I will make it right.</p>
+    </div>
+    <div class="reveal"><div class="sp-side-card"><img src="/images/img-01.png" alt="" width="96" height="96"><h3>Free estimate</h3><p>Tell me what you need and I will get back to you within a few hours.</p><a class="btn-cta" href="/#home">Request an estimate</a><a class="sp-call" href="tel:{PHONE_TEL}">or call {PHONE_DISPLAY}</a></div></div>
+  </div>
+</section>
+
+<section class="sp-sec sp-alt">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-tag">Popular services</div>
+      <h2 class="section-title">What I do in <em>{esc(city)}</em></h2>
+    </div>
+    <div class="sp-related">{cards}</div>
+  </div>
+</section>
+
+<section class="sp-sec">
+  <div class="section-wrap sp-two">
+    <div class="reveal">
+      <div class="section-tag">Questions</div>
+      <h2 class="section-title">Good to <em>know</em></h2>
+      <div class="sp-faq">{det}</div>
+    </div>
+    <div class="reveal">
+      <div class="section-tag">Nearby</div>
+      <h2 class="section-title">Also serving <em>nearby</em></h2>
+      <p class="sp-p">Based in Wesley Chapel, I also work in:</p>
+      <div class="area-chips">{near}</div>
+      <p class="sp-p">Not sure I cover your address? Call or text {PHONE_DISPLAY} and I will let you know.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Need a handyman in {esc(city)}?</h2>
+    <p class="cta-text">Send a quick request or call. I will get back to you fast with a clear estimate.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="/#home" class="btn-ghost-cta">Book Online ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(title, desc, url, extra) + body
+
 def main():
     for s in S:
         d = os.path.join('services', s['slug'])
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(page(s))
+    for l in LOCS:
+        d = os.path.join('locations', l['slug']); os.makedirs(d, exist_ok=True)
+        open(os.path.join(d,'index.html'),'w',encoding='utf-8').write(loc_page(l))
     os.makedirs('about', exist_ok=True)
     open('about/index.html','w',encoding='utf-8').write(about_page())
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/'] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/'] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n'
     open('sitemap.xml', 'w').write(sm)
     open('tools/_nav.html', 'w', encoding='utf-8').write(nav_html())
