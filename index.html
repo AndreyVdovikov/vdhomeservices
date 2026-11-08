@@ -21,7 +21,7 @@
 {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Andrew Handyman Services","url":"https://andrewhandy.com/","telephone":"+1-656-231-1836","image":"https://andrewhandy.com/images/img-02.jpg","areaServed":{"@type":"City","name":"Wesley Chapel, FL"},"address":{"@type":"PostalAddress","addressLocality":"Wesley Chapel","addressRegion":"FL","addressCountry":"US"}}
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css?v=20261107k">
+<link rel="stylesheet" href="/site.css?v=20261108b">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="text/javascript">
   (function(){
@@ -152,6 +152,250 @@
       <a class="wf-card" href="#services"><div class="wf-num">11</div><div class="wf-lbl">Home repair &amp;<br>remodel services</div></a>
       <a class="wf-card" href="#contact"><div class="wf-num">8</div><div class="wf-lbl">Tampa Bay<br>communities served</div></a>
       <a class="wf-card" href="#home"><div class="wf-num">Free</div><div class="wf-lbl">Clear estimate<br>before any work</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- HOUSE EXPLORER -->
+<section class="pad" id="house">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-tag">Explore</div>
+      <h2 class="section-title">What does your house <em>need?</em></h2>
+      <p class="section-desc">Point at any part of the house to see what I can do there. Switch to the inside for the interior jobs. At night the roof lights up.</p>
+    </div>
+    <div class="hx-wrapin">
+    <div class="bar">
+    <div class="tabs" role="tablist" aria-label="Part of the house">
+      <button class="tab" role="tab" id="hx-tab-out" aria-selected="true" data-scene="out">Outside</button>
+      <button class="tab" role="tab" id="hx-tab-in" aria-selected="false" data-scene="in">Inside</button>
+    </div>
+    <button class="toggle" id="hx-nightBtn" aria-pressed="false">Night + Christmas lights</button>
+    <div class="progress"><span id="hx-count">0 of 0 found</span><span class="pbar"><i id="hx-pfill"></i></span></div>
+  </div>
+
+  <div class="stage" id="hx-stage">
+    <!-- ============ OUTSIDE ============ -->
+    <svg class="scene" id="hx-scene-out" viewBox="0 0 1000 600" role="img" aria-label="Illustration of a Florida house with clickable areas">
+      <defs>
+        <linearGradient id="hx-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b8fe0"/><stop offset=".6" stop-color="#9fd2f6"/><stop offset="1" stop-color="#fde9c9"/></linearGradient>
+        <linearGradient id="hx-nsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1731"/><stop offset=".7" stop-color="#1d3a69"/><stop offset="1" stop-color="#3b4f7a"/></linearGradient>
+        <linearGradient id="hx-lawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6cbf45"/><stop offset="1" stop-color="#3e8c29"/></linearGradient>
+        <linearGradient id="hx-wall" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f7ecd8"/><stop offset="1" stop-color="#ecd9b8"/></linearGradient>
+        <linearGradient id="hx-roof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9693a"/><stop offset="1" stop-color="#b24a25"/></linearGradient>
+        <g id="hx-palm">
+          <path d="M0 0 C6 -60 -4 -130 8 -200" fill="none" stroke="#7a5a3a" stroke-width="13" stroke-linecap="round"/>
+          <g fill="#2f8a3c"><path d="M8 -200 C-30 -235 -80 -225 -110 -190 C-70 -208 -40 -205 8 -200Z"/><path d="M8 -200 C-20 -250 -60 -270 -105 -262 C-60 -250 -30 -235 8 -200Z"/><path d="M8 -200 C20 -255 60 -280 105 -272 C60 -258 35 -238 8 -200Z"/><path d="M8 -200 C45 -235 95 -228 125 -192 C85 -210 50 -207 8 -200Z"/><path d="M8 -200 C-5 -240 -5 -275 -22 -300 C5 -270 12 -240 8 -200Z"/></g>
+        </g>
+      </defs>
+      <rect width="1000" height="600" fill="url(#hx-sky)"/>
+      <rect id="hx-night" width="1000" height="600" fill="url(#hx-nsky)"/>
+      <g id="hx-stars" fill="#fff" style="opacity:.0"></g>
+      <circle id="hx-sun" cx="860" cy="100" r="46" fill="#fff4c4"/><circle id="hx-sun2" class="sunhalo" cx="860" cy="100" r="80" fill="#fff4c4" opacity=".25"/>
+      <g id="hx-moon"><circle cx="860" cy="100" r="34" fill="#f4f1de"/><circle cx="874" cy="92" r="30" fill="#1b3562"/></g>
+      <g fill="#fff" opacity=".9"><g class="cloud"><ellipse cx="0" cy="110" rx="90" ry="22"/><ellipse cx="50" cy="96" rx="52" ry="20"/></g><g class="cloud c2"><ellipse cx="0" cy="60" rx="70" ry="16"/><ellipse cx="40" cy="50" rx="40" ry="14"/></g><g class="cloud c3"><ellipse cx="0" cy="170" rx="60" ry="14"/></g></g>
+      <g fill="#4e9a54" opacity=".55"><ellipse cx="60" cy="440" rx="130" ry="50"/><ellipse cx="940" cy="440" rx="140" ry="52"/></g>
+      <rect y="438" width="1000" height="162" fill="url(#hx-lawn)"/>
+
+      <!-- driveway -->
+      <g class="hs" data-id="driveway" tabindex="0" role="button" aria-label="Driveway">
+        <polygon points="262,440 410,440 470,600 150,600" fill="#e3dccd"/>
+        <g stroke="#cfc7b6" stroke-width="2"><path d="M300 480 H435 M250 530 H460"/></g>
+        <g fill="#cbbf9f" opacity=".55"><ellipse cx="320" cy="500" rx="26" ry="9"/><ellipse cx="380" cy="560" rx="38" ry="10"/></g>
+        <polygon class="hl" points="262,440 410,440 470,600 150,600"/>
+        <g class="dotg" transform="translate(315 540)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <!-- fence -->
+      <g class="hs" data-id="fence" tabindex="0" role="button" aria-label="Fence">
+        <g fill="#f1e6d0" stroke="#c9b894" stroke-width="2"><rect x="850" y="380" width="22" height="96" rx="3"/><rect x="876" y="380" width="22" height="96" rx="3"/><rect x="902" y="380" width="22" height="96" rx="3"/><rect x="928" y="380" width="22" height="96" rx="3"/><rect x="954" y="380" width="22" height="96" rx="3"/><rect x="980" y="380" width="20" height="96" rx="3"/></g>
+        <rect x="846" y="404" width="154" height="8" fill="#e0d2b2"/><rect x="846" y="446" width="154" height="8" fill="#e0d2b2"/>
+        <rect class="hl" x="846" y="378" width="154" height="100" rx="4"/>
+        <g transform="translate(925 428)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <!-- house body -->
+      <rect x="250" y="270" width="570" height="170" fill="url(#hx-wall)"/>
+      <!-- exterior wall (painting) -->
+      <g class="hs" data-id="paint-out" tabindex="0" role="button" aria-label="Exterior walls">
+        <rect x="580" y="290" width="236" height="146" fill="#f2e3c6" opacity=".01"/>
+        <rect class="hl" x="250" y="292" width="570" height="148" rx="3"/>
+        <g transform="translate(335 308)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+      <!-- garage -->
+      <rect x="262" y="324" width="148" height="116" fill="#ffffff" stroke="#d9c7a5" stroke-width="3"/>
+      <g stroke="#d9c7a5" stroke-width="2"><path d="M262 352 H410 M262 380 H410 M262 408 H410"/></g>
+      <!-- right windows with hurricane shutters -->
+      <g class="hs" data-id="shutters" tabindex="0" role="button" aria-label="Windows and hurricane shutters">
+        <rect x="610" y="330" width="64" height="76" rx="4" fill="#a9d8f5" stroke="#fff" stroke-width="5"/>
+        <rect x="716" y="330" width="64" height="76" rx="4" fill="#a9d8f5" stroke="#fff" stroke-width="5"/>
+        <g id="hx-winglow" fill="#ffd36e" style="opacity:0"><rect x="613" y="333" width="58" height="70"/><rect x="719" y="333" width="58" height="70"/></g>
+        <g fill="#7f93a8" opacity=".95"><rect x="586" y="330" width="20" height="76"/><rect x="678" y="330" width="20" height="76"/><rect x="692" y="330" width="20" height="76"/><rect x="784" y="330" width="20" height="76"/></g>
+        <g stroke="#5f7388" stroke-width="2"><path d="M586 342 h20 M586 354 h20 M586 366 h20 M586 378 h20 M586 390 h20 M678 342 h20 M678 354 h20 M678 366 h20 M678 378 h20 M678 390 h20 M692 342 h20 M692 354 h20 M692 366 h20 M692 378 h20 M692 390 h20 M784 342 h20 M784 354 h20 M784 366 h20 M784 378 h20 M784 390 h20"/></g>
+        <rect class="hl" x="582" y="326" width="226" height="84" rx="5"/>
+        <g transform="translate(695 368)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <!-- entry -->
+      <rect x="440" y="290" width="128" height="150" fill="#f9f0de"/>
+      <path d="M430 290 L504 214 L578 290 Z" fill="#f9f0de"/>
+      <circle cx="504" cy="262" r="10" fill="#a9d8f5" stroke="#fff" stroke-width="4"/>
+      <g class="hs" data-id="door" tabindex="0" role="button" aria-label="Front door"><path d="M482 440 v-86 a22 22 0 0 1 44 0 v86z" fill="#1f4f9a" stroke="#fff" stroke-width="4"/><circle cx="518" cy="404" r="3.5" fill="#fbbf24"/><path class="hl" d="M478 444 v-90 a26 26 0 0 1 52 0 v90z"/><g transform="translate(504 392)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g></g>
+      <!-- columns / trim -->
+      <g class="hs" data-id="rot" tabindex="0" role="button" aria-label="Columns and trim">
+        <rect x="452" y="296" width="12" height="144" fill="#ffffff" stroke="#e1d6c0"/><rect x="544" y="296" width="12" height="144" fill="#ffffff" stroke="#e1d6c0"/>
+        <rect x="446" y="426" width="24" height="14" fill="#ffffff" stroke="#e1d6c0"/><rect x="538" y="426" width="24" height="14" fill="#ffffff" stroke="#e1d6c0"/>
+        <rect class="hl" x="444" y="292" width="28" height="150" rx="3"/><rect class="hl" x="536" y="292" width="28" height="150" rx="3"/>
+        <g transform="translate(458 360)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <!-- roof -->
+      <polygon points="228,278 298,204 774,204 832,278" fill="url(#hx-roof)"/>
+      <polygon points="418,296 504,198 590,296" fill="url(#hx-roof)" stroke="#8f3a1d" stroke-width="2"/>
+      <g stroke="#9a3f1f" stroke-width="2" opacity=".5"><path d="M270 278 L330 204 M320 278 L378 204 M370 278 L426 204 M620 278 L580 204 M670 278 L626 204 M720 278 L674 204 M770 278 L722 204 M470 270 L504 232 M540 270 L504 232"/></g>
+      <rect x="226" y="274" width="608" height="7" rx="3" fill="#8f3a1d"/>
+
+      <!-- gutters -->
+      <g class="hs" data-id="gutters" tabindex="0" role="button" aria-label="Gutters">
+        <rect x="224" y="281" width="612" height="9" rx="4.5" fill="#cdd5dd" stroke="#9aa6b3"/>
+        <rect x="826" y="288" width="9" height="150" rx="4.5" fill="#cdd5dd" stroke="#9aa6b3"/>
+        <g fill="#6d7f56" opacity=".7"><circle cx="300" cy="286" r="3"/><circle cx="318" cy="285" r="2.5"/><circle cx="640" cy="286" r="3"/><circle cx="662" cy="286" r="2"/></g>
+        <rect class="hl" x="220" y="278" width="620" height="16" rx="6"/>
+        <g transform="translate(700 286)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <!-- roof lights (christmas) -->
+      <g class="hs" data-id="hx-lights" tabindex="0" role="button" aria-label="Roofline Christmas lights">
+        <path d="M228 268 L298 196 L774 196 L832 268" fill="none" stroke="#14223b" stroke-width="2.2" opacity=".0"/>
+        <rect class="hl" x="224" y="258" width="616" height="20" rx="6"/><rect class="hl" x="226" y="190" width="612" height="14" rx="6"/>
+        <g transform="translate(360 268)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+      <g id="hx-lights" pointer-events="none"></g>
+      <g id="hx-glow" pointer-events="none"><rect x="262" y="324" width="148" height="116" fill="#ffd36e" opacity=".0"/></g>
+
+      <!-- deck -->
+      <g class="hs" data-id="deck" tabindex="0" role="button" aria-label="Deck">
+        <polygon points="566,440 800,440 828,482 536,482" fill="#b98a59"/>
+        <g stroke="#8c6238" stroke-width="2"><path d="M556 452 H810 M548 464 H818 M540 474 H826"/></g>
+        <rect x="536" y="482" width="292" height="10" fill="#8c6238"/>
+        <g fill="#8c6238"><rect x="570" y="412" width="8" height="30"/><rect x="624" y="412" width="8" height="30"/><rect x="680" y="412" width="8" height="30"/><rect x="736" y="412" width="8" height="30"/><rect x="790" y="412" width="8" height="30"/></g>
+        <rect x="566" y="410" width="236" height="7" fill="#a67845" stroke="#8c6238"/>
+        <polygon class="hl" points="566,408 802,408 828,492 536,492"/>
+        <g transform="translate(684 462)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <g transform="translate(212 446) scale(1.2)"><use class="palm" href="#hx-palm"/></g>
+      <g transform="translate(850 452) scale(1.05)"><use class="palm" href="#hx-palm"/></g>
+      <g fill="#2d7a32"><ellipse cx="478" cy="446" rx="38" ry="14"/><ellipse cx="540" cy="448" rx="30" ry="12"/></g>
+      <g fill="#ff7a59"><circle cx="470" cy="442" r="3"/><circle cx="486" cy="446" r="3"/><circle cx="534" cy="444" r="3"/></g>
+    </svg>
+
+    <!-- ============ INSIDE ============ -->
+    <svg class="scene" id="hx-scene-in" viewBox="0 0 1000 600" role="img" aria-label="Illustration of a living room and kitchen with clickable areas" hidden>
+      <rect width="1000" height="600" fill="#dfe9f3"/>
+      <rect x="60" y="50" width="880" height="400" fill="#f3ead9"/>
+      <rect x="60" y="440" width="880" height="12" fill="#ffffff"/>
+      <rect x="40" y="450" width="920" height="120" fill="#b98a59"/>
+      <g stroke="#a47a4a" stroke-width="2"><path d="M40 478 H960 M40 506 H960 M40 534 H960 M200 450 V478 M420 478 V506 M700 506 V534 M300 534 V570 M860 450 V478"/></g>
+      <rect x="60" y="50" width="880" height="14" fill="#fff"/>
+
+      <!-- kitchen -->
+      <g class="hs" data-id="cabinets" tabindex="0" role="button" aria-label="Kitchen cabinets">
+        <rect x="90" y="86" width="230" height="116" rx="4" fill="#ffffff" stroke="#d6cdb9" stroke-width="3"/>
+        <path d="M205 86 V202" stroke="#d6cdb9" stroke-width="3"/><circle cx="196" cy="150" r="4" fill="#9aa6b3"/><circle cx="214" cy="150" r="4" fill="#9aa6b3"/>
+        <rect x="90" y="300" width="230" height="140" rx="4" fill="#2e5c8f" stroke="#1e4570" stroke-width="3"/>
+        <path d="M205 300 V440" stroke="#1e4570" stroke-width="3"/><circle cx="196" cy="340" r="4" fill="#e7d7a0"/><circle cx="214" cy="340" r="4" fill="#e7d7a0"/>
+        <rect x="84" y="288" width="242" height="14" rx="3" fill="#e9e6df" stroke="#c9c3b3"/>
+        <rect x="150" y="262" width="60" height="26" rx="4" fill="#cfd8e2"/><rect x="240" y="270" width="40" height="18" rx="3" fill="#c0392b"/>
+        <rect class="hl" x="84" y="80" width="244" height="364" rx="6" style="display:none"/>
+        <rect class="hl" x="84" y="80" width="244" height="128" rx="6"/><rect class="hl" x="84" y="284" width="244" height="160" rx="6"/>
+        <g transform="translate(205 246)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <!-- accent wall + TV -->
+      <g class="hs" data-id="accent" tabindex="0" role="button" aria-label="Accent wall">
+        <rect x="360" y="78" width="300" height="366" fill="#9b6b3f"/>
+        <g stroke="#7d5330" stroke-width="3"><path d="M376 78 V444 M394 78 V444 M412 78 V444 M430 78 V444 M448 78 V444 M466 78 V444 M484 78 V444 M502 78 V444 M520 78 V444 M538 78 V444 M556 78 V444 M574 78 V444 M592 78 V444 M610 78 V444 M628 78 V444 M646 78 V444"/></g>
+        <rect class="hl" x="356" y="74" width="308" height="374" rx="4"/>
+        <g transform="translate(386 100)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+      <g class="hs" data-id="tv" tabindex="0" role="button" aria-label="TV">
+        <rect x="414" y="130" width="192" height="112" rx="6" fill="#10151c" stroke="#2a3340" stroke-width="5"/>
+        <polygon points="426,140 520,140 470,232 426,232" fill="#2d5aa6" opacity=".5"/><polygon points="520,140 596,140 596,232 470,232" fill="#f97316" opacity=".4"/>
+        <rect x="404" y="256" width="212" height="22" rx="4" fill="#5a3a22"/><rect x="430" y="270" width="160" height="6" fill="#3b2614"/>
+        <rect class="hl" x="408" y="124" width="204" height="126" rx="8"/>
+        <g transform="translate(510 188)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+      <g><path d="M440 440 V380 a70 70 0 0 1 140 0 V440 Z" fill="#7c4a2d" opacity=".0"/>
+      <rect x="430" y="352" width="160" height="90" rx="4" fill="#3a2a20"/><rect x="444" y="364" width="132" height="62" fill="#1a1210"/>
+      <g class="flame" fill="#ff8a1f"><path d="M480 426 q-8 -22 6 -38 q4 14 14 18 q4 -10 12 -14 q8 18 -4 34z"/></g><g class="flame" fill="#ffd36e" style="animation-delay:.4s"><path d="M498 426 q-4 -12 4 -22 q4 8 8 10 q2 -6 6 -8 q4 12 -2 20z"/></g></g>
+
+      <!-- window + curtain rod -->
+      <g class="hs" data-id="curtains" tabindex="0" role="button" aria-label="Window and curtains">
+        <rect x="716" y="116" width="100" height="190" rx="4" fill="#bfe3f7" stroke="#fff" stroke-width="7"/>
+        <path d="M766 116 V306 M716 211 H816" stroke="#fff" stroke-width="5"/>
+        <rect x="696" y="100" width="140" height="7" rx="3.5" fill="#6d4a2b"/><circle cx="696" cy="103" r="6" fill="#6d4a2b"/><circle cx="836" cy="103" r="6" fill="#6d4a2b"/>
+        <path d="M704 108 q-6 100 4 210 h38 q-8 -110 -2 -210z" fill="#d9a441"/><path d="M828 108 q6 100 -4 210 h-38 q8 -110 2 -210z" fill="#d9a441"/>
+        <g stroke="#b9852a" stroke-width="2" opacity=".7"><path d="M716 110 V312 M730 110 V312 M816 110 V312 M802 110 V312"/></g>
+        <rect class="hl" x="690" y="94" width="152" height="232" rx="8"/>
+        <g transform="translate(766 118)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <!-- shelves -->
+      <g class="hs" data-id="shelves" tabindex="0" role="button" aria-label="Shelves">
+        <rect x="860" y="150" width="76" height="8" rx="2" fill="#6d4a2b"/><rect x="860" y="230" width="76" height="8" rx="2" fill="#6d4a2b"/>
+        <rect x="868" y="118" width="22" height="32" rx="2" fill="#2e5c8f"/><rect x="893" y="128" width="16" height="22" rx="2" fill="#f97316"/><circle cx="922" cy="140" r="9" fill="#5fa86b"/>
+        <rect x="870" y="204" width="30" height="26" rx="2" fill="#d9a441"/><rect x="906" y="196" width="22" height="34" rx="2" fill="#8c3a3a"/>
+        <rect class="hl" x="852" y="110" width="92" height="136" rx="6"/>
+        <g transform="translate(898 182)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <!-- drywall patch -->
+      <g class="hs" data-id="drywall" tabindex="0" role="button" aria-label="Drywall repair">
+        <rect x="860" y="290" width="68" height="64" fill="#ffffff" stroke="#d8d0be" stroke-width="2" stroke-dasharray="6 4"/>
+        <path d="M860 290 L928 354 M928 290 L860 354" stroke="#e6dfcd" stroke-width="2"/>
+        <rect x="874" y="304" width="40" height="34" fill="#f7f2e6"/>
+        <rect class="hl" x="854" y="284" width="80" height="76" rx="4"/>
+        <g transform="translate(894 322)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <!-- paint -->
+      <g class="hs" data-id="paint-in" tabindex="0" role="button" aria-label="Interior painting">
+        <rect x="716" y="392" width="46" height="48" rx="4" fill="#e8eef5" stroke="#9aa6b3" stroke-width="2"/><rect x="716" y="392" width="46" height="12" fill="#2563a8"/>
+        <path d="M762 410 q22 -2 26 -26 h24" fill="none" stroke="#6d7f93" stroke-width="4" stroke-linecap="round"/>
+        <rect x="796" y="372" width="54" height="22" rx="4" fill="#2563a8"/><rect x="774" y="396" width="6" height="42" fill="#6d4a2b" transform="rotate(8 777 417)"/>
+        <rect class="hl" x="708" y="366" width="150" height="80" rx="6"/>
+        <g transform="translate(740 380)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+
+      <g class="hs" data-id="pictures" tabindex="0" role="button" aria-label="Hanging pictures">
+        <rect x="708" y="326" width="34" height="30" fill="#fff" stroke="#6d4a2b" stroke-width="3"/><rect x="714" y="332" width="22" height="18" fill="#7fb7e6"/>
+        <rect x="750" y="322" width="26" height="36" fill="#fff" stroke="#6d4a2b" stroke-width="3"/><rect x="755" y="328" width="16" height="24" fill="#e9a24b"/>
+        <rect x="784" y="328" width="40" height="26" fill="#fff" stroke="#6d4a2b" stroke-width="3"/><rect x="790" y="333" width="28" height="16" fill="#6fae7a"/>
+        <rect class="hl" x="702" y="316" width="130" height="48" rx="4"/>
+        <g transform="translate(767 340)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+      <g class="hs" data-id="furniture" tabindex="0" role="button" aria-label="Furniture assembly">
+        <rect x="660" y="396" width="46" height="44" fill="#c99a62" stroke="#9a6f3d" stroke-width="2"/><path d="M660 410 H706 M683 396 V410" stroke="#9a6f3d" stroke-width="2"/>
+        <path d="M670 428 h14" stroke="#7a7a7a" stroke-width="3"/><circle cx="696" cy="430" r="3" fill="#7a7a7a"/>
+        <rect class="hl" x="654" y="388" width="58" height="56" rx="4"/>
+        <g transform="translate(683 414)"><circle class="ring" r="9"/><circle class="dot" r="9"/></g>
+      </g>
+      <!-- sofa -->
+      <rect x="380" y="420" width="260" height="62" rx="16" fill="#3b6ea8"/><rect x="398" y="404" width="224" height="30" rx="12" fill="#4b80bd"/>
+    </svg>
+
+    <div class="tip" id="hx-tip" role="status" aria-live="polite"></div>
+    <div class="hint" id="hx-hint">Point at the glowing dots, or tap them on a phone</div>
+  </div>
+
+  
+    <div class="foot">
+    <p><b>Not sure what your house needs?</b> Send a photo and I will give you a free estimate.<br><span class="phone">(656) 231-1836</span> · Wesley Chapel, FL</p>
+    <span class="done" id="hx-done">You found everything. Nice.</span>
+    <a class="cta" href="#home">Get a free estimate</a>
+  </div>
+
     </div>
   </div>
 </section>
@@ -941,6 +1185,6 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-<script src="/site.js?v=20261107k" defer></script>
+<script src="/site.js?v=20261108b" defer></script>
 </body>
 </html>
