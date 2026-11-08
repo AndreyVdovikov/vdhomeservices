@@ -7,7 +7,7 @@ import os, json, html
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261107f'   # bump to bust browser cache of site.css/site.js
+VER = '20261107g'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -143,6 +143,7 @@ def nav_html():
     <div class="nav-logo-text">Andrew Handyman<span>Wesley Chapel, FL</span></div>
   </a>
   <ul class="nav-links">
+    <li><a href="/">Home</a></li>
     <li class="nav-dd">
       <a href="/#services" class="nav-dd-toggle" aria-haspopup="true">Services <span class="nav-caret">&#9662;</span></a>
       <div class="nav-dd-menu">{items}</div>
@@ -159,7 +160,7 @@ def nav_html():
   <div class="nm-h">Services</div>
   <div class="nm-list">{mob}</div>
   <div class="nm-h">More</div>
-  <div class="nm-list"><a href="/about/">About</a><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
+  <div class="nm-list"><a href="/">Home</a><a href="/about/">About</a><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
   <a href="tel:{PHONE_TEL}" class="nm-call">📞 Call {PHONE_DISPLAY}</a>
 </div>
 '''
