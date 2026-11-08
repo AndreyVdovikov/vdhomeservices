@@ -804,3 +804,10 @@ a.svc-card:hover .svc-more { text-decoration:underline; }
 
 .rev-total{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px;font-size:.95rem;color:var(--text-mid)}
 .rev-total b{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--blue-deep)}
+
+/* about page */
+.about-photo{width:100%;max-width:440px;height:auto;border-radius:28px;box-shadow:0 20px 50px rgba(26,58,92,.22);display:block;margin:0 auto}
+.about-guarantee{background:#fff;border-left:5px solid var(--orange);border-radius:14px;padding:16px 20px;margin:18px 0 22px;box-shadow:var(--shadow-sm);color:var(--text-mid);line-height:1.65;max-width:620px}
+.about-guarantee b{color:var(--blue-deep)}
+.about-h3{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--blue-deep);margin:6px 0 12px}
+a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);color:#fff}

@@ -7,7 +7,7 @@ import os, json, html
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261107e'   # bump to bust browser cache of site.css/site.js
+VER = '20261107f'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -147,6 +147,7 @@ def nav_html():
       <a href="/#services" class="nav-dd-toggle" aria-haspopup="true">Services <span class="nav-caret">&#9662;</span></a>
       <div class="nav-dd-menu">{items}</div>
     </li>
+    <li><a href="/about/">About</a></li>
     <li><a href="/#reviews">Reviews</a></li>
     <li><a href="/faq/">FAQ</a></li>
     <li><a href="/#contact">Area</a></li>
@@ -158,7 +159,7 @@ def nav_html():
   <div class="nm-h">Services</div>
   <div class="nm-list">{mob}</div>
   <div class="nm-h">More</div>
-  <div class="nm-list"><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
+  <div class="nm-list"><a href="/about/">About</a><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
   <a href="tel:{PHONE_TEL}" class="nm-call">📞 Call {PHONE_DISPLAY}</a>
 </div>
 '''
@@ -183,6 +184,7 @@ def footer_html():
         <div class="f-contact-row">📞 <a href="tel:{PHONE_TEL}" style="color:inherit;text-decoration:none">{PHONE_DISPLAY}</a></div>
         <div class="f-contact-row">📍 Wesley Chapel, FL 33544</div>
         <div class="f-contact-row">🕘 Opens 9 AM Tue–Sat</div>
+        <div class="f-contact-row">👤 <a href="/about/" style="color:inherit;text-decoration:none">About Andrew</a></div>
         <div class="f-contact-row">❓ <a href="/faq/" style="color:inherit;text-decoration:none">FAQ</a></div>
       </div>
     </div>
@@ -435,14 +437,108 @@ def faq_page():
 '''
     return head(title, desc, url, extra) + body
 
+
+def about_page():
+    url = DOMAIN + '/about/'
+    title = 'About Andrew | Handyman in Wesley Chapel, FL'
+    desc = "Meet Andrew, your local handyman in Wesley Chapel, FL. Quality, quick solutions for home repairs and improvements, backed by a personal guarantee. Free estimate."
+    ld = {"@context":"https://schema.org","@type":"AboutPage","name":"About Andrew Handyman Services","url":url,
+          "mainEntity":{"@type":"Person","name":"Andrew","jobTitle":"Handyman","worksFor":{"@type":"HomeAndConstructionBusiness","name":"Andrew Handyman Services","url":DOMAIN+"/"},
+                        "image":DOMAIN+"/images/andrew-about.jpg"}}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
+        {"@type":"ListItem","position":2,"name":"About","item":url}]}
+    extra = f'<script type="application/ld+json">{json.dumps(ld)}</script>\n<script type="application/ld+json">{json.dumps(bc)}</script>\n'
+    chips = ''.join(f'<span class="area-chip">{esc(a)}</span>' for a in AREAS)
+    svc = ''.join(f'<a class="area-chip about-svc" href="/services/{x["slug"]}/">{esc(x["name"])}</a>' for x in S if not x.get('hidden'))
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> About</div>
+      <h1 class="sp-h1">Greetings, I'm <em>Andrew</em></h1>
+      <p class="sp-lead">Your handyman in Wesley Chapel, FL. Quality, quick solutions for the repairs and improvements your home needs.</p>
+      <div class="sp-actions">
+        <a class="btn-cta" href="/#home">Get a free estimate</a>
+        <a class="btn-ghost-cta" href="tel:{PHONE_TEL}">📞 {PHONE_DISPLAY}</a>
+        <a class="btn-ghost-cta" href="sms:{PHONE_TEL}">💬 Text to book</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sp-sec">
+  <div class="section-wrap sp-two">
+    <div class="reveal">
+      <div class="section-tag">About me</div>
+      <h2 class="section-title">Ready to make your home <em>work better?</em></h2>
+      <p class="sp-p">Greetings, I'm Andrew and I'm your handyman. Ready to make your home work better with my help? Let's get started! Don't let those home repairs wait any longer.</p>
+      <p class="sp-p">I offer a wide range of work around the house. My specialty is providing quality and quick solutions to any home improvement and repair needs of your home.</p>
+      <div class="about-guarantee"><b>Every job is backed by my personal guarantee.</b> If you're not completely satisfied with the work, I'll make it right, no questions asked.</div>
+      <h3 class="about-h3">What distinguishes my services</h3>
+      <ul class="sp-list"><li><span class="sp-check"></span><span>I perform all types of minor repairs</span></li><li><span class="sp-check"></span><span>Professional assembly and installation of furniture of any brands</span></li><li><span class="sp-check"></span><span>Installation of shelves, cornices, TVs and other interior items</span></li></ul>
+    </div>
+    <div class="reveal"><img class="about-photo" src="/images/andrew-about.jpg" alt="Andrew, handyman in Wesley Chapel, FL, giving a thumbs up" width="600" height="750" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="sp-sec sp-alt">
+  <div class="section-wrap">
+    <div class="reveal">
+      <div class="section-tag">What I do</div>
+      <h2 class="section-title">Services for <em>your home</em></h2>
+      <div class="area-chips">{svc}</div>
+    </div>
+  </div>
+</section>
+
+<section class="sp-sec">
+  <div class="section-wrap sp-two">
+    <div class="reveal">
+      <div class="section-tag">Reviews</div>
+      <h2 class="section-title">What neighbors <em>say</em></h2>
+      <p class="sp-p">48 reviews across Google, Facebook, Yelp and Thumbtack, with a 4.7 rating on Google. <a href="/#reviews">Read the reviews</a>.</p>
+    </div>
+    <div class="reveal">
+      <div class="section-tag">Service area</div>
+      <h2 class="section-title">Where I <em>work</em></h2>
+      <p class="sp-p">Based in Wesley Chapel and serving the northern Tampa Bay area.</p>
+      <div class="area-chips">{chips}</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Let's get started</h2>
+    <p class="cta-text">Send a quick request or call. I will get back to you fast with a clear estimate.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="/#home" class="btn-ghost-cta">Book Online ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(title, desc, url, extra) + body
+
 def main():
     for s in S:
         d = os.path.join('services', s['slug'])
         os.makedirs(d, exist_ok=True)
         open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(page(s))
+    os.makedirs('about', exist_ok=True)
+    open('about/index.html','w',encoding='utf-8').write(about_page())
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/'] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/'] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n'
     open('sitemap.xml', 'w').write(sm)
     open('tools/_nav.html', 'w', encoding='utf-8').write(nav_html())
