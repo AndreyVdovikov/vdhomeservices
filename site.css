@@ -904,3 +904,9 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 #house .hx-nudge{box-shadow:0 0 0 3px rgba(249,115,22,.45)}
 @keyframes hx-bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,4px)}}
 @keyframes hx-bob2{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+.hero-img{position:relative;width:100%;aspect-ratio:1677/938}
+.hero-img img{width:100%;height:100%}
+.hero-textbtn{position:absolute;left:64%;top:3%;width:33%;height:21%;border-radius:18px;display:block}
+.hero-textbtn:hover{box-shadow:0 0 0 3px rgba(249,115,22,.7)}
+.home-faq .sp-faq{max-width:860px}.home-faq-more{margin-top:22px}
