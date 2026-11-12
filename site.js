@@ -139,3 +139,23 @@ nightBtn.addEventListener('click', () => {
     if(seenView&&inside&&Date.now()-t0>25000) nudge(night,'night',true);
   },700);
 })();
+
+/* cost calculator */
+(function(){
+  var root=document.getElementById('costcalc'); if(!root) return;
+  var ft=document.getElementById('cc-ft'), val=document.getElementById('cc-ftval'), price=document.getElementById('cc-price'), note=document.getElementById('cc-note');
+  var mode='pro';
+  function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+  function upd(){
+    var f=+ft.value; val.textContent=f;
+    if(mode==='pro'){ price.textContent=money(f*7); note.textContent='About $7 per foot, including installation, January takedown and free storage.'; }
+    else { price.textContent=money(f*10.5)+' – '+money(f*14.9); note.textContent='About $8–$12 per foot for installation plus about $2.50–$2.90 per foot for the Govee lights. Remote included.'; }
+  }
+  ft.addEventListener('input',upd);
+  root.querySelectorAll('.cc-opt').forEach(function(b){ b.addEventListener('click',function(){
+    mode=b.dataset.mode;
+    root.querySelectorAll('.cc-opt').forEach(function(x){ var on=x===b; x.classList.toggle('on',on); x.setAttribute('aria-checked',on); });
+    upd();
+  }); });
+  upd();
+})();

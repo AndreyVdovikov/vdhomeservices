@@ -5,11 +5,12 @@ Run from the repo root:  python3 tools/build_services.py
 import os, sys, json, html
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from locations_data import LOCS
+import blog_data as BL
 
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261109a'   # bump to bust browser cache of site.css/site.js
+VER = '20261112b'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -159,6 +160,7 @@ def nav_html():
     </li>
     <li><a href="/#reviews">Reviews</a></li>
     <li><a href="/faq/">FAQ</a></li>
+    <li><a href="/blog/">Blog</a></li>
     <li><a href="/#contact">Area</a></li>
     <li><a href="tel:{PHONE_TEL}" class="nav-call">📞 {PHONE_DISPLAY}</a></li>
   </ul>
@@ -171,7 +173,7 @@ def nav_html():
   <div class="nm-h">Locations</div>
   <div class="nm-list">{mobloc}</div>
   <div class="nm-h">More</div>
-  <div class="nm-list"><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
+  <div class="nm-list"><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/blog/">Blog</a><a href="/#contact">Service Area &amp; Contact</a></div>
   <a href="tel:{PHONE_TEL}" class="nm-call">📞 Call {PHONE_DISPLAY}</a>
 </div>
 '''
@@ -199,6 +201,7 @@ def footer_html():
         <div class="f-contact-row">🕘 Opens 9 AM Tue–Sat</div>
         <div class="f-contact-row">👤 <a href="/about/" style="color:inherit;text-decoration:none">About Andrew</a></div>
         <div class="f-contact-row">❓ <a href="/faq/" style="color:inherit;text-decoration:none">FAQ</a></div>
+        <div class="f-contact-row">📝 <a href="/blog/" style="color:inherit;text-decoration:none">Blog</a></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -267,6 +270,9 @@ def page(s):
         mc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{ic}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for ic,t,p in cards)
         more = f'<section class="sp-sec sp-alt"><div class="section-wrap"><div class="reveal"><div class="section-tag">{esc(s.get("more_tag","Details"))}</div><h2 class="section-title">{mt}</h2></div><div class="sp-why">{mc}</div></div></section>\n'
         a_why, a_area, a_rel = '', ' sp-alt', ''
+    guide = ''
+    if s['slug'].startswith('christmas-light-installation'):
+        guide = f'<section class="sp-sec"><div class="section-wrap"><a class="post-card post-card-s" href="/blog/{BL.SLUG}/"><div><span class="section-tag">Guide</span><h2>Not sure which lights to choose?</h2><p>Compare store-bought, permanent and professional C9 lights, see real jobs and use the cost calculator.</p><span class="svc-more">Read the complete guide →</span></div></a></div></section>\n'
     chips = ''.join(f'<span class="area-chip">{esc(a)}</span>' for a in AREAS)
     body = f'''<body>
 {nav_html()}
@@ -300,7 +306,7 @@ def page(s):
   </div>
 </section>
 
-{more}<section class="sp-sec{a_why}">
+{guide}{more}<section class="sp-sec{a_why}">
   <div class="section-wrap">
     <div class="reveal">
       <div class="section-tag">Why Andrew</div>
@@ -636,6 +642,90 @@ def loc_page(l):
 '''
     return head(title, desc, url, extra) + body
 
+def blog_page():
+    url = f'{DOMAIN}/blog/{BL.SLUG}/'
+    faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in BL.FAQ)
+    toc = ''.join(f'<a href="#{i}">{esc(t)}</a>' for i,t in BL.TOC)
+    areas = 'Wesley Chapel, ' + ', '.join(f'<a href="/locations/{l["slug"]}/">{esc(l["name"])}</a>' for l in LOCS if l['slug'] in ('land-o-lakes','zephyrhills','dade-city','new-tampa','lutz','odessa'))
+    body_html = BL.BODY.replace('{toc}', toc).replace('{calc}', BL.CALC).replace('{areas}', areas).replace('{faq}', faq)
+    art = {"@context":"https://schema.org","@type":"Article","headline":BL.TITLE,"description":BL.DESC,"datePublished":BL.DATE,"dateModified":BL.DATE,
+           "image":f"{DOMAIN}/images/blog/{BL.HERO}","mainEntityOfPage":url,
+           "author":{"@type":"Person","name":"Andrew","url":DOMAIN+"/about/"},
+           "publisher":{"@type":"Organization","name":"Andrew Handyman Services","url":DOMAIN+"/"}}
+    fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in BL.FAQ]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
+        {"@type":"ListItem","position":2,"name":"Blog","item":DOMAIN+"/blog/"},
+        {"@type":"ListItem","position":3,"name":"Christmas light installation guide","item":url}]}
+    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (art, fq, bc))
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> Christmas lights guide</div>
+      <h1 class="sp-h1">{BL.H1}</h1>
+      <p class="sp-lead">Store-bought, permanent or professional C9 lights: what each costs, how it is installed, and which one fits your house.</p>
+      <div class="post-meta">By Andrew · Updated November 12, 2026</div>
+    </div>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <article class="post">
+      <figure class="post-fig post-hero"><img src="/images/blog/{BL.HERO}" alt="{esc(BL.HERO_ALT)}" width="1400" height="1054" fetchpriority="high"></figure>
+      {body_html}
+    </article>
+  </div>
+</section>
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Ready for your lights?</h2>
+    <p class="cta-text">Send a quick request or text a photo of your house. Free estimate.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="/#home" class="btn-ghost-cta">Book Online ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(BL.TITLE, BL.DESC, url, extra) + body
+
+def blog_index():
+    url = DOMAIN + '/blog/'
+    title = 'Blog | Andrew Handyman Services, Wesley Chapel FL'
+    desc = 'Guides from Andrew, a handyman in Wesley Chapel, FL: Christmas light installation, home repairs and more.'
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":"Blog","item":url}]}
+    extra = f'<script type="application/ld+json">{json.dumps(bc)}</script>\n'
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero"><div class="section-wrap sp-hero-inner"><div>
+  <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> Blog</div>
+  <h1 class="sp-h1">Guides from <em>Andrew</em></h1>
+  <p class="sp-lead">Plain-English advice for Wesley Chapel and North Tampa homeowners.</p>
+</div></div></section>
+<section class="sp-sec"><div class="section-wrap">
+  <a class="post-card" href="/blog/{BL.SLUG}/">
+    <img src="/images/blog/{BL.HERO}" alt="{esc(BL.HERO_ALT)}" width="1400" height="1054" loading="lazy">
+    <div><span class="section-tag">Christmas lights</span><h2>Christmas Light Installation in Wesley Chapel &amp; North Tampa: The Complete Guide</h2><p>{esc(BL.DESC)}</p><span class="svc-more">Read the guide →</span></div>
+  </a>
+</div></section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(title, desc, url, extra) + body
+
 def main():
     for s in S:
         d = os.path.join('services', s['slug'])
@@ -646,9 +736,12 @@ def main():
         open(os.path.join(d,'index.html'),'w',encoding='utf-8').write(loc_page(l))
     os.makedirs('about', exist_ok=True)
     open('about/index.html','w',encoding='utf-8').write(about_page())
+    os.makedirs('blog/'+BL.SLUG, exist_ok=True)
+    open('blog/index.html','w',encoding='utf-8').write(blog_index())
+    open('blog/'+BL.SLUG+'/index.html','w',encoding='utf-8').write(blog_page())
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/'] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', DOMAIN + '/blog/', f'{DOMAIN}/blog/{BL.SLUG}/'] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n'
     open('sitemap.xml', 'w').write(sm)
     open('tools/_nav.html', 'w', encoding='utf-8').write(nav_html())
