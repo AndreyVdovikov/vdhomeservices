@@ -7,8 +7,7 @@ DATE = '2026-11-12'
 HERO = 'stucco-house-night.jpg'
 HERO_ALT = 'Stucco house in Wesley Chapel, FL decorated with red and white roofline Christmas lights at night'
 
-TOC = [('options','Your three options'),('compare','Side-by-side comparison'),('how','How installation works'),
-       ('colors','Colors and real jobs'),('calc','Cost calculator'),('choose','Which one to choose'),('areas','Where I work'),('faq','FAQ')]
+TOC = [('options','Your three options'),('compare','Side-by-side comparison'),('colors','Colors and real jobs'),('calc','Cost calculator'),('choose','Which one to choose')]
 
 FAQ = [
  ("How long does Christmas light installation take?","A typical house takes one to two days, and most are done in one day. Bigger or more complicated rooflines can take a second day."),
@@ -18,7 +17,7 @@ FAQ = [
  ("Do I own the lights?","Yes. The lights belong to you, unlike with companies that rent them and take them back."),
  ("What colors can I choose?","Professional C9 bulbs come in 11 colors: pink, purple, yellow, cool white, warm white, pure white, green, teal, blue, red and orange. Mix them any way you like."),
  ("Do permanent lights come with a remote?","Yes, a remote is included at no extra charge."),
- ("What do permanent lights need for power?","They plug into a regular outdoor outlet at your house. I check where power is available during the free estimate. Adding a new outlet is a job for a licensed electrician."),
+ ("What do permanent lights need for power?","They plug into a regular outdoor outlet at your house. I check where power is available during the free estimate."),
  ("When should I book?","As early as you can. Dates fill up as the holidays get closer, and a free estimate takes only a quick photo or visit."),
  ("How much does it cost?","Professional C9 installation is about $7 per linear foot, including installation, January takedown and storage. Permanent lights are about $8 to $12 per foot for installation plus about $2.50 to $2.90 per foot for the Govee lights. These are approximate prices. The exact number comes after a free estimate."),
 ]
@@ -53,15 +52,6 @@ BODY = '''
 <tr><th scope="row">Best for</th><td>Saving money</td><td>Seasonal look</td><td>All holidays</td></tr>
 </tbody></table></div>
 
-<h2 id="how">How installation works</h2>
-<ol class="post-steps">
-<li><b>Free estimate.</b> Send me a photo or I stop by. We measure the roofline in linear feet.</li>
-<li><b>Lights cut to size.</b> I cut the lights to match your roofline so there are no long loose cords.</li>
-<li><b>Installation, usually one day.</b> A typical house takes one to two days, and most are finished in one. I use clips for shingles, gutters, tile and stucco.</li>
-<li><b>You switch them on.</b> Permanent lights come with a free remote.</li>
-<li><b>January takedown.</b> I remove the lights, pack them and store them for free until next year.</li>
-</ol>
-
 <h2 id="colors">Colors and real jobs</h2>
 <p>Professional C9 bulbs come in 11 colors. Here is the full set:</p>
 <figure class="post-fig post-fig-narrow"><img src="/images/blog/c9-bulb-colors.jpg" alt="C9 LED bulb colors: pink, purple, yellow, cool white, green, teal, blue, warm white, red, orange and pure white" width="639" height="653" loading="lazy"><figcaption>All 11 C9 bulb colors available: pink, purple, yellow, cool white, green, teal, blue, warm white, red, orange, pure white.</figcaption></figure>
@@ -81,12 +71,6 @@ BODY = '''
 <p>It depends on you. If you are saving money and enjoy the work, store-bought lights will do the job. If you want a clean, professional look for the season and no January cleanup, professional C9 is the simple choice. If you want lights for Halloween, Fourth of July and everything in between, permanent lights pay off. I install both professional C9 and permanent lights, so I can tell you honestly which fits your house after a free estimate.</p>
 <p><a class="btn-cta" href="/#home">Get a free estimate</a> <a class="btn-ghost-cta" href="sms:+16562311836">&#128172; Text a photo of your house</a></p>
 
-<h2 id="areas">Where I work</h2>
-<p>I install Christmas lights in Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz and Odessa, and in the neighborhoods around them. See the page for your area: {areas}.</p>
-<p>Prefer the full service page? <a href="/services/christmas-light-installation/">Christmas Light Installation</a>.</p>
-
-<h2 id="faq">FAQ</h2>
-<div class="sp-faq">{faq}</div>
 '''
 
 CALC = '''

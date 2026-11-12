@@ -10,7 +10,7 @@ import blog_data as BL
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261112b'   # bump to bust browser cache of site.css/site.js
+VER = '20261112c'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -20,7 +20,7 @@ S = [
   desc="Christmas light installation in Wesley Chapel, FL: professional C9 roofline lights in any color, cut to fit, installed, taken down in January and stored. The lights are yours. Free estimate.",
   lead="Professional C9 holiday lighting in any color, cut to fit your home, installed, taken down in January and stored until next season. No tangled wires, no leftover cut ends and no ladder falls for you. Call for a free estimate.",
   bullets=["Professional C9 roofline lights in any color or color mix you like","Lights cut and measured to fit your roofline and your home","Installation on roofline, eaves, gutters and other areas","No leftover cut pieces, no tangled strands and no climbing a ladder yourself","Take-down in January","Storage until next holiday season, so you do not need to find room in your garage","The lights belong to you, unlike with companies that rent them"],
-  more_tag="How it works", more=("Four steps, <em>no ladder for you</em>",[("📏","Free estimate","Tell me about your home and what you would like lit. I give you a clear estimate for free: call or text (656) 231-1836."),("💡","Cut to fit and installed","Professional C9 lights in the colors you choose, cut to your size and installed neatly."),("📦","Taken down in January","When the season is over I take everything down, with no tangled strands and nothing left on your roof."),("🏠","Stored for next year","I keep your lights until the next holiday season. They are yours, so next year they are ready to go back up.")]),
+  more_tag="How it works", more=("Four steps, <em>no ladder for you</em>",[("📏","Free estimate","Tell me about your home and what you would like lit. I give you a clear estimate for free: call or text (656) 231-1836."),("💡","Cut to fit and installed","Professional C9 lights in the colors you choose, cut to your size and installed neatly with clips made for shingles, gutters, tile and stucco. A typical house takes one to two days, and most are done in one."),("📦","Taken down in January","When the season is over I take everything down, with no tangled strands and nothing left on your roof."),("🏠","Stored for next year","I keep your lights until the next holiday season. They are yours, so next year they are ready to go back up.")]),
   faq=[("Who owns the lights?","You do. Unlike companies that rent lights and take them back, the lights we install are yours, and we store them for you after take-down."),
        ("When do you take the lights down and where do they go?","We take them down in January and store them until the next holiday season, ready to be installed again."),
        ("Can I choose the colors?","Yes. Warm white, cool white, multicolor or any color mix that you like. Tell me what you have in mind and we will plan it together."),
@@ -160,7 +160,6 @@ def nav_html():
     </li>
     <li><a href="/#reviews">Reviews</a></li>
     <li><a href="/faq/">FAQ</a></li>
-    <li><a href="/blog/">Blog</a></li>
     <li><a href="/#contact">Area</a></li>
     <li><a href="tel:{PHONE_TEL}" class="nav-call">📞 {PHONE_DISPLAY}</a></li>
   </ul>
@@ -173,7 +172,7 @@ def nav_html():
   <div class="nm-h">Locations</div>
   <div class="nm-list">{mobloc}</div>
   <div class="nm-h">More</div>
-  <div class="nm-list"><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/blog/">Blog</a><a href="/#contact">Service Area &amp; Contact</a></div>
+  <div class="nm-list"><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
   <a href="tel:{PHONE_TEL}" class="nm-call">📞 Call {PHONE_DISPLAY}</a>
 </div>
 '''
@@ -201,7 +200,6 @@ def footer_html():
         <div class="f-contact-row">🕘 Opens 9 AM Tue–Sat</div>
         <div class="f-contact-row">👤 <a href="/about/" style="color:inherit;text-decoration:none">About Andrew</a></div>
         <div class="f-contact-row">❓ <a href="/faq/" style="color:inherit;text-decoration:none">FAQ</a></div>
-        <div class="f-contact-row">📝 <a href="/blog/" style="color:inherit;text-decoration:none">Blog</a></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -258,6 +256,9 @@ def page(s):
         side = f'<figure class="sp-photo"><img src="/images/{f}" alt="{esc(alt)}" loading="lazy"><figcaption>Real job photo — before &amp; after</figcaption></figure>'
     else:
         side = f'<div class="sp-side-card"><img src="{ICON(s)}" alt="" width="96" height="96"><h3>Free estimate</h3><p>Tell me what you need and I will get back to you within a few hours.</p><a class="btn-cta" href="/#home">Request an estimate</a><a class="sp-call" href="tel:{PHONE_TEL}">or call {PHONE_DISPLAY}</a></div>'
+    if s['slug']=='christmas-light-installation':
+        s = dict(s, faq=list(BL.FAQ)+[x for x in s['faq'] if x[0].startswith('Do you also serve')])
+        extra += '<script type="application/ld+json">'+json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in s['faq']]})+'</script>\n'
     faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in s['faq'])
     rel = ''.join(f'<a href="/services/{r}/" class="svc-card"><div class="svc-emoji"><img src="{ICON(BY[r])}" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">{esc(BY[r]["name"])}</div><span class="svc-more">Learn more →</span></a>' for r in s['related'])
     sshort = s['h1'] if s.get('city') else s['short']
@@ -271,8 +272,17 @@ def page(s):
         more = f'<section class="sp-sec sp-alt"><div class="section-wrap"><div class="reveal"><div class="section-tag">{esc(s.get("more_tag","Details"))}</div><h2 class="section-title">{mt}</h2></div><div class="sp-why">{mc}</div></div></section>\n'
         a_why, a_area, a_rel = '', ' sp-alt', ''
     guide = ''
-    if s['slug'].startswith('christmas-light-installation'):
-        guide = f'<section class="sp-sec"><div class="section-wrap"><a class="post-card post-card-s" href="/blog/{BL.SLUG}/"><div><span class="section-tag">Guide</span><h2>Not sure which lights to choose?</h2><p>Compare store-bought, permanent and professional C9 lights, see real jobs and use the cost calculator.</p><span class="svc-more">Read the complete guide →</span></div></a></div></section>\n'
+    if s['slug']=='christmas-light-installation':
+        toc = ''.join(f'<a href="#{i}">{esc(tt)}</a>' for i,tt in BL.TOC)
+        gbody = BL.BODY.replace('{toc}', toc).replace('{calc}', BL.CALC)
+        guide = f'''<section class="sp-sec sp-alt" id="guide"><div class="section-wrap"><article class="post">
+<div class="section-tag">Complete guide</div>
+<h2 class="section-title" style="margin-top:.2rem">Which Christmas lights are right for <em>your house?</em></h2>
+<figure class="post-fig post-hero"><img src="/images/blog/{BL.HERO}" alt="{esc(BL.HERO_ALT)}" width="1400" height="1054" loading="lazy"></figure>
+{gbody}</article></div></section>
+'''
+    elif s['slug'].startswith('christmas-light-installation'):
+        guide = '<section class="sp-sec"><div class="section-wrap"><a class="post-card post-card-s" href="/services/christmas-light-installation/#guide"><div><span class="section-tag">Guide</span><h2>Not sure which lights to choose?</h2><p>Compare store-bought, permanent and professional C9 lights, see real jobs and use the cost calculator.</p><span class="svc-more">Read the complete guide →</span></div></a></div></section>\n'
     chips = ''.join(f'<span class="area-chip">{esc(a)}</span>' for a in AREAS)
     body = f'''<body>
 {nav_html()}
@@ -642,90 +652,6 @@ def loc_page(l):
 '''
     return head(title, desc, url, extra) + body
 
-def blog_page():
-    url = f'{DOMAIN}/blog/{BL.SLUG}/'
-    faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in BL.FAQ)
-    toc = ''.join(f'<a href="#{i}">{esc(t)}</a>' for i,t in BL.TOC)
-    areas = 'Wesley Chapel, ' + ', '.join(f'<a href="/locations/{l["slug"]}/">{esc(l["name"])}</a>' for l in LOCS if l['slug'] in ('land-o-lakes','zephyrhills','dade-city','new-tampa','lutz','odessa'))
-    body_html = BL.BODY.replace('{toc}', toc).replace('{calc}', BL.CALC).replace('{areas}', areas).replace('{faq}', faq)
-    art = {"@context":"https://schema.org","@type":"Article","headline":BL.TITLE,"description":BL.DESC,"datePublished":BL.DATE,"dateModified":BL.DATE,
-           "image":f"{DOMAIN}/images/blog/{BL.HERO}","mainEntityOfPage":url,
-           "author":{"@type":"Person","name":"Andrew","url":DOMAIN+"/about/"},
-           "publisher":{"@type":"Organization","name":"Andrew Handyman Services","url":DOMAIN+"/"}}
-    fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in BL.FAQ]}
-    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
-        {"@type":"ListItem","position":2,"name":"Blog","item":DOMAIN+"/blog/"},
-        {"@type":"ListItem","position":3,"name":"Christmas light installation guide","item":url}]}
-    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (art, fq, bc))
-    body = f'''<body>
-{nav_html()}
-<main>
-<section class="sp-hero">
-  <div class="section-wrap sp-hero-inner">
-    <div>
-      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> Christmas lights guide</div>
-      <h1 class="sp-h1">{BL.H1}</h1>
-      <p class="sp-lead">Store-bought, permanent or professional C9 lights: what each costs, how it is installed, and which one fits your house.</p>
-      <div class="post-meta">By Andrew · Updated November 12, 2026</div>
-    </div>
-  </div>
-</section>
-<section class="sp-sec">
-  <div class="section-wrap">
-    <article class="post">
-      <figure class="post-fig post-hero"><img src="/images/blog/{BL.HERO}" alt="{esc(BL.HERO_ALT)}" width="1400" height="1054" fetchpriority="high"></figure>
-      {body_html}
-    </article>
-  </div>
-</section>
-<section class="cta-wrap">
-  <div class="cta-inner">
-    <h2 class="cta-title">Ready for your lights?</h2>
-    <p class="cta-text">Send a quick request or text a photo of your house. Free estimate.</p>
-    <div class="cta-btns">
-      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
-      <a href="/#home" class="btn-ghost-cta">Book Online ↑</a>
-    </div>
-  </div>
-</section>
-</main>
-{footer_html()}
-<script src="/site.js?v={VER}" defer></script>
-</body>
-</html>
-'''
-    return head(BL.TITLE, BL.DESC, url, extra) + body
-
-def blog_index():
-    url = DOMAIN + '/blog/'
-    title = 'Blog | Andrew Handyman Services, Wesley Chapel FL'
-    desc = 'Guides from Andrew, a handyman in Wesley Chapel, FL: Christmas light installation, home repairs and more.'
-    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":"Blog","item":url}]}
-    extra = f'<script type="application/ld+json">{json.dumps(bc)}</script>\n'
-    body = f'''<body>
-{nav_html()}
-<main>
-<section class="sp-hero"><div class="section-wrap sp-hero-inner"><div>
-  <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> Blog</div>
-  <h1 class="sp-h1">Guides from <em>Andrew</em></h1>
-  <p class="sp-lead">Plain-English advice for Wesley Chapel and North Tampa homeowners.</p>
-</div></div></section>
-<section class="sp-sec"><div class="section-wrap">
-  <a class="post-card" href="/blog/{BL.SLUG}/">
-    <img src="/images/blog/{BL.HERO}" alt="{esc(BL.HERO_ALT)}" width="1400" height="1054" loading="lazy">
-    <div><span class="section-tag">Christmas lights</span><h2>Christmas Light Installation in Wesley Chapel &amp; North Tampa: The Complete Guide</h2><p>{esc(BL.DESC)}</p><span class="svc-more">Read the guide →</span></div>
-  </a>
-</div></section>
-</main>
-{footer_html()}
-<script src="/site.js?v={VER}" defer></script>
-</body>
-</html>
-'''
-    return head(title, desc, url, extra) + body
-
 def main():
     for s in S:
         d = os.path.join('services', s['slug'])
@@ -736,12 +662,9 @@ def main():
         open(os.path.join(d,'index.html'),'w',encoding='utf-8').write(loc_page(l))
     os.makedirs('about', exist_ok=True)
     open('about/index.html','w',encoding='utf-8').write(about_page())
-    os.makedirs('blog/'+BL.SLUG, exist_ok=True)
-    open('blog/index.html','w',encoding='utf-8').write(blog_index())
-    open('blog/'+BL.SLUG+'/index.html','w',encoding='utf-8').write(blog_page())
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', DOMAIN + '/blog/', f'{DOMAIN}/blog/{BL.SLUG}/'] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/',] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n'
     open('sitemap.xml', 'w').write(sm)
     open('tools/_nav.html', 'w', encoding='utf-8').write(nav_html())
