@@ -7,7 +7,7 @@ DATE = '2026-11-12'
 HERO = 'stucco-house-night.jpg'
 HERO_ALT = 'Stucco house in Wesley Chapel, FL decorated with red and white roofline Christmas lights at night'
 
-TOC = [('options','Your three options'),('compare','Side-by-side comparison'),('colors','Colors and real jobs'),('calc','Cost calculator'),('choose','Which one to choose')]
+TOC = [('options','Your three options'),('compare','Side-by-side comparison'),('colors','Colors, real jobs and video'),('calc','Cost calculator'),('choose','Which one to choose')]
 
 FAQ = [
  ("How long does Christmas light installation take?","A typical house takes one to two days, and most are done in one day. Bigger or more complicated rooflines can take a second day."),
@@ -52,7 +52,7 @@ BODY = '''
 <tr><th scope="row">Best for</th><td>Saving money</td><td>Seasonal look</td><td>All holidays</td></tr>
 </tbody></table></div>
 
-<h2 id="colors">Colors and real jobs</h2>
+<h2 id="colors">Colors, real jobs and video</h2>
 <p>Professional C9 bulbs come in 11 colors. Here is the full set:</p>
 <figure class="post-fig post-fig-narrow"><img src="/images/blog/c9-bulb-colors.jpg" alt="C9 LED bulb colors: pink, purple, yellow, cool white, green, teal, blue, warm white, red, orange and pure white" width="639" height="653" loading="lazy"><figcaption>All 11 C9 bulb colors available: pink, purple, yellow, cool white, green, teal, blue, warm white, red, orange, pure white.</figcaption></figure>
 <p>And here is how it looks on real houses in our area. Photos are from my jobs.</p>
@@ -62,6 +62,8 @@ BODY = '''
 <figure class="post-fig"><img src="/images/blog/c9-tile-roof-garage.jpg" alt="C9 Christmas lights on the fascia of a tile roof over a garage" width="1400" height="1054" loading="lazy"><figcaption>Lights along the edge of a tile roof.</figcaption></figure>
 <figure class="post-fig"><img src="/images/blog/c9-clips-tile-fascia.jpg" alt="Close-up of C9 bulbs held by clips on the fascia under a tile roof" width="1400" height="1054" loading="lazy"><figcaption>Close-up: each bulb sits in its own clip along the edge.</figcaption></figure>
 </div>
+
+<figure class="post-video"><div class="post-video-box"><iframe src="https://www.youtube-nocookie.com/embed/9bf1mJUJS0M" title="Christmas light installation on a Wesley Chapel home" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><figcaption>Watch a job from start to finish.</figcaption></figure>
 
 <h2 id="calc">Cost calculator</h2>
 <p>Pick a type of lights, set how many linear feet of roofline you want to light, and see an approximate price.</p>

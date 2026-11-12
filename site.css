@@ -958,3 +958,8 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 .cc-note{text-align:center;margin:4px 0!important;font-size:.95rem!important}
 .cc-fine{text-align:center;margin:4px 0 14px!important;font-size:.82rem!important;color:#6b7c93!important}
 .cc .btn-cta{display:block;text-align:center}
+
+.post-video{margin:1.6rem auto;max-width:340px}
+.post-video-box{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#0b1b2e;box-shadow:0 8px 28px rgba(15,40,80,.18)}
+.post-video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.post-video figcaption{font-size:.85rem;color:#6b7c93;margin-top:8px;text-align:center}
