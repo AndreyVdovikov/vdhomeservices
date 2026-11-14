@@ -6,11 +6,12 @@ import os, sys, json, html
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from locations_data import LOCS
 import blog_data as BL
+import guides_data as GD
 
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261112d'   # bump to bust browser cache of site.css/site.js
+VER = '20261114a'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -116,6 +117,30 @@ S = [
        ("Do deck repairs need a permit?","Small repairs usually do not, but larger structural work can. I tell you upfront what applies before we start."),
        ("Can you stain or seal the deck after repair?","Yes. Sealing or staining protects the wood from Florida sun and rain, and it makes the repair look uniform.")],
   related=['wood-rot-repair','fence-repair','painting']),
+ dict(slug='picture-hanging', name='Picture, Mirror & Art Hanging', short='Picture Hanging', h1='Picture, Mirror & Art Hanging', icon='pictures.svg', photo=None,
+  title='Picture Hanging Wesley Chapel FL – Mirrors, Gallery Walls & Heavy Art',
+  desc="Picture and mirror hanging in Wesley Chapel, FL: gallery walls laid out and leveled, heavy mirrors and large art anchored to the wall. Free estimate from Andrew Handyman Services.",
+  lead="Pictures, mirrors, canvases and gallery walls hung level, centered and secure, on drywall, brick, block and tile. Moving in or redecorating in Wesley Chapel? Send me a photo of the wall for a free estimate.",
+  bullets=["Pictures, frames and canvases of any size, hung level and at the right height","Gallery walls planned first, then hung, so the spacing looks right","Heavy mirrors and large art anchored with the correct hardware for the wall","Shadow boxes, wall clocks, wreaths, picture ledges and wall decor","Hanging on drywall, brick, block and tile","Old hooks and nails removed, small nail holes patched on request","Move-in day: the whole house done in one visit"],
+  more_tag="Picture hanging", more=("Planned first, <em>then drilled</em>",[("📐","Layout before holes","For a gallery wall I plan the arrangement on the floor or with paper templates, so the first nail goes in the right place and not the third."),("🪞","Heavy mirrors","A big mirror can weigh far more than it looks. I use anchors rated for the weight and the wall, not a nail and hope."),("🧱","Brick, block and tile","Not every wall is drywall. I use the right bit and anchor for each surface so nothing cracks or pulls out."),("🏠","Move-in day","New house, empty walls. Give me the list and I hang everything in one visit: art, mirrors, shelves and more.")]),
+  faq=[("How much does it cost to hang pictures?","Estimates are free. The price depends on how many pieces there are, how big and heavy they are and what the wall is made of. Text me a photo at (656) 231-1836 and I will give you a clear number."),
+       ("Can you hang a heavy mirror?","Yes. I check the wall, pick anchors rated for the weight and hang it level. If a wall is not a good place for something that heavy, I tell you before I drill."),
+       ("Can you plan a gallery wall for me?","Yes. We choose the layout together, I mark it out and then hang everything level with even spacing. If you already have a picture in mind, I can follow it."),
+       ("Will you fill the old nail holes?","Small nail holes can be patched when I remove old hangers. If you want paint matched, I can do that too through my drywall and painting services."),
+       ("Can you hang pictures on brick, block or tile walls?","Yes. These need different bits and anchors than drywall, and I use the right ones so the wall is not damaged.")],
+  related=['tv-shelf-mounting','drywall-repair','furniture-assembly']),
+ dict(slug='furniture-assembly', name='Furniture Assembly', short='Furniture Assembly', h1='Furniture Assembly', icon='furniture.svg', photo=None,
+  title='Furniture Assembly Wesley Chapel FL – IKEA, Wayfair, Amazon & More',
+  desc="Furniture assembly in Wesley Chapel, FL: IKEA, Wayfair, Amazon and Costco furniture, beds, dressers, desks and patio sets, built right and anchored. Free estimate.",
+  lead="Beds, dressers, desks, bookcases, patio sets and more, built and placed where you want them. IKEA, Wayfair, Amazon, Costco or any flat-pack brand, in Wesley Chapel and nearby. Text me what you bought for a free estimate.",
+  bullets=["IKEA, Wayfair, Amazon, Costco and other flat-pack furniture","Beds, dressers, nightstands, wardrobes and bookcases","Desks, office furniture and shelving units","Patio and outdoor furniture sets","Tall furniture anchored to the wall so it cannot tip over","Parts checked before I start, so missing pieces are caught right away","Move-in day: all your boxes built in one visit"],
+  more_tag="Furniture assembly", more=("Built right, <em>placed where you want it</em>",[("📦","Any brand","IKEA, Wayfair, Amazon, Costco or a local store, if it came in a box I can build it."),("🛏️","Beds and dressers","Large pieces take patience and the right order of steps. I build them solid, with no wobble, and move them into place."),("⚓","Anchored for safety","Tall dressers and bookcases can tip, especially with kids at home. I anchor them to the wall on request."),("🏠","Move-in day","New home, lots of boxes. Give me the list and I build the whole set in one visit, then hang the pictures too.")]),
+  faq=[("How much does furniture assembly cost?","Estimates are free. The price depends on what you bought, how many pieces there are and how complicated they are. Text me the list or a photo of the boxes at (656) 231-1836."),
+       ("Can you assemble furniture I bought online?","Yes. IKEA, Wayfair, Amazon, Costco and other flat-pack brands are all fine. I just need the boxes delivered to the house."),
+       ("What if parts are missing?","I check everything against the instructions before I start. If something is missing, I tell you right away so you can ask the manufacturer for the part, and I build the rest."),
+       ("Can you anchor a dresser or bookcase to the wall?","Yes. Anchoring tall furniture is a good idea, especially with kids or pets in the house. I use the right anchors for the wall."),
+       ("Do you assemble outdoor furniture?","Yes. Patio sets, benches and outdoor storage are fine.")],
+  related=['picture-hanging','tv-shelf-mounting','media-accent-walls']),
  dict(slug='fence-repair', name='Fence Repair', short='Fence Repair', h1='Fence Repair', icon='fence.svg', photo=('img-05.jpg','Fence before and after repair'),
   desc="Fence repair in Wesley Chapel, FL: broken pickets, leaning posts and damaged gates. Keep your yard secure with Andrew Handyman Services.",
   lead="Broken pickets, leaning posts and damaged gates fixed or replaced to keep your yard secure and your fence looking sharp. Serving Wesley Chapel and nearby communities.",
@@ -200,6 +225,7 @@ def footer_html():
         <div class="f-contact-row">🕘 Opens 9 AM Tue–Sat</div>
         <div class="f-contact-row">👤 <a href="/about/" style="color:inherit;text-decoration:none">About Andrew</a></div>
         <div class="f-contact-row">❓ <a href="/faq/" style="color:inherit;text-decoration:none">FAQ</a></div>
+        <div class="f-contact-row">🔎 <a href="/guides/how-to-find-a-handyman-wesley-chapel/" style="color:inherit;text-decoration:none">How to find a handyman</a></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -652,6 +678,58 @@ def loc_page(l):
 '''
     return head(title, desc, url, extra) + body
 
+def guide_page():
+    url = f'{DOMAIN}/guides/{GD.SLUG}/'
+    faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in GD.FAQ)
+    toc = ''.join(f'<a href="#{i}">{esc(t)}</a>' for i,t in GD.TOC)
+    areas = ', '.join(f'<a href="/locations/{l["slug"]}/">{esc(l["name"])}</a>' for l in LOCS)
+    body_html = GD.BODY.replace('{toc}', toc).replace('{areas}', areas).replace('{faq}', faq)
+    art = {"@context":"https://schema.org","@type":"Article","headline":GD.TITLE,"description":GD.DESC,"datePublished":GD.DATE,"dateModified":GD.DATE,
+           "mainEntityOfPage":url,"author":{"@type":"Person","name":"Andrew","url":DOMAIN+"/about/"},
+           "publisher":{"@type":"Organization","name":"Andrew Handyman Services","url":DOMAIN+"/"}}
+    fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in GD.FAQ]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
+        {"@type":"ListItem","position":2,"name":"How to find a handyman in Wesley Chapel","item":url}]}
+    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (art, fq, bc))
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> How to find a handyman</div>
+      <h1 class="sp-h1">{GD.H1}</h1>
+      <p class="sp-lead">{esc(GD.LEAD)}</p>
+      <div class="post-meta">By Andrew · Updated November 14, 2026</div>
+    </div>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <article class="post">
+      {body_html}
+    </article>
+  </div>
+</section>
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Need a hand around the house?</h2>
+    <p class="cta-text">Send a quick request or text a photo of the job. Free estimate.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="/#home" class="btn-ghost-cta">Book Online ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(GD.TITLE, GD.DESC, url, extra) + body
+
 def main():
     for s in S:
         d = os.path.join('services', s['slug'])
@@ -662,9 +740,11 @@ def main():
         open(os.path.join(d,'index.html'),'w',encoding='utf-8').write(loc_page(l))
     os.makedirs('about', exist_ok=True)
     open('about/index.html','w',encoding='utf-8').write(about_page())
+    os.makedirs('guides/'+GD.SLUG, exist_ok=True)
+    open('guides/'+GD.SLUG+'/index.html','w',encoding='utf-8').write(guide_page())
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/',] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n'
     open('sitemap.xml', 'w').write(sm)
     open('tools/_nav.html', 'w', encoding='utf-8').write(nav_html())
