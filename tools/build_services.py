@@ -12,7 +12,7 @@ import projects_data as PD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115r'   # bump to bust browser cache of site.css/site.js
+VER = '20261115s'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -867,10 +867,11 @@ def posts_index():
     return head(title, desc, url, extra) + body
 
 SUB_FAQ = [
- ("Is the handyman subscription available now?","It is opening soon. Join the waitlist: call or text (656) 231-1836 and tell me what you would want covered, and you will hear first when it starts."),
+ ("How does the handyman subscription work?","You pick a plan, send me your list or a quick request, and we schedule the time. You can also set one fixed day every month and I come by on that date. Call or text (656) 231-1836 to start."),
  ("What counts as a visit?","A visit is one trip to your home with the hours of work included in your plan. The hours are what matter. On the larger plans you can split them into several shorter visits, or use them for one bigger job."),
- ("What jobs are covered?","Everyday small repairs and installs, the same work I do now: TV mounting, picture hanging, furniture assembly, door and drywall fixes, painting touch-ups and similar jobs. I also take a look at problems and tell you what needs doing. Work that legally needs a licensed electrician or plumber is not part of it."),
- ("What if a job is bigger than my plan?","Tell me about it first. I will say how many hours it needs and whether it fits your plan, or give you a free estimate for the extra time. No surprises."),
+ ("Do unused hours roll over?","Yes. Hours you do not use roll over to the next month, for up to 3 months in a row. Save them up and a bigger job fits even on the smallest plan."),
+ ("What if a job needs more hours than I have?","Extra hours are agreed in advance and depend on the cost of the work. I tell you what the job needs before I start, so there are no surprises."),
+ ("What jobs are covered?","Everyday small repairs and installs, the same work I do now: TV mounting, picture hanging, furniture assembly, door and drywall fixes, painting touch-ups, changing light bulbs, tightening loose hardware and similar jobs. Work that legally needs a licensed electrician or plumber is not part of it."),
  ("Can I set it up for a parent or relative?","Yes, that is one of the main reasons for the plan. You can arrange regular help for someone who lives nearby or far away, so small repairs do not pile up."),
  ("Can I still book a single job?","Of course. One-time jobs work exactly as before: send a request or text a photo and you get a free estimate."),
 ]
@@ -878,12 +879,23 @@ SUB_FAQ = [
 def subscription_page():
     url = f'{DOMAIN}/subscription/'
     title = 'Handyman Subscription Wesley Chapel FL – Monthly Plans from $99'
-    desc = 'Handyman subscription in Wesley Chapel, FL: monthly plans from $99 for small repairs and home upkeep. Join the waitlist with Andrew Handyman Services.'
+    desc = 'Handyman subscription in Wesley Chapel, FL: monthly plans from $99 for repairs, installs and home upkeep. Hours roll over. Andrew Handyman Services.'
     faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in SUB_FAQ)
     fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in SUB_FAQ]}
     bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
         {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":"Handyman subscription","item":url}]}
     extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (fq, bc))
+    why = [("🧰","Nothing to search for","No more hunting for a handyman, comparing quotes or waiting for callbacks. You send a request and it is handled."),
+           ("📅","Visits on your schedule","Book a time when you need it, or fix one day every month and I come by on that date."),
+           ("💵","Predictable monthly cost","One flat price a month instead of a surprise bill each time. Unused hours roll over, so nothing goes to waste."),
+           ("🏠","One person who knows your home","The same handyman every time. I already know your house, so small problems get caught early."),
+           ("👪","Great for family","Set it up for a parent or relative and keep their home in order, even if you live far away."),
+           ("🎯","Big job? Save up","Hours roll over for up to 3 months, so even the smallest plan can cover a larger project.")]
+    wc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{i}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for i,t,p in why)
+    steps = [("1","Pick a plan","Basic, Plus or Home, whichever fits your house. You can change plans later."),
+             ("2","Send your list","Text or call with what needs doing. Photos help. We pick the time, or a fixed day each month."),
+             ("3","I come and fix it","I show up, take care of the list, check the little things and keep your home in order.")]
+    sc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{n}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for n,t,p in steps)
     body = f'''<body>
 {nav_html()}
 <main>
@@ -891,61 +903,79 @@ def subscription_page():
   <div class="section-wrap sp-hero-inner">
     <div>
       <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> Handyman subscription</div>
-      <h1 class="sp-h1">Handyman <em>subscription</em></h1>
-      <p class="sp-lead">One handyman you know, who keeps the small stuff from piling up. Three monthly plans for ongoing repairs and home upkeep in Wesley Chapel and nearby, starting at $99 a month. Opening soon: join the waitlist.</p>
-      <div class="cta-btns"><a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call or text {PHONE_DISPLAY}</a></div>
+      <h1 class="sp-h1">Your home, taken care of. <em>Every month.</em></h1>
+      <p class="sp-lead">Handyman subscription in Wesley Chapel, FL. Send a request, pick a time, and it is done. Or choose one day each month and I come by to fix, check and tighten whatever your home needs. Plans start at $99 a month.</p>
+      <div class="sp-actions">
+        <a class="btn-cta" href="tel:{PHONE_TEL}">📞 Call {PHONE_DISPLAY}</a>
+        <a class="btn-ghost-cta" href="sms:{PHONE_TEL}">💬 Text to start</a>
+      </div>
     </div>
+    <div class="sp-hero-icon"><img src="/images/hero-andrew.jpg" alt="Andrew, owner of Andrew Handyman Services, giving a thumbs up" width="280" height="301" style="border-radius:22px;width:min(280px,100%);height:auto"></div>
   </div>
 </section>
 <section class="sp-sec">
   <div class="section-wrap">
-    <article class="post">
-      <h2>Why a subscription</h2>
-      <p>Most homes do not need one big repair. They need a steady trickle of small ones: a loose door, a TV to mount, a shelf, a patch of paint. People put these off because finding someone each time is a hassle. A subscription is meant to make it simple: one number to text, one person who already knows your home.</p>
-      <h2>Who it is for</h2>
-      <ul>
-        <li><strong>Busy homeowners</strong> who would rather text a photo than hunt for a handyman every time.</li>
-        <li><strong>Families helping relatives.</strong> Arrange regular help for a parent or family member nearby or far away, so small repairs do not pile up.</li>
-      </ul>
-      <h2>Plans</h2>
-      <div class="sub-plans">
-        <div class="sub-plan">
-          <h3>Basic</h3>
-          <div class="sub-price">$99<small> / month</small></div>
-          <div class="sub-hours">Up to 2 hours a month</div>
-          <ul><li>1 visit a month</li><li>A look at what needs fixing</li><li>Small repairs and installs</li></ul>
-          <a href="tel:{PHONE_TEL}" class="btn-cta">Join the waitlist</a>
-        </div>
-        <div class="sub-plan pop">
-          <h3>Plus</h3>
-          <div class="sub-price">$199<small> / month</small></div>
-          <div class="sub-hours">Up to 4 hours a month</div>
-          <ul><li>Up to 2 visits a month</li><li>A look at what needs fixing</li><li>Small repairs and installs</li></ul>
-          <a href="tel:{PHONE_TEL}" class="btn-cta">Join the waitlist</a>
-        </div>
-        <div class="sub-plan">
-          <h3>Home</h3>
-          <div class="sub-price">$299<small> / month</small></div>
-          <div class="sub-hours">Up to 6 hours a month</div>
-          <ul><li>Up to 3 visits a month</li><li>Or one larger job</li><li>Small repairs and installs</li></ul>
-          <a href="tel:{PHONE_TEL}" class="btn-cta">Join the waitlist</a>
-        </div>
+    <div class="reveal"><div class="section-tag">Why a subscription</div><h2 class="section-title">Stop searching. <em>Start relaxing.</em></h2></div>
+    <p class="sp-intro">Most homes do not need one big repair. They need a steady trickle of small ones: a loose door, a burnt-out bulb, a TV to mount, a shelf, a patch of paint. People put them off because finding someone each time is a hassle. With a subscription it is one number to text and one person who already knows your house.</p>
+    <div class="sp-why">{wc}</div>
+  </div>
+</section>
+<section class="sp-sec sp-alt">
+  <div class="section-wrap">
+    <div class="reveal"><div class="section-tag">Plans</div><h2 class="section-title">Pick your <em>monthly plan</em></h2></div>
+    <div class="sub-plans">
+      <div class="sub-plan">
+        <h3>Basic</h3>
+        <div class="sub-price">$99<small> / month</small></div>
+        <div class="sub-hours">Up to 2 hours a month</div>
+        <ul><li>1 visit a month</li><li>A look at what needs fixing</li><li>Small repairs and installs</li></ul>
+        <a href="tel:{PHONE_TEL}" class="btn-cta">Get started</a>
       </div>
-      <p>The hours are what you get each month. Use them for several small visits, or save them for one bigger job on the larger plan.</p>
-      <h2>What it would cover</h2>
-      <p>The everyday jobs I already do: <a href="/services/tv-shelf-mounting/">TV and shelf mounting</a>, <a href="/services/picture-hanging/">picture hanging</a>, <a href="/services/furniture-assembly/">furniture assembly</a>, <a href="/services/door-installation/">doors</a>, <a href="/services/drywall-repair/">drywall repair</a>, <a href="/services/painting/">painting touch-ups</a> and similar work. Jobs that legally require a licensed electrician or plumber are not part of it.</p>
-      <h2>Questions</h2>
-      {faq}
+      <div class="sub-plan pop">
+        <h3>Plus</h3>
+        <div class="sub-price">$199<small> / month</small></div>
+        <div class="sub-hours">Up to 4 hours a month</div>
+        <ul><li>Up to 2 visits a month</li><li>A look at what needs fixing</li><li>Small repairs and installs</li></ul>
+        <a href="tel:{PHONE_TEL}" class="btn-cta">Get started</a>
+      </div>
+      <div class="sub-plan">
+        <h3>Home</h3>
+        <div class="sub-price">$299<small> / month</small></div>
+        <div class="sub-hours">Up to 6 hours a month</div>
+        <ul><li>Up to 3 visits a month</li><li>Or one larger job</li><li>Small repairs and installs</li></ul>
+        <a href="tel:{PHONE_TEL}" class="btn-cta">Get started</a>
+      </div>
+    </div>
+    <p class="sp-intro"><strong>Hours roll over.</strong> Unused hours carry over to the next month, for up to 3 months in a row, so you can save up for a bigger job on any plan. Extra hours beyond your plan are agreed in advance, depending on the cost of the work.</p>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <div class="reveal"><div class="section-tag">How it works</div><h2 class="section-title">Three steps, <em>zero hassle</em></h2></div>
+    <div class="sp-why">{sc}</div>
+  </div>
+</section>
+<section class="sp-sec sp-alt">
+  <div class="section-wrap">
+    <div class="reveal"><div class="section-tag">A monthly visit</div><h2 class="section-title">What I can do <em>on my visit</em></h2></div>
+    <article class="post">
+      <p>On a set day each month I come by and go through your list. Typical jobs: changing light bulbs, tightening loose handles, hinges and hardware, <a href="/services/tv-shelf-mounting/">mounting a TV or shelf</a>, <a href="/services/picture-hanging/">hanging pictures</a>, <a href="/services/furniture-assembly/">assembling furniture</a>, fixing a sticking <a href="/services/door-installation/">door</a>, patching small holes in <a href="/services/drywall-repair/">drywall</a> and <a href="/services/painting/">painting touch-ups</a>. I also look around for small problems before they grow. Jobs that legally require a licensed electrician or plumber are not part of the plans.</p>
     </article>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <div class="reveal"><div class="section-tag">FAQ</div><h2 class="section-title">Questions <em>about plans</em></h2></div>
+    <div class="sp-faq">{faq}</div>
   </div>
 </section>
 <section class="cta-wrap">
   <div class="cta-inner">
-    <h2 class="cta-title">Join the waitlist</h2>
-    <p class="cta-text">Text or call and say what jobs you would want covered. No commitment.</p>
+    <h2 class="cta-title">Ready to stop worrying about repairs?</h2>
+    <p class="cta-text">Call or text, pick your plan and your day. I will take it from there.</p>
     <div class="cta-btns">
       <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
-      <a href="/#home" class="btn-ghost-cta">Send a request ↑</a>
+      <a href="sms:{PHONE_TEL}" class="btn-ghost-cta">💬 Text to start</a>
     </div>
   </div>
 </section>
