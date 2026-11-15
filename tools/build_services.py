@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115c'   # bump to bust browser cache of site.css/site.js
+VER = '20261115d'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -129,7 +129,7 @@ S = [
        ("Will you fill the old nail holes?","Small nail holes can be patched when I remove old hangers. If you want paint matched, I can do that too through my drywall and painting services."),
        ("Can you hang pictures on brick, block or tile walls?","Yes. These need different bits and anchors than drywall, and I use the right ones so the wall is not damaged.")],
   related=['tv-shelf-mounting','drywall-repair','furniture-assembly']),
- dict(slug='furniture-assembly', name='Furniture Assembly', short='Furniture Assembly', h1='Furniture Assembly', icon='furniture.svg', photo=None,
+ dict(slug='furniture-assembly', name='Furniture Assembly', short='Furniture Assembly', h1='Furniture Assembly', icon='furniture.svg', photo=None, gallery_h='Recent <em>assembly jobs</em>', gallery_r='4/3', gallery=[('fa-1.jpg', 'Assembled corner storage bed frame with drawers and LED strip', 'Storage Bed Frame Assembly'), ('fa-2.jpg', 'Assembled four-door wood sideboard cabinet in a dining room', 'Sideboard Cabinet Assembly'), ('fa-3.jpg', 'Assembled dark console table against a wall', 'Console Table Assembly')],
   title='Furniture Assembly Wesley Chapel FL – IKEA, Wayfair, Amazon & More',
   desc="Furniture assembly in Wesley Chapel, FL: IKEA, Wayfair, Amazon and Costco furniture, beds, dressers, desks and patio sets, built right and anchored. Free estimate.",
   lead="Beds, dressers, desks, bookcases, patio sets and more, built and placed where you want them. IKEA, Wayfair, Amazon, Costco or any flat-pack brand, in Wesley Chapel and nearby. Text me what you bought for a free estimate.",
