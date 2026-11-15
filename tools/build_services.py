@@ -12,7 +12,7 @@ import projects_data as PD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115o'   # bump to bust browser cache of site.css/site.js
+VER = '20261115p'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -266,6 +266,7 @@ def footer_html():
         <div class="f-contact-row">👤 <a href="/about/" style="color:inherit;text-decoration:none">About Andrew</a></div>
         <div class="f-contact-row">❓ <a href="/faq/" style="color:inherit;text-decoration:none">FAQ</a></div>
         <div class="f-contact-row">🔎 <a href="/guides/how-to-find-a-handyman-wesley-chapel/" style="color:inherit;text-decoration:none">How to find a handyman</a></div>
+        <div class="f-contact-row">🔁 <a href="/subscription/" style="color:inherit;text-decoration:none">Handyman subscription</a></div>
         <div class="f-contact-row">📝 <a href="/posts/" style="color:inherit;text-decoration:none">Recent projects</a></div>
       </div>
     </div>
@@ -865,6 +866,73 @@ def posts_index():
 '''
     return head(title, desc, url, extra) + body
 
+SUB_FAQ = [
+ ("Is the handyman subscription available now?","Not yet. I am putting the plan together and starting with a waitlist. Call or text (656) 231-1836 and tell me what you would want included, and I will let you know when it opens."),
+ ("How much will it cost?","Plans and prices are not set yet. I will share them before anything launches, and waitlist members hear first. Regular one-time jobs still come with a free estimate."),
+ ("What kind of jobs would a subscription cover?","Everyday small repairs and installs, the same kind of work I do now: TV mounting, picture hanging, furniture assembly, door and drywall fixes, painting touch-ups and similar jobs. Work that legally needs a licensed electrician or plumber is not part of it."),
+ ("Can I set it up for a parent or relative?","Yes, that is one of the main reasons for the idea. You could arrange regular help for someone who lives nearby or far away, so small repairs do not pile up."),
+ ("Can I still book a single job?","Of course. One-time jobs work exactly as before: send a request or text a photo and you get a free estimate."),
+]
+
+def subscription_page():
+    url = f'{DOMAIN}/subscription/'
+    title = 'Handyman Subscription Wesley Chapel FL – Ongoing Home Maintenance (Waitlist)'
+    desc = 'A handyman subscription for ongoing small repairs and home upkeep in Wesley Chapel, FL. Join the waitlist with Andrew Handyman Services.'
+    faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in SUB_FAQ)
+    fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in SUB_FAQ]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":"Handyman subscription","item":url}]}
+    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (fq, bc))
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> Handyman subscription</div>
+      <h1 class="sp-h1">Handyman <em>subscription</em></h1>
+      <p class="sp-lead">One handyman you know, who keeps the small stuff from piling up. I am building a subscription for ongoing repairs and home upkeep in Wesley Chapel and nearby. It is not open yet: join the waitlist and tell me what you would want.</p>
+      <div class="cta-btns"><a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call or text {PHONE_DISPLAY}</a></div>
+    </div>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <article class="post">
+      <h2>Why a subscription</h2>
+      <p>Most homes do not need one big repair. They need a steady trickle of small ones: a loose door, a TV to mount, a shelf, a patch of paint. People put these off because finding someone each time is a hassle. A subscription is meant to make it simple: one number to text, one person who already knows your home.</p>
+      <h2>Who it is for</h2>
+      <ul>
+        <li><strong>Busy homeowners</strong> who would rather text a photo than hunt for a handyman every time.</li>
+        <li><strong>Families helping relatives.</strong> Arrange regular help for a parent or family member nearby or far away, so small repairs do not pile up.</li>
+      </ul>
+      <h2>What it would cover</h2>
+      <p>The everyday jobs I already do: <a href="/services/tv-shelf-mounting/">TV and shelf mounting</a>, <a href="/services/picture-hanging/">picture hanging</a>, <a href="/services/furniture-assembly/">furniture assembly</a>, <a href="/services/door-installation/">doors</a>, <a href="/services/drywall-repair/">drywall repair</a>, <a href="/services/painting/">painting touch-ups</a> and similar work. Jobs that legally require a licensed electrician or plumber are not part of it.</p>
+      <h2>Where things stand</h2>
+      <p>Plans and prices are not set yet. I would rather build it around what people actually need, so waitlist members get a say and hear first when it opens. In the meantime, regular one-time jobs work as always, with a free estimate.</p>
+      <h2>Questions</h2>
+      {faq}
+    </article>
+  </div>
+</section>
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Join the waitlist</h2>
+    <p class="cta-text">Text or call and say what jobs you would want covered. No commitment.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="/#home" class="btn-ghost-cta">Send a request ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(title, desc, url, extra) + body
+
 def main():
     for s in S:
         d = os.path.join('services', s['slug'])
@@ -877,6 +945,8 @@ def main():
     open('about/index.html','w',encoding='utf-8').write(about_page())
     os.makedirs('guides/'+GD.SLUG, exist_ok=True)
     open('guides/'+GD.SLUG+'/index.html','w',encoding='utf-8').write(guide_page())
+    os.makedirs('subscription', exist_ok=True)
+    open('subscription/index.html','w',encoding='utf-8').write(subscription_page())
     os.makedirs('posts', exist_ok=True)
     open('posts/index.html','w',encoding='utf-8').write(posts_index())
     for pr in PD.PROJECTS:
@@ -884,7 +954,7 @@ def main():
         open('posts/'+pr['slug']+'/index.html','w',encoding='utf-8').write(post_page(pr))
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/subscription/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     import re as _re, html as _html
     def _imgs(u):
         path = u.replace(DOMAIN, '').strip('/')
