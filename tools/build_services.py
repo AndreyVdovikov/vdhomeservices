@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115d'   # bump to bust browser cache of site.css/site.js
+VER = '20261115e'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -109,7 +109,7 @@ S = [
        ("Is the TV mount included?","I can mount the TV as part of the wall installation, so everything is level and lines up with the design."),
        ("How long does an accent wall take?","A simple accent wall can be finished in a day or two. Larger media walls take longer, and I give you a timeline in the estimate.")],
   related=['tv-shelf-mounting','painting','new-kitchen-installation']),
- dict(slug='deck-repair', name='Deck Repair', short='Deck Repair', h1='Deck Repair', icon='deck.svg', photo=('img-06.jpg','Before and after deck stairs and railing repair'),
+ dict(slug='deck-repair', name='Deck Repair', short='Deck Repair', h1='Deck Repair', icon='deck.svg', gallery_h='Recent <em>deck &amp; porch jobs</em>', gallery_r='4/3', gallery=[('dk-1.jpg', 'Front porch steps and teal painted wood railings', 'Porch Steps & Railings'), ('dk-2.jpg', 'Wood deck stairs with painted treads and black railings', 'Deck Stairs & Railings'), ('dk-3.jpg', 'Backyard deck stairs and railing from another angle', 'Deck Stair Railing Work')], photo=('img-06.jpg','Before and after deck stairs and railing repair'),
   desc="Deck repair in Wesley Chapel, FL: replacement boards, railings, stairs and posts, plus staining and sealing. Make your deck safe again with Andrew Handyman Services.",
   lead="Loose, rotted or worn deck boards, railings and steps repaired so your deck is safe and good-looking again. Serving Wesley Chapel, Land O' Lakes, Zephyrhills and nearby.",
   bullets=["Replacement of rotted or cracked deck boards","Railings, balusters and handrails","Stair treads, risers and stringers","Posts and loose or failing connections","Staining and sealing to protect the wood","Safe, solid result you can trust to walk on"],
