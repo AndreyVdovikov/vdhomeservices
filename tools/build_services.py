@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115e'   # bump to bust browser cache of site.css/site.js
+VER = '20261115f'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -141,7 +141,7 @@ S = [
        ("Can you anchor a dresser or bookcase to the wall?","Yes. Anchoring tall furniture is a good idea, especially with kids or pets in the house. I use the right anchors for the wall."),
        ("Do you assemble outdoor furniture?","Yes. Patio sets, benches and outdoor storage are fine.")],
   related=['picture-hanging','tv-shelf-mounting','media-accent-walls']),
- dict(slug='fence-repair', name='Fence Repair', short='Fence Repair', h1='Fence Repair', icon='fence.svg', photo=('img-05.jpg','Fence before and after repair'),
+ dict(slug='fence-repair', name='Fence Repair', short='Fence Repair', h1='Fence Repair', icon='fence.svg', gallery_h='Fence <em>before &amp; after</em>', gallery_r='4/3', gallery=[('fn-1.jpg', 'Old weathered wood fence before replacement', 'Fence Before'), ('fn-2.jpg', 'New wood privacy fence along a backyard garage wall', 'Fence After'), ('fn-3.jpg', 'New wood fence with straight pickets in a backyard', 'New Wood Fence')], photo=('img-05.jpg','Fence before and after repair'),
   desc="Fence repair in Wesley Chapel, FL: broken pickets, leaning posts and damaged gates. Keep your yard secure with Andrew Handyman Services.",
   lead="Broken pickets, leaning posts and damaged gates fixed or replaced to keep your yard secure and your fence looking sharp. Serving Wesley Chapel and nearby communities.",
   bullets=["Broken or rotted pickets and panels replaced","Leaning or loose posts straightened and secured","Gate repair: hinges, latches and sagging gates","Rails and boards reinforced","Staining or painting to refresh the look","Storm damage cleanup and repair"],
