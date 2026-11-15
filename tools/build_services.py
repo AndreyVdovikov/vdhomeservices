@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115b'   # bump to bust browser cache of site.css/site.js
+VER = '20261115c'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -85,7 +85,7 @@ S = [
        ("How long does a cabinet job take?","Most kitchens take several days, because each coat needs time to dry and cure. I give you a clear schedule before I start."),
        ("Can you change the hardware too?","Yes. New handles, knobs and hinges are a quick upgrade that makes painted cabinets look brand new.")],
   related=['new-kitchen-installation','painting','drywall-repair']),
- dict(slug='new-kitchen-installation', name='New Kitchen Installation', short='New Kitchen', h1='New Kitchen Installation', icon='kitchen.svg', photo=('img-08.jpg','New kitchen installed by Andrew Handyman Services'),
+ dict(slug='new-kitchen-installation', name='New Kitchen Installation', short='New Kitchen', h1='New Kitchen Installation', icon='kitchen.svg', gallery_h='Recent <em>kitchen projects</em>', gallery_r='4/3', gallery=[('kt-1.jpg', 'White kitchen cabinets with granite counters and an island', 'Kitchen with Granite Island'), ('kt-2.jpg', 'White shaker cabinets with granite countertop and subway tile backsplash', 'Granite & Subway Tile Kitchen')], photo=('img-08.jpg','New kitchen installed by Andrew Handyman Services'),
   desc="New kitchen installation in Wesley Chapel, FL: cabinets, countertops, backsplash and finishing. Andrew Handyman Services handles your kitchen remodel start to finish.",
   lead="Full kitchen remodels handled start to finish: old cabinets out, new cabinets in, countertops, backsplash and finishing touches. Serving Wesley Chapel and the surrounding area.",
   bullets=["Removal of old cabinets and countertops","New cabinet installation, level, plumb and secure","Countertop installation and cutouts","Tile backsplash","Trim, paint and finishing details","Handles, hardware and final adjustments"],
