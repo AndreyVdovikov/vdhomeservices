@@ -13,7 +13,7 @@ import media_data as MD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115v'   # bump to bust browser cache of site.css/site.js
+VER = '20261115w'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -196,6 +196,19 @@ S = [
 ]
 BY = {s['slug']: s for s in S}
 
+GBP_URL = 'https://www.google.com/maps?cid=9147118600077160401'
+def biz(area=None):
+    """Full LocalBusiness entity used across the site (structured data for search engines and AI assistants)."""
+    b = {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","@id":DOMAIN+"/#business",
+         "name":"Andrew Handyman Services","url":DOMAIN+"/","telephone":"+1-656-231-1836",
+         "description":"Handyman services in Wesley Chapel, FL and the northern Tampa Bay area: TV and shelf mounting, media and accent walls, painting, drywall repair, cabinets and kitchens, decks and fences, furniture assembly, flooring, Christmas light installation and more.",
+         "image":DOMAIN+"/images/img-02.jpg","logo":DOMAIN+"/apple-touch-icon.png",
+         "address":{"@type":"PostalAddress","addressLocality":"Wesley Chapel","addressRegion":"FL","postalCode":"33544","addressCountry":"US"},
+         "areaServed":([{"@type":"City","name":area}] if area else [{"@type":"City","name":a} for a in AREAS]),
+         "knowsAbout":[x["name"] for x in S if not x.get("hidden")],
+         "hasMap":GBP_URL,"sameAs":[GBP_URL,"https://share.google/M3UsYRjfswcYytOnC","https://www.instagram.com/andrew_vd83/"]}
+    return b
+
 def esc(t): return html.escape(t, quote=True)
 
 def low(t): return t.replace('Christmas','Christmas_').replace('TV','TV_').lower().replace('christmas_','Christmas').replace('tv_','TV')
@@ -316,7 +329,7 @@ def page(s):
     title = s.get('title') or f'{s["h1"]} in {city}, FL | Andrew Handyman Services'
     ld = {"@context":"https://schema.org","@type":"Service","name":f'{s["h1"]} in {city}, FL',"serviceType":s['h1'],
           "description":s['desc'],"url":url,
-          "provider":{"@type":"HomeAndConstructionBusiness","name":"Andrew Handyman Services","telephone":"+1-656-231-1836","url":DOMAIN+"/"},
+          "provider":{k:v for k,v in biz().items() if k!="@context"},
           "areaServed":[{"@type":"City","name":a} for a in AREAS]}
     bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
         {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
@@ -647,8 +660,7 @@ def loc_page(l):
     desc = f'{l["intro"]} Free estimate: call or text (656) 231-1836.'
     if len(desc) > 300: desc = desc[:297].rsplit(' ',1)[0] + '...'
     faq = l['faq'] + [(f'How do I get a free estimate in {city}?', 'Fill in the request form on my website, or call or text (656) 231-1836. Photos help me give you a more accurate estimate. I usually get back to you within a few hours.')]
-    ld = {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Andrew Handyman Services","url":DOMAIN+"/","telephone":PHONE_TEL,
-          "areaServed":{"@type":"City","name":city},"address":{"@type":"PostalAddress","addressLocality":"Wesley Chapel","addressRegion":"FL","postalCode":"33544","addressCountry":"US"}}
+    ld = biz(city)
     fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in faq]}
     bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
         {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
@@ -1187,8 +1199,46 @@ def main():
             cap = f'<image:title>{_html.escape(_html.unescape(a.group(1)))}</image:title>' if a and a.group(1) else ''
             out += f'<image:image><image:loc>{DOMAIN}/{s.group(1)}</image:loc>{cap}</image:image>'
         return out
-    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + ''.join(f'  <url><loc>{u}</loc>{_imgs(u)}</url>\n' for u in urls) + '</urlset>\n'
+    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + ''.join(f'  <url><loc>{u}</loc><lastmod>2026-11-15</lastmod>{_imgs(u)}</url>\n' for u in urls) + '</urlset>\n'
     open('sitemap.xml', 'w').write(sm)
+
+    # --- AI / search discovery files ---
+    svc_lines = '\n'.join(f'- [{x["name"]}]({DOMAIN}/services/{x["slug"]}/): {x["lead"]}' for x in S if not x.get('hidden'))
+    loc_lines = '\n'.join(f'- [{l["city"]}]({DOMAIN}/locations/{l["slug"]}/)' for l in LOCS)
+    post_lines = '\n'.join(f'- [{o["title"]}]({DOMAIN}/posts/{o["slug"]}/)' for o in PD.PROJECTS)
+    llms = f"""# Andrew Handyman Services
+
+> Handyman services in Wesley Chapel, Florida and the northern Tampa Bay area (Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa, Tampa). Run by Andrew, a local handyman. Free estimates. Phone and text: {PHONE_DISPLAY}. Website: {DOMAIN}/
+
+Notes: Andrew does not do work that legally requires a licensed electrician or plumber. Prices are listed only where stated below; otherwise estimates are free.
+
+## Services
+{svc_lines}
+
+## Pricing published on the site
+- Media & accent walls: accent wall with TV mounting and mantel from $1,500; full media wall typically $3,500 to $4,000; large custom projects $6,000 to $10,000+. See {DOMAIN}/services/media-accent-walls/
+- Handyman subscription: Basic $99/month (up to 2 hours), Plus $199/month (up to 4 hours), Home $299/month (up to 6 hours). Unused hours roll over for up to 3 months. See {DOMAIN}/subscription/
+- Gift certificates: $145, $285 or $478 toward handyman work. See {DOMAIN}/gift/
+
+## Service areas
+{loc_lines}
+
+## Guides and recent projects
+- [How to find a handyman in Wesley Chapel]({DOMAIN}/guides/{GD.SLUG}/)
+- [Christmas light installation guide and cost calculator]({DOMAIN}/services/christmas-light-installation/#guide)
+- [Recent projects]({DOMAIN}/posts/)
+{post_lines}
+
+## About and contact
+- [About Andrew]({DOMAIN}/about/)
+- [FAQ]({DOMAIN}/faq/)
+- [Google Business Profile]({GBP_URL})
+- Phone and text: {PHONE_DISPLAY}
+"""
+    open('llms.txt', 'w', encoding='utf-8').write(llms)
+    bots = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended', 'Bingbot', 'Googlebot']
+    rb = 'User-agent: *\nAllow: /\n\n' + ''.join(f'User-agent: {b}\nAllow: /\n\n' for b in bots) + f'Sitemap: {DOMAIN}/sitemap.xml\n'
+    open('robots.txt', 'w').write(rb)
     open('tools/_nav.html', 'w', encoding='utf-8').write(nav_html())
     open('tools/_footer.html', 'w', encoding='utf-8').write(footer_html())
     print('built', len(S), 'service pages')
