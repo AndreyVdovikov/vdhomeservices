@@ -7,11 +7,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from locations_data import LOCS
 import blog_data as BL
 import guides_data as GD
+import projects_data as PD
 
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115m'   # bump to bust browser cache of site.css/site.js
+VER = '20261115n'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -265,6 +266,7 @@ def footer_html():
         <div class="f-contact-row">👤 <a href="/about/" style="color:inherit;text-decoration:none">About Andrew</a></div>
         <div class="f-contact-row">❓ <a href="/faq/" style="color:inherit;text-decoration:none">FAQ</a></div>
         <div class="f-contact-row">🔎 <a href="/guides/how-to-find-a-handyman-wesley-chapel/" style="color:inherit;text-decoration:none">How to find a handyman</a></div>
+        <div class="f-contact-row">📝 <a href="/posts/" style="color:inherit;text-decoration:none">Recent projects</a></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -774,6 +776,95 @@ def guide_page():
 '''
     return head(GD.TITLE, GD.DESC, url, extra) + body
 
+def post_page(pr):
+    url = f'{DOMAIN}/posts/{pr["slug"]}/'
+    paras = ''.join(f'<p>{esc(x)}</p>' for x in pr['paras'])
+    faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in pr['faq'])
+    others = ''.join(f'<li><a href="/posts/{o["slug"]}/">{esc(o["title"])}</a></li>' for o in PD.PROJECTS if o['slug'] != pr['slug'])
+    art = {"@context":"https://schema.org","@type":"BlogPosting","headline":pr['title'],"description":pr['desc'],"datePublished":pr['date'],"dateModified":pr['date'],
+           "mainEntityOfPage":url,"author":{"@type":"Person","name":"Andrew","url":DOMAIN+"/about/"},
+           "publisher":{"@type":"Organization","name":"Andrew Handyman Services","url":DOMAIN+"/"},"sameAs":[PD.GBP]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
+        {"@type":"ListItem","position":2,"name":"Posts","item":DOMAIN+"/posts/"},
+        {"@type":"ListItem","position":3,"name":pr['title'],"item":url}]}
+    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (art, bc))
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/posts/">Posts</a></div>
+      <h1 class="sp-h1">{esc(pr['title'])}</h1>
+      <div class="post-meta">By Andrew · {pr['date']}</div>
+    </div>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <article class="post">
+      {paras}
+      <p><a href="/services/{pr['service']}/">More about {esc(pr['svc_name'])} →</a></p>
+      <h2>Quick question</h2>
+      {faq}
+      <p>This project was also posted on my <a href="{PD.GBP}" target="_blank" rel="noopener">Google Business Profile</a>.</p>
+      <h2>More recent projects</h2>
+      <ul>{others}</ul>
+    </article>
+  </div>
+</section>
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Have a similar project?</h2>
+    <p class="cta-text">Send a quick request or text a photo of the job. Free estimate.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="/#home" class="btn-ghost-cta">Book Online ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(pr['title'] + ' | Andrew Handyman Services', pr['desc'], url, extra) + body
+
+def posts_index():
+    url = f'{DOMAIN}/posts/'
+    cards = ''.join(f'<li><a href="/posts/{o["slug"]}/"><strong>{esc(o["title"])}</strong></a><br><span>{o["date"]} · {esc(o["svc_name"])}</span></li>' for o in PD.PROJECTS)
+    title = 'Recent Projects & Updates | Andrew Handyman Services Wesley Chapel'
+    desc = 'Recent handyman projects in Wesley Chapel and Tampa Bay: media walls, custom shelving, accent panels, furniture assembly and hurricane shutters.'
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":"Posts","item":url}]}
+    extra = f'<script type="application/ld+json">{json.dumps(bc)}</script>\n'
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> Posts</div>
+      <h1 class="sp-h1">Recent projects <em>&amp; updates</em></h1>
+      <p class="sp-lead">What I have been working on around Wesley Chapel and Tampa Bay. The same updates are on my <a href="{PD.GBP}" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Google Business Profile</a>.</p>
+    </div>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <article class="post"><ul>{cards}</ul></article>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(title, desc, url, extra) + body
+
 def main():
     for s in S:
         d = os.path.join('services', s['slug'])
@@ -786,9 +877,14 @@ def main():
     open('about/index.html','w',encoding='utf-8').write(about_page())
     os.makedirs('guides/'+GD.SLUG, exist_ok=True)
     open('guides/'+GD.SLUG+'/index.html','w',encoding='utf-8').write(guide_page())
+    os.makedirs('posts', exist_ok=True)
+    open('posts/index.html','w',encoding='utf-8').write(posts_index())
+    for pr in PD.PROJECTS:
+        os.makedirs('posts/'+pr['slug'], exist_ok=True)
+        open('posts/'+pr['slug']+'/index.html','w',encoding='utf-8').write(post_page(pr))
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     import re as _re, html as _html
     def _imgs(u):
         path = u.replace(DOMAIN, '').strip('/')
