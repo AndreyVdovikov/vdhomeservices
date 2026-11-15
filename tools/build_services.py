@@ -8,11 +8,12 @@ from locations_data import LOCS
 import blog_data as BL
 import guides_data as GD
 import projects_data as PD
+import media_data as MD
 
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115u'   # bump to bust browser cache of site.css/site.js
+VER = '20261115v'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -103,12 +104,15 @@ S = [
        ("When should I install them?","Atlantic hurricane season runs June 1 to November 30. Booking well before the season gives you the most choice and avoids the last-minute rush.")],
   related=['wood-rot-repair','painting','media-accent-walls']),
  dict(slug='media-accent-walls', name='Media & Accent Walls', short='Media & Accent Walls', h1='Media & Accent Walls', icon='media-wall.svg', photo=None, gallery=([('white-shiplap-media-wall-wood-mantel-soundbar-electric-wesley-chapel.jpg', 'White shiplap media wall with wood mantel, soundbar and electric fireplace', 'White Shiplap TV Wall'), ('white-shiplap-tv-wall-mounted-tv-mantel-linear-wesley-chapel.jpg', 'White shiplap TV wall with a mounted TV, mantel and linear fireplace', 'Shiplap Media Wall'), ('dark-stained-wood-plank-tv-wall-mantel-electric-wesley-chapel.jpg', 'Dark stained wood plank TV wall with mantel and electric fireplace', 'Stained Wood TV Wall'), ('floor-to-ceiling-dark-wood-media-wall-tv-wesley-chapel.jpg', 'Floor to ceiling dark wood media wall with TV and fireplace', 'Dark Wood Media Wall'), ('wood-panel-tv-wall-floating-shelves-mantel-linear-wesley-chapel.jpg', 'Wood panel TV wall with floating shelves, mantel and linear fireplace', 'Wood Panel Wall & Floating Shelves')]),
-  desc="Media walls, TV walls and custom accent walls in Wesley Chapel, FL. Wood slats, panels, fireplace surrounds and more from Andrew Handyman Services.",
-  lead="A statement feature for your living room. I build and install TV walls, accent walls and fireplace surrounds designed around your space, in Wesley Chapel and nearby.",
+  title=MD.TITLE, desc=MD.DESC,
+  lead=MD.LEAD, article=True,
   bullets=["TV and media walls with a clean built-in look","Wood slat, paneled and shiplap accent walls","Fireplace surrounds and feature walls","Custom designs planned around your room and TV","TV mounting with neat cord covers","Painted or stained to match your decor"],
   faq=[("Can you build a wall to my own design?","Yes. Bring a photo or an idea and I will tell you what is possible and give you a clear estimate. I can also suggest layouts that work well for your TV size."),
        ("Is the TV mount included?","I can mount the TV as part of the wall installation, so everything is level and lines up with the design."),
-       ("How long does an accent wall take?","A simple accent wall can be finished in a day or two. Larger media walls take longer, and I give you a timeline in the estimate.")],
+       ("How long does an accent wall take?","A simple accent wall can be finished in a day or two. Larger media walls take longer, and I give you a timeline in the estimate."),
+       ("How much does a media wall cost?","An accent wall with TV mounting and a mantel starts from $1,500. A full media wall is typically $3,500 to $4,000, and large custom projects run $6,000 to $10,000 or more. The exact price depends on size, design and materials. Send the wall width and height with photos for a free estimate."),
+       ("Can you build a media wall with a fireplace?","Yes. I build the wall around an electric fireplace with a mantel and finish it to match. If a new outlet is needed, a licensed electrician handles that part."),
+       ("Do I need to know the exact design?","No. Send photos of your room and a reference of a wall you like, and I will suggest layouts, colors and materials.")],
   related=['tv-shelf-mounting','painting','new-kitchen-installation']),
  dict(slug='deck-repair', name='Deck Repair', short='Deck Repair', h1='Deck Repair', icon='deck.svg', gallery_h='Recent <em>deck &amp; porch jobs</em>', gallery_r='4/3', gallery=[('front-porch-steps-teal-painted-wood-railings-wesley-chapel.jpg', 'Front porch steps and teal painted wood railings', 'Porch Steps & Railings'), ('wood-deck-stairs-painted-treads-black-railings-wesley-chapel.jpg', 'Wood deck stairs with painted treads and black railings', 'Deck Stairs & Railings'), ('backyard-deck-stairs-railing-from-another-angle-wesley-chapel.jpg', 'Backyard deck stairs and railing from another angle', 'Deck Stair Railing Work'), ('porch-platform-new-railing-posts-balusters-wesley-chapel.jpg','Porch platform with new railing posts and balusters','Porch Platform & Railing'), ('porch-new-pressure-treated-deck-boards-posts-wesley-chapel.jpg','Porch with new pressure-treated deck boards and posts','New Deck Boards & Posts'), ('front-view-porch-new-deck-boards-railing-wesley-chapel.jpg','Front view of a porch with new deck boards and railing','Porch, Front View')], photo=('deck-repair-wesley-chapel.jpg','Before and after deck stairs and railing repair'),
   desc="Deck repair in Wesley Chapel, FL: replacement boards, railings, stairs and posts, plus staining and sealing. Make your deck safe again with Andrew Handyman Services.",
@@ -345,6 +349,9 @@ def page(s):
         items = ''.join(f'<figure class="sp-gal-item reveal"><img src="/images/{f}" alt="{esc(a)}" loading="lazy"><figcaption>{esc(c)}</figcaption></figure>' for f,a,c in s['gallery'])
         galsec = f'<section class="sp-sec"><div class="section-wrap"><div class="reveal"><div class="section-tag">Real jobs</div><h2 class="section-title">{s.get("gallery_h","Recent TV &amp; <em>media walls</em>")}</h2></div><div class="sp-gal" style="--r:{s.get("gallery_r","3/4")}">{items}</div></div></section>'
         if s.get('more'): a_why, a_area, a_rel = ' sp-alt', '', ' sp-alt'
+    areas_l = ', '.join(f'<a href="/locations/{l["slug"]}/">{esc(l["name"])}</a>' for l in LOCS)
+    art = MD.ARTICLE.replace('{areas}', areas_l) if s.get('article') else ''
+    estform = MD.FORM.replace('{PHONE_TEL}', PHONE_TEL).replace('{PHONE_DISPLAY}', PHONE_DISPLAY) if s.get('article') else ''
     guide = ''
     if s['slug']=='christmas-light-installation':
         toc = ''.join(f'<a href="#{i}">{esc(tt)}</a>' for i,tt in BL.TOC)
@@ -390,7 +397,7 @@ def page(s):
   </div>
 </section>
 
-{guide}{more}{galsec}<section class="sp-sec{a_why}">
+{art}{guide}{more}{galsec}{estform}<section class="sp-sec{a_why}">
   <div class="section-wrap">
     <div class="reveal">
       <div class="section-tag">Why Andrew</div>
