@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115h'   # bump to bust browser cache of site.css/site.js
+VER = '20261115j'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -117,7 +117,7 @@ S = [
        ("Do deck repairs need a permit?","Small repairs usually do not, but larger structural work can. I tell you upfront what applies before we start."),
        ("Can you stain or seal the deck after repair?","Yes. Sealing or staining protects the wood from Florida sun and rain, and it makes the repair look uniform.")],
   related=['wood-rot-repair','fence-repair','painting']),
- dict(slug='picture-hanging', name='Picture, Mirror & Art Hanging', short='Picture Hanging', h1='Picture, Mirror & Art Hanging', icon='pictures.svg', photo=None,
+ dict(slug='picture-hanging', name='Picture, Mirror & Art Hanging', short='Picture Hanging', h1='Picture, Mirror & Art Hanging', icon='pictures.svg', photo=None, gallery_h='Recent <em>wall decor jobs</em>', gallery_r='4/3', gallery=[('pd-1.jpg', 'Four decorative metal gears hung on a large-format tile wall', 'Wall Decor on Tile'), ('pd-2.jpg', 'Three-panel black and white canvas art hung on a tile wall', 'Triptych Wall Art'), ('pd-3.jpg', 'Wall-mounted display case mounted on a large tile wall', 'Wall-Mounted Display Case')],
   title='Picture Hanging Wesley Chapel FL – Mirrors, Gallery Walls & Heavy Art',
   desc="Picture and mirror hanging in Wesley Chapel, FL: gallery walls laid out and leveled, heavy mirrors and large art anchored to the wall. Free estimate from Andrew Handyman Services.",
   lead="Pictures, mirrors, canvases and gallery walls hung level, centered and secure, on drywall, brick, block and tile. Moving in or redecorating in Wesley Chapel? Send me a photo of the wall for a free estimate.",
@@ -129,7 +129,7 @@ S = [
        ("Will you fill the old nail holes?","Small nail holes can be patched when I remove old hangers. If you want paint matched, I can do that too through my drywall and painting services."),
        ("Can you hang pictures on brick, block or tile walls?","Yes. These need different bits and anchors than drywall, and I use the right ones so the wall is not damaged.")],
   related=['tv-shelf-mounting','drywall-repair','furniture-assembly']),
- dict(slug='furniture-assembly', name='Furniture Assembly', short='Furniture Assembly', h1='Furniture Assembly', icon='furniture.svg', photo=None, gallery_h='Recent <em>assembly jobs</em>', gallery_r='4/3', gallery=[('fa-1.jpg', 'Assembled corner storage bed frame with drawers and LED strip', 'Storage Bed Frame Assembly'), ('fa-2.jpg', 'Assembled four-door wood sideboard cabinet in a dining room', 'Sideboard Cabinet Assembly'), ('fa-3.jpg', 'Assembled dark console table against a wall', 'Console Table Assembly')],
+ dict(slug='furniture-assembly', name='Furniture Assembly', short='Furniture Assembly', h1='Furniture Assembly', icon='furniture.svg', photo=None, gallery_h='Recent <em>assembly jobs</em>', gallery_r='4/3', gallery=[('fa-1.jpg', 'Assembled corner storage bed frame with drawers and LED strip', 'Storage Bed Frame Assembly'), ('fa-2.jpg', 'Assembled four-door wood sideboard cabinet in a dining room', 'Sideboard Cabinet Assembly'), ('fa-3.jpg', 'Assembled dark console table against a wall', 'Console Table Assembly'), ('fa-4.jpg','Desk parts unpacked and laid out before assembly','Desk Parts Before Assembly'), ('fa-5.jpg','Assembled L-shaped wood desk with monitor risers','L-Shaped Desk Assembled')],
   title='Furniture Assembly Wesley Chapel FL – IKEA, Wayfair, Amazon & More',
   desc="Furniture assembly in Wesley Chapel, FL: IKEA, Wayfair, Amazon and Costco furniture, beds, dressers, desks and patio sets, built right and anchored. Free estimate.",
   lead="Beds, dressers, desks, bookcases, patio sets and more, built and placed where you want them. IKEA, Wayfair, Amazon, Costco or any flat-pack brand, in Wesley Chapel and nearby. Text me what you bought for a free estimate.",
