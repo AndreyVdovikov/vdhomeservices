@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115k'   # bump to bust browser cache of site.css/site.js
+VER = '20261115l'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -167,6 +167,19 @@ S = [
        ("How long does a room take?","A typical bedroom is often done in about a day. Larger areas take longer, and I give you a timeline in the estimate."),
        ("Do you reinstall baseboards?","Yes. Baseboards or quarter round go back on after the floor is down, or I replace them if they are damaged.")],
   related=['painting','door-installation','drywall-repair']),
+ dict(slug='leather-vinyl-repair', name='Leather & Vinyl Repair', short='Leather repair', h1='Leather & Vinyl Repair', icon='leather.svg', photo=None,
+  gallery_h='Leather repair <em>before &amp; after</em>', gallery_r='4/3', gallery=[('lr-1.jpg','Cracked leather recliner headrest before repair','Recliner Headrest: Before'),('lr-2.jpg','Recliner headrest after the crack was repaired','Recliner Headrest: After'),('lr-3.jpg','Torn vinyl trim by a window before repair','Window Trim: Before'),('lr-4.jpg','Vinyl trim by a window after repair','Window Trim: After')],
+  title='Leather & Vinyl Repair Wesley Chapel FL – Recliners, Sofas, Trim',
+  desc="Leather and vinyl repair in Wesley Chapel, FL: cracks, tears and peeling on recliners, sofas, chairs and trim. See before and after photos. Free estimate from Andrew Handyman Services.",
+  lead="Cracks, tears and worn spots on leather and vinyl recliners, sofas, chairs and trim, repaired so they blend back in. Serving Wesley Chapel, Land O' Lakes, Zephyrhills and nearby. Call for a free estimate.",
+  bullets=["Cracks and splits in leather and faux leather","Torn or peeling vinyl trim and panels","Recliners, sofas, chairs and headrests","Worn spots and scuffs on seats and arms","Color matched so the repair blends in","RV, camper and home furniture","Photo estimate: text me a picture of the damage"],
+  more_tag="Leather repair", more=("Fix it before it <em>spreads</em>",[("🛋️","Repair, not replace","A small crack or tear is much cheaper to fix than a new recliner. The sooner it is repaired, the less it spreads."),("🎨","Blends in","I work to match the color and finish so the repair is hard to spot."),("📸","Photo estimate","Text me a couple of photos of the damage and I can tell you if it is a good candidate for repair."),("🚐","Home or RV","Living room furniture, camper seating and vinyl trim around windows and doors.")]),
+  faq=[("How much does leather repair cost?","Estimates are free. The price depends on the size and location of the damage. Text a photo to (656) 231-1836 and I will tell you what to expect."),
+       ("Can a cracked recliner be repaired?","Small and medium cracks, tears and worn spots usually can. Badly collapsed or missing material is harder, and I will tell you honestly before we start."),
+       ("Will the repair be visible?","I work to match color and texture so it blends in. Up close a repair can still be noticeable on some materials, and I will show you what to expect."),
+       ("Do you repair faux leather and vinyl?","Yes. Faux leather, vinyl and bonded leather are common on recliners and RV furniture, and they can often be repaired too."),
+       ("Do you come to me?","Yes. I come to your home in Wesley Chapel and nearby areas, and the repair is done on site.")],
+  related=['furniture-assembly','painting','drywall-repair']),
  dict(slug='fence-repair', name='Fence Repair', short='Fence Repair', h1='Fence Repair', icon='fence.svg', gallery_h='Fence <em>before &amp; after</em>', gallery_r='4/3', gallery=[('fn-1.jpg', 'Old weathered wood fence before replacement', 'Fence Before'), ('fn-2.jpg', 'New wood privacy fence along a backyard garage wall', 'Fence After'), ('fn-3.jpg', 'New wood fence with straight pickets in a backyard', 'New Wood Fence')], photo=('img-05.jpg','Fence before and after repair'),
   desc="Fence repair in Wesley Chapel, FL: broken pickets, leaning posts and damaged gates. Keep your yard secure with Andrew Handyman Services.",
   lead="Broken pickets, leaning posts and damaged gates fixed or replaced to keep your yard secure and your fence looking sharp. Serving Wesley Chapel and nearby communities.",
