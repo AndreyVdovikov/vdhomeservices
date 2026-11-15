@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115j'   # bump to bust browser cache of site.css/site.js
+VER = '20261115k'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -154,6 +154,19 @@ S = [
        ("Do I need a permit to replace a door?","Replacing a door in the same opening usually does not, but rules depend on your city or county and the type of door. I tell you upfront what applies before we start."),
        ("Can you fix a door that sticks or will not close?","Yes. Most sticking doors come down to hinges, the strike plate or swollen wood, and are a quick fix. I look at it and tell you what it needs.")],
   related=['painting','drywall-repair','wood-rot-repair']),
+ dict(slug='flooring-installation', name='Flooring Installation', short='Flooring', h1='Flooring Installation', icon='floor.svg', photo=None,
+  gallery_h='Flooring <em>before &amp; after</em>', gallery_r='4/3', gallery=[('fl-1.jpg','Bedroom prepped for new flooring','Room Before New Flooring'),('fl-2.jpg','New vinyl plank floor in a bedroom with white baseboards','New Vinyl Plank Floor'),('fl-3.jpg','New vinyl plank floor meeting the baseboard under a window','Floor Detail at Baseboard')],
+  title='Flooring Installation Wesley Chapel FL – Vinyl Plank & Laminate',
+  desc="Flooring installation in Wesley Chapel, FL: luxury vinyl plank, laminate and click-lock floors with baseboards and transitions. Free estimate from Andrew Handyman Services.",
+  lead="Luxury vinyl plank, laminate and click-lock flooring installed room by room, with baseboards and transitions fitted neatly. Serving Wesley Chapel, Land O' Lakes, Zephyrhills and nearby. Call for a free estimate.",
+  bullets=["Luxury vinyl plank (LVP) and laminate flooring","Click-lock floating floors for bedrooms, living rooms and hallways","Subfloor checked and prepared before the new floor goes down","Baseboards and quarter round reinstalled or replaced","Transitions and thresholds between rooms","Doors trimmed to clear the new floor","Clean cuts around corners, vents and door frames"],
+  more_tag="Flooring", more=("A floor that looks <em>right in every corner</em>",[("📐","Prep first","A good floor starts with a flat, clean base. I check the subfloor and fix what needs fixing before a single plank goes down."),("🪵","LVP and laminate","Durable, water-friendly and good-looking, vinyl plank is a popular choice for Florida homes. I help you pick a style that fits your room."),("🪚","Neat edges","Straight rows, tight seams and clean cuts at walls, doors and corners, finished with baseboards and transitions."),("🏠","Room by room","One bedroom or the whole house. I plan the layout so the floor flows from room to room.")]),
+  faq=[("How much does flooring installation cost?","Estimates are free. The price depends on the size of the room, the type of flooring and what prep is needed. Call or text (656) 231-1836 and I will give you a clear number."),
+       ("Can you install new flooring over my existing floor?","Sometimes. Click-lock plank can often go over a flat, clean, hard floor, but not over carpet. I look at what you have and tell you honestly before we start."),
+       ("Do I buy the flooring myself?","You can choose and buy it yourself, or I can help you pick. Either way I tell you how much to order, including extra for cuts, so you do not run short."),
+       ("How long does a room take?","A typical bedroom is often done in about a day. Larger areas take longer, and I give you a timeline in the estimate."),
+       ("Do you reinstall baseboards?","Yes. Baseboards or quarter round go back on after the floor is down, or I replace them if they are damaged.")],
+  related=['painting','door-installation','drywall-repair']),
  dict(slug='fence-repair', name='Fence Repair', short='Fence Repair', h1='Fence Repair', icon='fence.svg', gallery_h='Fence <em>before &amp; after</em>', gallery_r='4/3', gallery=[('fn-1.jpg', 'Old weathered wood fence before replacement', 'Fence Before'), ('fn-2.jpg', 'New wood privacy fence along a backyard garage wall', 'Fence After'), ('fn-3.jpg', 'New wood fence with straight pickets in a backyard', 'New Wood Fence')], photo=('img-05.jpg','Fence before and after repair'),
   desc="Fence repair in Wesley Chapel, FL: broken pickets, leaning posts and damaged gates. Keep your yard secure with Andrew Handyman Services.",
   lead="Broken pickets, leaning posts and damaged gates fixed or replaced to keep your yard secure and your fence looking sharp. Serving Wesley Chapel and nearby communities.",
