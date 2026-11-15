@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115g'   # bump to bust browser cache of site.css/site.js
+VER = '20261115h'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -141,6 +141,19 @@ S = [
        ("Can you anchor a dresser or bookcase to the wall?","Yes. Anchoring tall furniture is a good idea, especially with kids or pets in the house. I use the right anchors for the wall."),
        ("Do you assemble outdoor furniture?","Yes. Patio sets, benches and outdoor storage are fine.")],
   related=['picture-hanging','tv-shelf-mounting','media-accent-walls']),
+ dict(slug='door-installation', name='Door Installation & Repair', short='Door Installation', h1='Door Installation & Repair', icon='door.svg',
+  photo=('door-1.jpg','French double doors installed and trimmed in a Florida home'), photo_cap='Real job photo: French door installation',
+  title='Door Installation Wesley Chapel FL – French Doors, Patio & Interior Doors',
+  desc="Door installation and repair in Wesley Chapel, FL: French doors, patio doors, interior and entry doors hung, trimmed and adjusted. Lock replacement too. Free estimate.",
+  lead="French doors, patio doors, entry and interior doors installed, trimmed and adjusted so they open smoothly and close tight. Door repair and lock replacement too, in Wesley Chapel and nearby. Call for a free estimate.",
+  bullets=["French door and patio door installation","Interior door hanging and replacement","Entry door replacement, hung level and plumb","Door trim and casing around the new door","Doors that stick, rub or will not latch, adjusted","Lock, deadbolt and handle replacement","Weatherstripping and door sweeps so the door closes tight"],
+  more_tag="Door installation", more=("Square, plumb and <em>closing right</em>",[("📏","Level and plumb","A door only works well if the opening is square. I check the frame, shim it and set the door so it swings freely and closes evenly."),("🚪","French and patio doors","Double doors need careful alignment so both leaves meet in the middle. I hang them, set the hardware and trim around them."),("🔧","Sticking doors","Rubs, gaps and latches that miss are usually a quick fix. I adjust the hinges, strike plate or door and tell you honestly what is needed."),("🔑","Locks and hardware","New deadbolts, handles and locks fitted and lined up so the key turns smoothly and the door latches every time.")]),
+  faq=[("How much does door installation cost?","Estimates are free. The price depends on the type of door (French, patio, entry or interior), the size of the opening and what trim or repair is needed around it. Call or text (656) 231-1836 and I will give you a clear number."),
+       ("Do I buy the door myself?","You can bring your own door or I can help you choose one that fits the opening. I confirm the size before ordering, so there are no surprises."),
+       ("Can you install a French door where there is only a window or wall?","Cutting a new opening in a wall is structural work. I tell you honestly what I can do and when you need a contractor for that part."),
+       ("Do I need a permit to replace a door?","Replacing a door in the same opening usually does not, but rules depend on your city or county and the type of door. I tell you upfront what applies before we start."),
+       ("Can you fix a door that sticks or will not close?","Yes. Most sticking doors come down to hinges, the strike plate or swollen wood, and are a quick fix. I look at it and tell you what it needs.")],
+  related=['painting','drywall-repair','wood-rot-repair']),
  dict(slug='fence-repair', name='Fence Repair', short='Fence Repair', h1='Fence Repair', icon='fence.svg', gallery_h='Fence <em>before &amp; after</em>', gallery_r='4/3', gallery=[('fn-1.jpg', 'Old weathered wood fence before replacement', 'Fence Before'), ('fn-2.jpg', 'New wood privacy fence along a backyard garage wall', 'Fence After'), ('fn-3.jpg', 'New wood fence with straight pickets in a backyard', 'New Wood Fence')], photo=('img-05.jpg','Fence before and after repair'),
   desc="Fence repair in Wesley Chapel, FL: broken pickets, leaning posts and damaged gates. Keep your yard secure with Andrew Handyman Services.",
   lead="Broken pickets, leaning posts and damaged gates fixed or replaced to keep your yard secure and your fence looking sharp. Serving Wesley Chapel and nearby communities.",
@@ -279,7 +292,7 @@ def page(s):
     bullets = ''.join(f'<li><span class="sp-check"></span><span>{esc(b)}</span></li>' for b in s['bullets'])
     if s['photo']:
         f, alt = s['photo']
-        side = f'<figure class="sp-photo"><img src="/images/{f}" alt="{esc(alt)}" loading="lazy"><figcaption>Real job photo — before &amp; after</figcaption></figure>'
+        side = f'<figure class="sp-photo"><img src="/images/{f}" alt="{esc(alt)}" loading="lazy"><figcaption>{esc(s.get("photo_cap","Real job photo — before &amp; after"))}</figcaption></figure>'
     else:
         side = f'<div class="sp-side-card"><img src="{ICON(s)}" alt="" width="96" height="96"><h3>Free estimate</h3><p>Tell me what you need and I will get back to you within a few hours.</p><a class="btn-cta" href="/#home">Request an estimate</a><a class="sp-call" href="tel:{PHONE_TEL}">or call {PHONE_DISPLAY}</a></div>'
     if s['slug']=='christmas-light-installation':
