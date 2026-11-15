@@ -12,7 +12,7 @@ import projects_data as PD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115s'   # bump to bust browser cache of site.css/site.js
+VER = '20261115t'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -866,6 +866,9 @@ def posts_index():
 '''
     return head(title, desc, url, extra) + body
 
+# Stripe Payment Links for the subscription plans. Paste the permanent links here; until then the buttons call.
+SUB_LINKS = {'basic': '', 'plus': '', 'home': ''}
+
 SUB_FAQ = [
  ("How does the handyman subscription work?","You pick a plan, send me your list or a quick request, and we schedule the time. You can also set one fixed day every month and I come by on that date. Call or text (656) 231-1836 to start."),
  ("What counts as a visit?","A visit is one trip to your home with the hours of work included in your plan. The hours are what matter. On the larger plans you can split them into several shorter visits, or use them for one bigger job."),
@@ -891,6 +894,10 @@ def subscription_page():
            ("🏠","One person who knows your home","The same handyman every time. I already know your house, so small problems get caught early."),
            ("👪","Great for family","Set it up for a parent or relative and keep their home in order, even if you live far away."),
            ("🎯","Big job? Save up","Hours roll over for up to 3 months, so even the smallest plan can cover a larger project.")]
+    def order_btn(k):
+        link = SUB_LINKS.get(k)
+        if link: return f'<a href="{link}" class="btn-cta" target="_blank" rel="noopener">Order now</a>'
+        return f'<a href="tel:{PHONE_TEL}" class="btn-cta">Order now</a>'
     wc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{i}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for i,t,p in why)
     steps = [("1","Pick a plan","Basic, Plus or Home, whichever fits your house. You can change plans later."),
              ("2","Send your list","Text or call with what needs doing. Photos help. We pick the time, or a fixed day each month."),
@@ -929,21 +936,21 @@ def subscription_page():
         <div class="sub-price">$99<small> / month</small></div>
         <div class="sub-hours">Up to 2 hours a month</div>
         <ul><li>1 visit a month</li><li>A look at what needs fixing</li><li>Small repairs and installs</li></ul>
-        <a href="tel:{PHONE_TEL}" class="btn-cta">Get started</a>
+        {order_btn('basic')}
       </div>
       <div class="sub-plan pop">
         <h3>Plus</h3>
         <div class="sub-price">$199<small> / month</small></div>
         <div class="sub-hours">Up to 4 hours a month</div>
         <ul><li>Up to 2 visits a month</li><li>A look at what needs fixing</li><li>Small repairs and installs</li></ul>
-        <a href="tel:{PHONE_TEL}" class="btn-cta">Get started</a>
+        {order_btn('plus')}
       </div>
       <div class="sub-plan">
         <h3>Home</h3>
         <div class="sub-price">$299<small> / month</small></div>
         <div class="sub-hours">Up to 6 hours a month</div>
         <ul><li>Up to 3 visits a month</li><li>Or one larger job</li><li>Small repairs and installs</li></ul>
-        <a href="tel:{PHONE_TEL}" class="btn-cta">Get started</a>
+        {order_btn('home')}
       </div>
     </div>
     <p class="sp-intro"><strong>Hours roll over.</strong> Unused hours carry over to the next month, for up to 3 months in a row, so you can save up for a bigger job on any plan. Extra hours beyond your plan are agreed in advance, depending on the cost of the work.</p>
