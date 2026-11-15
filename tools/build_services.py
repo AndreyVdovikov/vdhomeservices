@@ -12,7 +12,7 @@ import projects_data as PD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115t'   # bump to bust browser cache of site.css/site.js
+VER = '20261115u'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -266,6 +266,7 @@ def footer_html():
         <div class="f-contact-row">👤 <a href="/about/" style="color:inherit;text-decoration:none">About Andrew</a></div>
         <div class="f-contact-row">❓ <a href="/faq/" style="color:inherit;text-decoration:none">FAQ</a></div>
         <div class="f-contact-row">🔎 <a href="/guides/how-to-find-a-handyman-wesley-chapel/" style="color:inherit;text-decoration:none">How to find a handyman</a></div>
+        <div class="f-contact-row">🎁 <a href="/gift/" style="color:inherit;text-decoration:none">Gift certificates</a></div>
         <div class="f-contact-row">🔁 <a href="/subscription/" style="color:inherit;text-decoration:none">Handyman subscription</a></div>
         <div class="f-contact-row">📝 <a href="/posts/" style="color:inherit;text-decoration:none">Recent projects</a></div>
       </div>
@@ -994,6 +995,152 @@ def subscription_page():
 '''
     return head(title, desc, url, extra) + body
 
+# Stripe Payment Links for gift certificates (after payment, redirect each to /gift/redeem/?amount=<value>)
+GIFT_AMOUNTS = [145, 285, 478]
+GIFT_LINKS = {145: '', 285: '', 478: ''}
+GIFT_FAQ = [
+ ("How does a gift certificate work?","You buy a certificate for $145, $285 or $478. Right after payment you fill in a short form with the address where the work will be done and what help is needed, and I contact the person to schedule a time. It works like a regular request, except the work is already paid for."),
+ ("Who fills in the form, me or the person receiving the gift?","Either. You can fill it in right after you pay, or pass the link to the person you are gifting and they fill in their own address and details."),
+ ("What can the certificate be used for?","Everyday handyman work: TV and shelf mounting, picture hanging, furniture assembly, door and drywall repairs, painting touch-ups and similar jobs. Work that legally needs a licensed electrician or plumber is not included."),
+ ("What if the job costs more than the certificate?","I tell you what the job needs before I start. If it costs more, the difference is agreed in advance. No surprises."),
+ ("Is this a good gift for a parent or an older relative?","Yes, it is one of the main reasons for it. It helps someone who needs a hand around the house without them having to look for a handyman or ask for favors."),
+]
+
+def gift_page():
+    url = f'{DOMAIN}/gift/'
+    title = 'Handyman Gift Certificate Wesley Chapel FL – $145, $285, $478'
+    desc = 'Give the gift of a fixed-up home: handyman gift certificates in Wesley Chapel, FL for parents, family and friends. Andrew Handyman Services.'
+    faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in GIFT_FAQ)
+    fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in GIFT_FAQ]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":"Gift certificates","item":url}]}
+    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (fq, bc))
+    def buy(a):
+        l = GIFT_LINKS.get(a)
+        if l: return f'<a href="{l}" class="btn-cta" target="_blank" rel="noopener">Buy now</a>'
+        return f'<a href="tel:{PHONE_TEL}" class="btn-cta">Buy now</a>'
+    cards = ''.join(f'''<div class="sub-plan{' pop' if a==285 else ''}"><h3>Gift certificate</h3><div class="sub-price">${a}</div><div class="sub-hours">toward handyman work</div><ul><li>Any everyday repair or install</li><li>Pay now, schedule later</li><li>For one address of your choice</li></ul>{buy(a)}</div>''' for a in GIFT_AMOUNTS)
+    why = [("🎁","A gift that actually helps","No more socks. Give someone a fixed door, a mounted TV or a finished to-do list."),
+           ("👪","Perfect for parents","Help a parent or grandparent who needs a hand around the house, even if you live far away."),
+           ("🏡","New homeowners","Housewarming present for people who just moved in and have a list of small jobs."),
+           ("🤝","No searching for anyone","The person you gift does not have to find or vet a handyman. I take care of it.")]
+    wc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{i}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for i,t,p in why)
+    steps = [("1","Choose an amount","$145, $285 or $478, toward any everyday handyman job."),
+             ("2","Pay online","Secure checkout. Right after payment you are taken to a short form."),
+             ("3","Add the address","Fill in where the work is and what is needed, or pass the link to the person you are gifting. I contact them and schedule a time.")]
+    sc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{n}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for n,t,p in steps)
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> Gift certificates</div>
+      <h1 class="sp-h1">Give the gift of a <em>fixed-up home</em></h1>
+      <p class="sp-lead">A handyman gift certificate for family, friends or anyone who could use a hand around the house. Pick an amount, pay online, and I take care of the rest.</p>
+      <div class="sp-actions"><a class="btn-cta" href="#amounts">Choose an amount</a><a class="btn-ghost-cta" href="tel:{PHONE_TEL}">📞 {PHONE_DISPLAY}</a></div>
+    </div>
+    <div class="sp-hero-icon"><img src="/images/hero-andrew.jpg" alt="Andrew, owner of Andrew Handyman Services, giving a thumbs up" width="280" height="301" style="border-radius:22px;width:min(280px,100%);height:auto"></div>
+  </div>
+</section>
+<section class="sp-sec" id="amounts">
+  <div class="section-wrap">
+    <div class="reveal"><div class="section-tag">Certificates</div><h2 class="section-title">Pick an <em>amount</em></h2></div>
+    <div class="sub-plans">{cards}</div>
+  </div>
+</section>
+<section class="sp-sec sp-alt">
+  <div class="section-wrap">
+    <div class="reveal"><div class="section-tag">Why give it</div><h2 class="section-title">A present <em>that gets used</em></h2></div>
+    <div class="sp-why">{wc}</div>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <div class="reveal"><div class="section-tag">How it works</div><h2 class="section-title">Three steps, <em>zero hassle</em></h2></div>
+    <div class="sp-why">{sc}</div>
+  </div>
+</section>
+<section class="sp-sec sp-alt">
+  <div class="section-wrap">
+    <div class="reveal"><div class="section-tag">FAQ</div><h2 class="section-title">Questions <em>about gifts</em></h2></div>
+    <div class="sp-faq">{faq}</div>
+  </div>
+</section>
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Know someone who needs a hand?</h2>
+    <p class="cta-text">Questions about a gift? Call or text and I will help.</p>
+    <div class="cta-btns">
+      <a href="#amounts" class="btn-cta">Choose an amount</a>
+      <a href="sms:{PHONE_TEL}" class="btn-ghost-cta">💬 Text me</a>
+    </div>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(title, desc, url, extra) + body
+
+def redeem_page():
+    url = f'{DOMAIN}/gift/redeem/'
+    extra = '''<meta name="robots" content="noindex, nofollow">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init({ publicKey: "AWfp-WF5xgbFiPQ3a" });</script>
+<style>.gf label{display:block;font-weight:600;margin:14px 0 6px}.gf input,.gf textarea,.gf select{width:100%;padding:12px 14px;border:1px solid #d9cfbd;border-radius:10px;font:inherit;background:#fff}.gf textarea{min-height:110px}.gf .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:640px){.gf .row{grid-template-columns:1fr}}.gf .btn-cta{border:0;cursor:pointer;margin-top:22px}.gf-ok{display:none;padding:24px;border-radius:14px;background:#e8f5ec;border:1px solid #bfe3c9}</style>
+'''
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/gift/">Gift certificates</a></div>
+      <h1 class="sp-h1">Schedule your <em>gift certificate</em></h1>
+      <p class="sp-lead">Thank you! Tell me where the work will be done and what is needed, and I will contact you to schedule a time. <span id="gAmt"></span></p>
+    </div>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <div id="gOk" class="gf-ok"><h2>Request received</h2><p>Thank you. I will contact you soon to schedule a time. If you need me sooner, call or text {PHONE_DISPLAY}.</p></div>
+    <form id="gForm" class="gf" onsubmit="return gSend(event)" style="max-width:720px">
+      <div class="row">
+        <div><label for="gbuyer">Your name (who bought the certificate)</label><input id="gbuyer" required></div>
+        <div><label for="gbemail">Your email (used at checkout)</label><input id="gbemail" type="email" required></div>
+      </div>
+      <div class="row">
+        <div><label for="gwho">Who will receive the service (name)</label><input id="gwho" required></div>
+        <div><label for="gphone">Phone number for scheduling</label><input id="gphone" type="tel" required></div>
+      </div>
+      <label for="gaddr">Address where the work will be done</label><input id="gaddr" required placeholder="Street, city, ZIP">
+      <label for="gneed">What help is needed</label><textarea id="gneed" required placeholder="For example: mount a TV, hang shelves, fix a door"></textarea>
+      <label for="gtime">Preferred days or times (optional)</label><input id="gtime">
+      <button class="btn-cta" type="submit" id="gBtn">Send my request</button>
+    </form>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+<script>
+var AM={{145:1,285:1,478:1}}, q=new URLSearchParams(location.search).get('amount'), amt=AM[q]?q:'';
+if(amt)document.getElementById('gAmt').textContent='Certificate: $'+amt+'.';
+function gSend(e){{e.preventDefault();var b=document.getElementById('gBtn');b.disabled=true;b.textContent='Sending...';
+var v=function(i){{return document.getElementById(i).value.trim()}};
+var msg='*** PAID GIFT CERTIFICATE'+(amt?' $'+amt:'')+' (confirm payment in Stripe by buyer email) ***\\n\\nBuyer: '+v('gbuyer')+' <'+v('gbemail')+'>\\nRecipient: '+v('gwho')+'\\nPhone: '+v('gphone')+'\\nAddress: '+v('gaddr')+'\\nPreferred time: '+(v('gtime')||'not specified')+'\\n\\nHelp needed:\\n'+v('gneed');
+emailjs.send('service_984008h','template_5dybn6g',{{from_name:'[GIFT'+(amt?' $'+amt:'')+' PAID] '+v('gwho'),phone:v('gphone'),message:msg,to_email:'vdovikov001@gmail.com',reply_to:v('gbemail')}})
+.then(function(){{document.getElementById('gForm').style.display='none';document.getElementById('gOk').style.display='block';window.scrollTo(0,0)}})
+.catch(function(){{b.disabled=false;b.textContent='Send my request';alert('Something went wrong. Please call us directly at {PHONE_DISPLAY}')}});return false}}
+</script>
+</body>
+</html>
+'''
+    return head('Schedule Your Gift Certificate | Andrew Handyman Services', 'Schedule your handyman gift certificate.', url, extra) + body
+
 def main():
     for s in S:
         d = os.path.join('services', s['slug'])
@@ -1006,6 +1153,9 @@ def main():
     open('about/index.html','w',encoding='utf-8').write(about_page())
     os.makedirs('guides/'+GD.SLUG, exist_ok=True)
     open('guides/'+GD.SLUG+'/index.html','w',encoding='utf-8').write(guide_page())
+    os.makedirs('gift/redeem', exist_ok=True)
+    open('gift/index.html','w',encoding='utf-8').write(gift_page())
+    open('gift/redeem/index.html','w',encoding='utf-8').write(redeem_page())
     os.makedirs('subscription', exist_ok=True)
     open('subscription/index.html','w',encoding='utf-8').write(subscription_page())
     os.makedirs('posts', exist_ok=True)
@@ -1015,7 +1165,7 @@ def main():
         open('posts/'+pr['slug']+'/index.html','w',encoding='utf-8').write(post_page(pr))
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/subscription/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     import re as _re, html as _html
     def _imgs(u):
         path = u.replace(DOMAIN, '').strip('/')
