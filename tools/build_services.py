@@ -12,7 +12,7 @@ import projects_data as PD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115n'   # bump to bust browser cache of site.css/site.js
+VER = '20261115o'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 

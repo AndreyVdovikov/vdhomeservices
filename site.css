@@ -970,3 +970,6 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 .sp-gal-item figcaption{font-size:.82rem;color:var(--text-light);margin-top:8px;text-align:center}
 @media(max-width:900px){.sp-gal{grid-template-columns:repeat(2,1fr);gap:12px}}
 @media(max-width:480px){.sp-gal{grid-template-columns:1fr 1fr;gap:10px}.sp-gal-item figcaption{font-size:.74rem}}
+
+.post > p{margin:0 0 1.1em}
+.post > ul{margin:0 0 1.2em;padding-left:1.2em}.post > ul li{margin-bottom:.8em}
