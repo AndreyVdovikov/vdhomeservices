@@ -7,6 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from locations_data import LOCS
 import blog_data as BL
 import guides_data as GD
+import articles_data as AD
 import projects_data as PD
 import media_data as MD
 
@@ -797,6 +798,62 @@ def guide_page():
 '''
     return head(GD.TITLE, GD.DESC, url, extra) + body
 
+def article_page(a):
+    url = f'{DOMAIN}/guides/{a["slug"]}/'
+    faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(x)}</p></details>' for q,x in a['faq'])
+    toc = ''.join(f'<a href="#{i}">{esc(t)}</a>' for i,t in a['toc'])
+    areas = ', '.join(f'<a href="/locations/{l["slug"]}/">{esc(l["name"])}</a>' for l in LOCS)
+    body_html = a['body'].replace('{toc}', toc).replace('{areas}', areas).replace('{faq}', faq)
+    body_html = body_html.replace('<table class="post-table">', '<div class="post-table-wrap"><table class="post-table">').replace('</table>', '</table></div>')
+    hero = f'<figure class="post-hero"><img src="/images/{a["hero"]}" alt="{esc(a["hero_alt"])}" width="1200" height="800" loading="eager"></figure>'
+    body_html = hero + body_html
+    img = f'{DOMAIN}/images/{a["hero"]}'
+    art = {"@context":"https://schema.org","@type":"Article","headline":a['title'],"description":a['desc'],"image":img,"datePublished":a['date'],"dateModified":a['date'],
+           "mainEntityOfPage":url,"author":{"@type":"Person","name":"Andrew","url":DOMAIN+"/about/"},
+           "publisher":{"@type":"Organization","name":"Andrew Handyman Services","url":DOMAIN+"/"}}
+    fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":x}} for q,x in a['faq']]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},
+        {"@type":"ListItem","position":2,"name":a['title'],"item":url}]}
+    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (art, fq, bc))
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/services/{a['service']}/">Related service</a></div>
+      <h1 class="sp-h1">{a['h1']}</h1>
+      <p class="sp-lead">{esc(a['lead'])}</p>
+      <div class="post-meta">By Andrew · Updated November 15, 2026</div>
+    </div>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <article class="post">
+      {body_html}
+    </article>
+  </div>
+</section>
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Need a hand around the house?</h2>
+    <p class="cta-text">Send a quick request or text a photo of the job. Free estimate.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="/#home" class="btn-ghost-cta">Book Online ↑</a>
+    </div>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(a['title'], a['desc'], url, extra) + body
+
 def post_page(pr):
     url = f'{DOMAIN}/posts/{pr["slug"]}/'
     paras = ''.join(f'<p>{esc(x)}</p>' for x in pr['paras'])
@@ -1172,6 +1229,9 @@ def main():
     open('about/index.html','w',encoding='utf-8').write(about_page())
     os.makedirs('guides/'+GD.SLUG, exist_ok=True)
     open('guides/'+GD.SLUG+'/index.html','w',encoding='utf-8').write(guide_page())
+    for a in AD.ARTICLES:
+        os.makedirs('guides/'+a['slug'], exist_ok=True)
+        open('guides/'+a['slug']+'/index.html','w',encoding='utf-8').write(article_page(a))
     os.makedirs('gift/redeem', exist_ok=True)
     open('gift/index.html','w',encoding='utf-8').write(gift_page())
     open('gift/redeem/index.html','w',encoding='utf-8').write(redeem_page())
@@ -1184,7 +1244,7 @@ def main():
         open('posts/'+pr['slug']+'/index.html','w',encoding='utf-8').write(post_page(pr))
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/guides/{a["slug"]}/' for a in AD.ARTICLES] + [f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     import re as _re, html as _html
     def _imgs(u):
         path = u.replace(DOMAIN, '').strip('/')
@@ -1205,6 +1265,7 @@ def main():
     # --- AI / search discovery files ---
     svc_lines = '\n'.join(f'- [{x["name"]}]({DOMAIN}/services/{x["slug"]}/): {x["lead"]}' for x in S if not x.get('hidden'))
     loc_lines = '\n'.join(f'- [{l["city"]}]({DOMAIN}/locations/{l["slug"]}/)' for l in LOCS)
+    art_lines = '\n'.join(f'- [{a["title"]}]({DOMAIN}/guides/{a["slug"]}/)' for a in AD.ARTICLES)
     post_lines = '\n'.join(f'- [{o["title"]}]({DOMAIN}/posts/{o["slug"]}/)' for o in PD.PROJECTS)
     llms = f"""# Andrew Handyman Services
 
@@ -1225,6 +1286,7 @@ Notes: Andrew does not do work that legally requires a licensed electrician or p
 
 ## Guides and recent projects
 - [How to find a handyman in Wesley Chapel]({DOMAIN}/guides/{GD.SLUG}/)
+{art_lines}
 - [Christmas light installation guide and cost calculator]({DOMAIN}/services/christmas-light-installation/#guide)
 - [Recent projects]({DOMAIN}/posts/)
 {post_lines}

@@ -931,6 +931,7 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 .post-toc b{width:100%;color:var(--blue-deep)}
 .post-toc a{text-decoration:none!important;font-weight:600;font-size:.95rem}
 .post-table-wrap{overflow-x:auto;margin:1rem 0}
+.post-hero{margin:0 0 1.5rem}.post-hero img{width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:18px;display:block}
 .post-table{border-collapse:collapse;width:100%;min-width:560px;background:#fff;border-radius:14px;overflow:hidden}
 .post-table th,.post-table td{padding:12px 14px;text-align:left;border-bottom:1px solid rgba(37,99,168,.12);font-size:.95rem;color:#33475e;vertical-align:top}
 .post-table thead th{background:var(--blue-deep);color:#fff}
