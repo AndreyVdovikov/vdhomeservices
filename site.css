@@ -963,3 +963,10 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 .post-video-box{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#0b1b2e;box-shadow:0 8px 28px rgba(15,40,80,.18)}
 .post-video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .post-video figcaption{font-size:.85rem;color:#6b7c93;margin-top:8px;text-align:center}
+
+.sp-gal{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:1.6rem}
+.sp-gal-item{margin:0}
+.sp-gal-item img{width:100%;aspect-ratio:var(--r,3/4);object-fit:cover;border-radius:18px;box-shadow:var(--shadow-blue);display:block}
+.sp-gal-item figcaption{font-size:.82rem;color:var(--text-light);margin-top:8px;text-align:center}
+@media(max-width:900px){.sp-gal{grid-template-columns:repeat(2,1fr);gap:12px}}
+@media(max-width:480px){.sp-gal{grid-template-columns:1fr 1fr;gap:10px}.sp-gal-item figcaption{font-size:.74rem}}

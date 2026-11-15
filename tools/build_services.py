@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261114a'   # bump to bust browser cache of site.css/site.js
+VER = '20261115b'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -40,7 +40,7 @@ S = [
        ("What does an estimate cost?","Nothing. Estimates are free. Call or text and I will tell you what to expect for your home."),
        ("When should I book?","Earlier is better, as the holiday season fills up. Call or text me as soon as you decide, and I will schedule your installation.")],
   related=['christmas-light-installation','fence-repair','painting']),
- dict(slug='tv-shelf-mounting', name='TV, Shelf & Curtain Rod Mounting', short='TV & Shelf Mounting', h1='TV, Shelf & Curtain Rod Mounting', icon='tv.png', photo=None,
+ dict(slug='tv-shelf-mounting', name='TV, Shelf & Curtain Rod Mounting', short='TV & Shelf Mounting', h1='TV, Shelf & Curtain Rod Mounting', icon='tv.png', photo=None, gallery_h='Recent TV <em>mounting jobs</em>', gallery_r='4/3', gallery=[('tv-1.jpg', 'TV mounted on a drywall wall above a wood media console', 'TV Mounting on Drywall'), ('tv-2.jpg', 'TV mounted level on a lanai wall with a level on top', 'Lanai TV Mounting'), ('tv-3.jpg', 'Wall-mounted TV on a screened lanai in Florida', 'Lanai TV Installation')],
   title='TV Mounting Wesley Chapel FL – Any Size, Over Fireplace, Hidden Wires',
   desc="TV mounting in Wesley Chapel, FL: 43 to 98 inch TVs, over brick or stone fireplaces, lanai and outdoor walls, with hidden wires. Shelves and curtain rods too. Free estimate.",
   lead="TV mounting for every size, from 43 to 98 inches, on drywall, brick, stone and lanai walls, with neat, hidden wires. I also hang shelves and curtain rods in Wesley Chapel and nearby. Call for a free estimate.",
@@ -101,7 +101,7 @@ S = [
        ("Do hurricane shutters need a permit?","Shutter projects often do. I walk you through what applies to your address before we start so there are no surprises."),
        ("When should I install them?","Atlantic hurricane season runs June 1 to November 30. Booking well before the season gives you the most choice and avoids the last-minute rush.")],
   related=['wood-rot-repair','painting','media-accent-walls']),
- dict(slug='media-accent-walls', name='Media & Accent Walls', short='Media & Accent Walls', h1='Media & Accent Walls', icon='media-wall.svg', photo=None,
+ dict(slug='media-accent-walls', name='Media & Accent Walls', short='Media & Accent Walls', h1='Media & Accent Walls', icon='media-wall.svg', photo=None, gallery=([('mw-1.jpg', 'White shiplap media wall with wood mantel, soundbar and electric fireplace', 'White Shiplap TV Wall'), ('mw-2.jpg', 'White shiplap TV wall with a mounted TV, mantel and linear fireplace', 'Shiplap Media Wall'), ('mw-3.jpg', 'Dark stained wood plank TV wall with mantel and electric fireplace', 'Stained Wood TV Wall'), ('mw-4.jpg', 'Floor to ceiling dark wood media wall with TV and fireplace', 'Dark Wood Media Wall'), ('mw-5.jpg', 'Wood panel TV wall with floating shelves, mantel and linear fireplace', 'Wood Panel Wall & Floating Shelves')]),
   desc="Media walls, TV walls and custom accent walls in Wesley Chapel, FL. Wood slats, panels, fireplace surrounds and more from Andrew Handyman Services.",
   lead="A statement feature for your living room. I build and install TV walls, accent walls and fireplace surrounds designed around your space, in Wesley Chapel and nearby.",
   bullets=["TV and media walls with a clean built-in look","Wood slat, paneled and shiplap accent walls","Fireplace surrounds and feature walls","Custom designs planned around your room and TV","TV mounting with neat cord covers","Painted or stained to match your decor"],
@@ -297,6 +297,11 @@ def page(s):
         mc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{ic}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for ic,t,p in cards)
         more = f'<section class="sp-sec sp-alt"><div class="section-wrap"><div class="reveal"><div class="section-tag">{esc(s.get("more_tag","Details"))}</div><h2 class="section-title">{mt}</h2></div><div class="sp-why">{mc}</div></div></section>\n'
         a_why, a_area, a_rel = '', ' sp-alt', ''
+    galsec = ''
+    if s.get('gallery'):
+        items = ''.join(f'<figure class="sp-gal-item reveal"><img src="/images/{f}" alt="{esc(a)}" loading="lazy"><figcaption>{esc(c)}</figcaption></figure>' for f,a,c in s['gallery'])
+        galsec = f'<section class="sp-sec"><div class="section-wrap"><div class="reveal"><div class="section-tag">Real jobs</div><h2 class="section-title">{s.get("gallery_h","Recent TV &amp; <em>media walls</em>")}</h2></div><div class="sp-gal" style="--r:{s.get("gallery_r","3/4")}">{items}</div></div></section>'
+        if s.get('more'): a_why, a_area, a_rel = ' sp-alt', '', ' sp-alt'
     guide = ''
     if s['slug']=='christmas-light-installation':
         toc = ''.join(f'<a href="#{i}">{esc(tt)}</a>' for i,tt in BL.TOC)
@@ -342,7 +347,7 @@ def page(s):
   </div>
 </section>
 
-{guide}{more}<section class="sp-sec{a_why}">
+{guide}{more}{galsec}<section class="sp-sec{a_why}">
   <div class="section-wrap">
     <div class="reveal">
       <div class="section-tag">Why Andrew</div>
