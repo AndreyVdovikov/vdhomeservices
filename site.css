@@ -973,3 +973,16 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 
 .post > p{margin:0 0 1.1em}
 .post > ul{margin:0 0 1.2em;padding-left:1.2em}.post > ul li{margin-bottom:.8em}
+
+.sub-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:8px 0 26px}
+.sub-plan{background:#fff;border:1px solid #e5dccd;border-radius:16px;padding:22px 20px;display:flex;flex-direction:column}
+.sub-plan.pop{border:2px solid #3b82d4;box-shadow:0 8px 24px rgba(26,58,92,.12)}
+.sub-plan h3{margin:0 0 4px;font-size:1.15rem}
+.sub-price{font-size:2rem;font-weight:700;color:#1a3a5c;line-height:1.1}
+.sub-price small{font-size:.9rem;font-weight:500;color:#5b6b7b}
+.sub-hours{margin:6px 0 12px;font-weight:600;color:#3b82d4}
+.sub-plan ul{margin:0 0 16px;padding-left:1.1em;font-size:.95rem}
+.sub-plan li{margin-bottom:.45em}
+.sub-plan .btn-cta{margin-top:auto;text-align:center;font-size:.95rem;padding:12px 14px}
+@media(max-width:820px){.sub-plans{grid-template-columns:1fr}}
+.sub-plan .btn-cta{background:#1a3a5c;color:#fff;display:block;text-align:center;box-shadow:none;text-decoration:none}
