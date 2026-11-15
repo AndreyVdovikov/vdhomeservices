@@ -11,7 +11,7 @@ import guides_data as GD
 DOMAIN = 'https://andrewhandy.com'
 PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
-VER = '20261115l'   # bump to bust browser cache of site.css/site.js
+VER = '20261115m'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -40,7 +40,7 @@ S = [
        ("What does an estimate cost?","Nothing. Estimates are free. Call or text and I will tell you what to expect for your home."),
        ("When should I book?","Earlier is better, as the holiday season fills up. Call or text me as soon as you decide, and I will schedule your installation.")],
   related=['christmas-light-installation','fence-repair','painting']),
- dict(slug='tv-shelf-mounting', name='TV, Shelf & Curtain Rod Mounting', short='TV & Shelf Mounting', h1='TV, Shelf & Curtain Rod Mounting', icon='tv.png', photo=None, gallery_h='Recent TV <em>mounting jobs</em>', gallery_r='4/3', gallery=[('tv-1.jpg', 'TV mounted on a drywall wall above a wood media console', 'TV Mounting on Drywall'), ('tv-2.jpg', 'TV mounted level on a lanai wall with a level on top', 'Lanai TV Mounting'), ('tv-3.jpg', 'Wall-mounted TV on a screened lanai in Florida', 'Lanai TV Installation')],
+ dict(slug='tv-shelf-mounting', name='TV, Shelf & Curtain Rod Mounting', short='TV & Shelf Mounting', h1='TV, Shelf & Curtain Rod Mounting', icon='tv.png', photo=None, gallery_h='Recent TV <em>mounting jobs</em>', gallery_r='4/3', gallery=[('tv-mounted-drywall-wall-above-wood-media-console-wesley-chapel.jpg', 'TV mounted on a drywall wall above a wood media console', 'TV Mounting on Drywall'), ('tv-mounted-level-lanai-wall-level-top-wesley-chapel.jpg', 'TV mounted level on a lanai wall with a level on top', 'Lanai TV Mounting'), ('wall-mounted-tv-screened-lanai-florida-wesley-chapel.jpg', 'Wall-mounted TV on a screened lanai in Florida', 'Lanai TV Installation')],
   title='TV Mounting Wesley Chapel FL – Any Size, Over Fireplace, Hidden Wires',
   desc="TV mounting in Wesley Chapel, FL: 43 to 98 inch TVs, over brick or stone fireplaces, lanai and outdoor walls, with hidden wires. Shelves and curtain rods too. Free estimate.",
   lead="TV mounting for every size, from 43 to 98 inches, on drywall, brick, stone and lanai walls, with neat, hidden wires. I also hang shelves and curtain rods in Wesley Chapel and nearby. Call for a free estimate.",
@@ -61,7 +61,7 @@ S = [
        ("Can you fix water-damaged drywall?","Yes, once the source of the leak is repaired. I cut out the damaged section, patch and finish it. If I see an active leak or mold I will tell you before starting."),
        ("Do you paint after the repair?","Yes. Painting is available as part of the same visit, which saves you a second trip and a second appointment.")],
   related=['painting','wood-rot-repair','tv-shelf-mounting']),
- dict(slug='wood-rot-repair', name='Wood Rot & Damage Repair', short='Wood Rot Repair', h1='Wood Rot & Damage Repair', icon='wood.svg', photo=('img-06.jpg','Before and after repair of rotted wooden steps and railing'),
+ dict(slug='wood-rot-repair', name='Wood Rot & Damage Repair', short='Wood Rot Repair', h1='Wood Rot & Damage Repair', icon='wood.svg', photo=('deck-repair-wesley-chapel.jpg','Before and after repair of rotted wooden steps and railing'),
   desc="Rotted or damaged wood repair in Wesley Chapel, FL: trim, door and window frames, posts and steps. Andrew Handyman Services repairs it before it spreads.",
   lead="Florida humidity and summer rain are hard on wood. I repair or replace rotted and damaged wooden elements inside and outside your home before the damage spreads.",
   bullets=["Rotted trim, fascia boards and exterior siding sections","Door frames, jambs and window casings","Porch posts, railings and wooden steps","Wood filler and hardener for small damaged areas","Full board replacement where repair is not enough","Primed and painted to match so the repair is protected"],
@@ -77,7 +77,7 @@ S = [
        ("Can you paint in Florida heat and humidity?","Yes. Exterior work is planned around weather and surface moisture so the paint cures properly and lasts."),
        ("Who supplies the paint?","Either way works. You can pick the paint yourself or I can recommend a quality product for the surface and give you an exact estimate.")],
   related=['cabinet-painting-renovation','drywall-repair','wood-rot-repair']),
- dict(slug='cabinet-painting-renovation', name='Cabinet Painting & Renovation', short='Cabinet Painting', h1='Cabinet Painting & Renovation', icon='cabinets.svg', photo=('img-04.jpg','Kitchen cabinets before and after renovation'),
+ dict(slug='cabinet-painting-renovation', name='Cabinet Painting & Renovation', short='Cabinet Painting', h1='Cabinet Painting & Renovation', icon='cabinets.svg', photo=('kitchen-cabinet-renovation-wesley-chapel.jpg','Kitchen cabinets before and after renovation'),
   desc="Kitchen and whole-house cabinet painting and renovation in Wesley Chapel, FL. A fresh new look without the cost of full replacement. Andrew Handyman Services.",
   lead="Give your kitchen or whole house a fresh look without paying for full replacement. I paint and renovate cabinets for homeowners in Wesley Chapel, Land O' Lakes, Zephyrhills and nearby.",
   bullets=["Kitchen cabinet painting with proper cleaning, sanding and priming","Bathroom vanities and whole-house cabinets","New hardware, hinges and soft-close upgrades","Door and drawer-front repairs and adjustments","Cabinet box repairs and touch-ups","Smooth, durable finish that is made for daily use"],
@@ -85,7 +85,7 @@ S = [
        ("How long does a cabinet job take?","Most kitchens take several days, because each coat needs time to dry and cure. I give you a clear schedule before I start."),
        ("Can you change the hardware too?","Yes. New handles, knobs and hinges are a quick upgrade that makes painted cabinets look brand new.")],
   related=['new-kitchen-installation','painting','drywall-repair']),
- dict(slug='new-kitchen-installation', name='New Kitchen Installation', short='New Kitchen', h1='New Kitchen Installation', icon='kitchen.svg', gallery_h='Recent <em>kitchen projects</em>', gallery_r='4/3', gallery=[('kt-1.jpg', 'White kitchen cabinets with granite counters and an island', 'Kitchen with Granite Island'), ('kt-2.jpg', 'White shaker cabinets with granite countertop and subway tile backsplash', 'Granite & Subway Tile Kitchen')], photo=('img-08.jpg','New kitchen installed by Andrew Handyman Services'),
+ dict(slug='new-kitchen-installation', name='New Kitchen Installation', short='New Kitchen', h1='New Kitchen Installation', icon='kitchen.svg', gallery_h='Recent <em>kitchen projects</em>', gallery_r='4/3', gallery=[('white-kitchen-cabinets-granite-counters-island-wesley-chapel.jpg', 'White kitchen cabinets with granite counters and an island', 'Kitchen with Granite Island'), ('white-shaker-cabinets-granite-countertop-subway-tile-backsplash-wesley-chapel.jpg', 'White shaker cabinets with granite countertop and subway tile backsplash', 'Granite & Subway Tile Kitchen')], photo=('new-kitchen-installed-by-andrew-handyman-services-wesley-chapel.jpg','New kitchen installed by Andrew Handyman Services'),
   desc="New kitchen installation in Wesley Chapel, FL: cabinets, countertops, backsplash and finishing. Andrew Handyman Services handles your kitchen remodel start to finish.",
   lead="Full kitchen remodels handled start to finish: old cabinets out, new cabinets in, countertops, backsplash and finishing touches. Serving Wesley Chapel and the surrounding area.",
   bullets=["Removal of old cabinets and countertops","New cabinet installation, level, plumb and secure","Countertop installation and cutouts","Tile backsplash","Trim, paint and finishing details","Handles, hardware and final adjustments"],
@@ -101,7 +101,7 @@ S = [
        ("Do hurricane shutters need a permit?","Shutter projects often do. I walk you through what applies to your address before we start so there are no surprises."),
        ("When should I install them?","Atlantic hurricane season runs June 1 to November 30. Booking well before the season gives you the most choice and avoids the last-minute rush.")],
   related=['wood-rot-repair','painting','media-accent-walls']),
- dict(slug='media-accent-walls', name='Media & Accent Walls', short='Media & Accent Walls', h1='Media & Accent Walls', icon='media-wall.svg', photo=None, gallery=([('mw-1.jpg', 'White shiplap media wall with wood mantel, soundbar and electric fireplace', 'White Shiplap TV Wall'), ('mw-2.jpg', 'White shiplap TV wall with a mounted TV, mantel and linear fireplace', 'Shiplap Media Wall'), ('mw-3.jpg', 'Dark stained wood plank TV wall with mantel and electric fireplace', 'Stained Wood TV Wall'), ('mw-4.jpg', 'Floor to ceiling dark wood media wall with TV and fireplace', 'Dark Wood Media Wall'), ('mw-5.jpg', 'Wood panel TV wall with floating shelves, mantel and linear fireplace', 'Wood Panel Wall & Floating Shelves')]),
+ dict(slug='media-accent-walls', name='Media & Accent Walls', short='Media & Accent Walls', h1='Media & Accent Walls', icon='media-wall.svg', photo=None, gallery=([('white-shiplap-media-wall-wood-mantel-soundbar-electric-wesley-chapel.jpg', 'White shiplap media wall with wood mantel, soundbar and electric fireplace', 'White Shiplap TV Wall'), ('white-shiplap-tv-wall-mounted-tv-mantel-linear-wesley-chapel.jpg', 'White shiplap TV wall with a mounted TV, mantel and linear fireplace', 'Shiplap Media Wall'), ('dark-stained-wood-plank-tv-wall-mantel-electric-wesley-chapel.jpg', 'Dark stained wood plank TV wall with mantel and electric fireplace', 'Stained Wood TV Wall'), ('floor-to-ceiling-dark-wood-media-wall-tv-wesley-chapel.jpg', 'Floor to ceiling dark wood media wall with TV and fireplace', 'Dark Wood Media Wall'), ('wood-panel-tv-wall-floating-shelves-mantel-linear-wesley-chapel.jpg', 'Wood panel TV wall with floating shelves, mantel and linear fireplace', 'Wood Panel Wall & Floating Shelves')]),
   desc="Media walls, TV walls and custom accent walls in Wesley Chapel, FL. Wood slats, panels, fireplace surrounds and more from Andrew Handyman Services.",
   lead="A statement feature for your living room. I build and install TV walls, accent walls and fireplace surrounds designed around your space, in Wesley Chapel and nearby.",
   bullets=["TV and media walls with a clean built-in look","Wood slat, paneled and shiplap accent walls","Fireplace surrounds and feature walls","Custom designs planned around your room and TV","TV mounting with neat cord covers","Painted or stained to match your decor"],
@@ -109,7 +109,7 @@ S = [
        ("Is the TV mount included?","I can mount the TV as part of the wall installation, so everything is level and lines up with the design."),
        ("How long does an accent wall take?","A simple accent wall can be finished in a day or two. Larger media walls take longer, and I give you a timeline in the estimate.")],
   related=['tv-shelf-mounting','painting','new-kitchen-installation']),
- dict(slug='deck-repair', name='Deck Repair', short='Deck Repair', h1='Deck Repair', icon='deck.svg', gallery_h='Recent <em>deck &amp; porch jobs</em>', gallery_r='4/3', gallery=[('dk-1.jpg', 'Front porch steps and teal painted wood railings', 'Porch Steps & Railings'), ('dk-2.jpg', 'Wood deck stairs with painted treads and black railings', 'Deck Stairs & Railings'), ('dk-3.jpg', 'Backyard deck stairs and railing from another angle', 'Deck Stair Railing Work'), ('dk-5.jpg','Porch platform with new railing posts and balusters','Porch Platform & Railing'), ('dk-6.jpg','Porch with new pressure-treated deck boards and posts','New Deck Boards & Posts'), ('dk-7.jpg','Front view of a porch with new deck boards and railing','Porch, Front View')], photo=('img-06.jpg','Before and after deck stairs and railing repair'),
+ dict(slug='deck-repair', name='Deck Repair', short='Deck Repair', h1='Deck Repair', icon='deck.svg', gallery_h='Recent <em>deck &amp; porch jobs</em>', gallery_r='4/3', gallery=[('front-porch-steps-teal-painted-wood-railings-wesley-chapel.jpg', 'Front porch steps and teal painted wood railings', 'Porch Steps & Railings'), ('wood-deck-stairs-painted-treads-black-railings-wesley-chapel.jpg', 'Wood deck stairs with painted treads and black railings', 'Deck Stairs & Railings'), ('backyard-deck-stairs-railing-from-another-angle-wesley-chapel.jpg', 'Backyard deck stairs and railing from another angle', 'Deck Stair Railing Work'), ('porch-platform-new-railing-posts-balusters-wesley-chapel.jpg','Porch platform with new railing posts and balusters','Porch Platform & Railing'), ('porch-new-pressure-treated-deck-boards-posts-wesley-chapel.jpg','Porch with new pressure-treated deck boards and posts','New Deck Boards & Posts'), ('front-view-porch-new-deck-boards-railing-wesley-chapel.jpg','Front view of a porch with new deck boards and railing','Porch, Front View')], photo=('deck-repair-wesley-chapel.jpg','Before and after deck stairs and railing repair'),
   desc="Deck repair in Wesley Chapel, FL: replacement boards, railings, stairs and posts, plus staining and sealing. Make your deck safe again with Andrew Handyman Services.",
   lead="Loose, rotted or worn deck boards, railings and steps repaired so your deck is safe and good-looking again. Serving Wesley Chapel, Land O' Lakes, Zephyrhills and nearby.",
   bullets=["Replacement of rotted or cracked deck boards","Railings, balusters and handrails","Stair treads, risers and stringers","Posts and loose or failing connections","Staining and sealing to protect the wood","Safe, solid result you can trust to walk on"],
@@ -117,7 +117,7 @@ S = [
        ("Do deck repairs need a permit?","Small repairs usually do not, but larger structural work can. I tell you upfront what applies before we start."),
        ("Can you stain or seal the deck after repair?","Yes. Sealing or staining protects the wood from Florida sun and rain, and it makes the repair look uniform.")],
   related=['wood-rot-repair','fence-repair','painting']),
- dict(slug='picture-hanging', name='Picture, Mirror & Art Hanging', short='Picture Hanging', h1='Picture, Mirror & Art Hanging', icon='pictures.svg', photo=None, gallery_h='Recent <em>wall decor jobs</em>', gallery_r='4/3', gallery=[('pd-1.jpg', 'Four decorative metal gears hung on a large-format tile wall', 'Wall Decor on Tile'), ('pd-2.jpg', 'Three-panel black and white canvas art hung on a tile wall', 'Triptych Wall Art'), ('pd-3.jpg', 'Wall-mounted display case mounted on a large tile wall', 'Wall-Mounted Display Case')],
+ dict(slug='picture-hanging', name='Picture, Mirror & Art Hanging', short='Picture Hanging', h1='Picture, Mirror & Art Hanging', icon='pictures.svg', photo=None, gallery_h='Recent <em>wall decor jobs</em>', gallery_r='4/3', gallery=[('four-decorative-metal-gears-hung-large-format-tile-wesley-chapel.jpg', 'Four decorative metal gears hung on a large-format tile wall', 'Wall Decor on Tile'), ('three-panel-black-white-canvas-art-hung-tile-wesley-chapel.jpg', 'Three-panel black and white canvas art hung on a tile wall', 'Triptych Wall Art'), ('wall-mounted-display-case-mounted-large-tile-wall-wesley-chapel.jpg', 'Wall-mounted display case mounted on a large tile wall', 'Wall-Mounted Display Case')],
   title='Picture Hanging Wesley Chapel FL – Mirrors, Gallery Walls & Heavy Art',
   desc="Picture and mirror hanging in Wesley Chapel, FL: gallery walls laid out and leveled, heavy mirrors and large art anchored to the wall. Free estimate from Andrew Handyman Services.",
   lead="Pictures, mirrors, canvases and gallery walls hung level, centered and secure, on drywall, brick, block and tile. Moving in or redecorating in Wesley Chapel? Send me a photo of the wall for a free estimate.",
@@ -129,7 +129,7 @@ S = [
        ("Will you fill the old nail holes?","Small nail holes can be patched when I remove old hangers. If you want paint matched, I can do that too through my drywall and painting services."),
        ("Can you hang pictures on brick, block or tile walls?","Yes. These need different bits and anchors than drywall, and I use the right ones so the wall is not damaged.")],
   related=['tv-shelf-mounting','drywall-repair','furniture-assembly']),
- dict(slug='furniture-assembly', name='Furniture Assembly', short='Furniture Assembly', h1='Furniture Assembly', icon='furniture.svg', photo=None, gallery_h='Recent <em>assembly jobs</em>', gallery_r='4/3', gallery=[('fa-1.jpg', 'Assembled corner storage bed frame with drawers and LED strip', 'Storage Bed Frame Assembly'), ('fa-2.jpg', 'Assembled four-door wood sideboard cabinet in a dining room', 'Sideboard Cabinet Assembly'), ('fa-3.jpg', 'Assembled dark console table against a wall', 'Console Table Assembly'), ('fa-4.jpg','Desk parts unpacked and laid out before assembly','Desk Parts Before Assembly'), ('fa-5.jpg','Assembled L-shaped wood desk with monitor risers','L-Shaped Desk Assembled')],
+ dict(slug='furniture-assembly', name='Furniture Assembly', short='Furniture Assembly', h1='Furniture Assembly', icon='furniture.svg', photo=None, gallery_h='Recent <em>assembly jobs</em>', gallery_r='4/3', gallery=[('assembled-corner-storage-bed-frame-drawers-led-strip-wesley-chapel.jpg', 'Assembled corner storage bed frame with drawers and LED strip', 'Storage Bed Frame Assembly'), ('assembled-four-door-wood-sideboard-cabinet-dining-room-wesley-chapel.jpg', 'Assembled four-door wood sideboard cabinet in a dining room', 'Sideboard Cabinet Assembly'), ('assembled-dark-console-table-against-wall-wesley-chapel.jpg', 'Assembled dark console table against a wall', 'Console Table Assembly'), ('desk-parts-unpacked-laid-out-before-assembly-wesley-chapel.jpg','Desk parts unpacked and laid out before assembly','Desk Parts Before Assembly'), ('assembled-l-shaped-wood-desk-monitor-risers-wesley-chapel.jpg','Assembled L-shaped wood desk with monitor risers','L-Shaped Desk Assembled')],
   title='Furniture Assembly Wesley Chapel FL – IKEA, Wayfair, Amazon & More',
   desc="Furniture assembly in Wesley Chapel, FL: IKEA, Wayfair, Amazon and Costco furniture, beds, dressers, desks and patio sets, built right and anchored. Free estimate.",
   lead="Beds, dressers, desks, bookcases, patio sets and more, built and placed where you want them. IKEA, Wayfair, Amazon, Costco or any flat-pack brand, in Wesley Chapel and nearby. Text me what you bought for a free estimate.",
@@ -142,7 +142,7 @@ S = [
        ("Do you assemble outdoor furniture?","Yes. Patio sets, benches and outdoor storage are fine.")],
   related=['picture-hanging','tv-shelf-mounting','media-accent-walls']),
  dict(slug='door-installation', name='Door Installation & Repair', short='Door Installation', h1='Door Installation & Repair', icon='door.svg',
-  photo=('door-1.jpg','French double doors installed and trimmed in a Florida home'), photo_cap='Real job photo: French door installation',
+  photo=('french-double-doors-installed-trimmed-florida-home-wesley-chapel.jpg','French double doors installed and trimmed in a Florida home'), photo_cap='Real job photo: French door installation',
   title='Door Installation Wesley Chapel FL – French Doors, Patio & Interior Doors',
   desc="Door installation and repair in Wesley Chapel, FL: French doors, patio doors, interior and entry doors hung, trimmed and adjusted. Lock replacement too. Free estimate.",
   lead="French doors, patio doors, entry and interior doors installed, trimmed and adjusted so they open smoothly and close tight. Door repair and lock replacement too, in Wesley Chapel and nearby. Call for a free estimate.",
@@ -155,7 +155,7 @@ S = [
        ("Can you fix a door that sticks or will not close?","Yes. Most sticking doors come down to hinges, the strike plate or swollen wood, and are a quick fix. I look at it and tell you what it needs.")],
   related=['painting','drywall-repair','wood-rot-repair']),
  dict(slug='flooring-installation', name='Flooring Installation', short='Flooring', h1='Flooring Installation', icon='floor.svg', photo=None,
-  gallery_h='Flooring <em>before &amp; after</em>', gallery_r='4/3', gallery=[('fl-1.jpg','Bedroom prepped for new flooring','Room Before New Flooring'),('fl-2.jpg','New vinyl plank floor in a bedroom with white baseboards','New Vinyl Plank Floor'),('fl-3.jpg','New vinyl plank floor meeting the baseboard under a window','Floor Detail at Baseboard')],
+  gallery_h='Flooring <em>before &amp; after</em>', gallery_r='4/3', gallery=[('bedroom-prepped-for-new-flooring-wesley-chapel.jpg','Bedroom prepped for new flooring','Room Before New Flooring'),('new-vinyl-plank-floor-bedroom-white-baseboards-wesley-chapel.jpg','New vinyl plank floor in a bedroom with white baseboards','New Vinyl Plank Floor'),('new-vinyl-plank-floor-meeting-baseboard-under-window-wesley-chapel.jpg','New vinyl plank floor meeting the baseboard under a window','Floor Detail at Baseboard')],
   title='Flooring Installation Wesley Chapel FL – Vinyl Plank & Laminate',
   desc="Flooring installation in Wesley Chapel, FL: luxury vinyl plank, laminate and click-lock floors with baseboards and transitions. Free estimate from Andrew Handyman Services.",
   lead="Luxury vinyl plank, laminate and click-lock flooring installed room by room, with baseboards and transitions fitted neatly. Serving Wesley Chapel, Land O' Lakes, Zephyrhills and nearby. Call for a free estimate.",
@@ -168,7 +168,7 @@ S = [
        ("Do you reinstall baseboards?","Yes. Baseboards or quarter round go back on after the floor is down, or I replace them if they are damaged.")],
   related=['painting','door-installation','drywall-repair']),
  dict(slug='leather-vinyl-repair', name='Leather & Vinyl Repair', short='Leather repair', h1='Leather & Vinyl Repair', icon='leather.svg', photo=None,
-  gallery_h='Leather repair <em>before &amp; after</em>', gallery_r='4/3', gallery=[('lr-1.jpg','Cracked leather recliner headrest before repair','Recliner Headrest: Before'),('lr-2.jpg','Recliner headrest after the crack was repaired','Recliner Headrest: After'),('lr-3.jpg','Torn vinyl trim by a window before repair','Window Trim: Before'),('lr-4.jpg','Vinyl trim by a window after repair','Window Trim: After')],
+  gallery_h='Leather repair <em>before &amp; after</em>', gallery_r='4/3', gallery=[('cracked-leather-recliner-headrest-before-repair-wesley-chapel.jpg','Cracked leather recliner headrest before repair','Recliner Headrest: Before'),('recliner-headrest-after-crack-was-repaired-wesley-chapel.jpg','Recliner headrest after the crack was repaired','Recliner Headrest: After'),('torn-vinyl-trim-by-window-before-repair-wesley-chapel.jpg','Torn vinyl trim by a window before repair','Window Trim: Before'),('vinyl-trim-by-window-after-repair-wesley-chapel.jpg','Vinyl trim by a window after repair','Window Trim: After')],
   title='Leather & Vinyl Repair Wesley Chapel FL – Recliners, Sofas, Trim',
   desc="Leather and vinyl repair in Wesley Chapel, FL: cracks, tears and peeling on recliners, sofas, chairs and trim. See before and after photos. Free estimate from Andrew Handyman Services.",
   lead="Cracks, tears and worn spots on leather and vinyl recliners, sofas, chairs and trim, repaired so they blend back in. Serving Wesley Chapel, Land O' Lakes, Zephyrhills and nearby. Call for a free estimate.",
@@ -180,7 +180,7 @@ S = [
        ("Do you repair faux leather and vinyl?","Yes. Faux leather, vinyl and bonded leather are common on recliners and RV furniture, and they can often be repaired too."),
        ("Do you come to me?","Yes. I come to your home in Wesley Chapel and nearby areas, and the repair is done on site.")],
   related=['furniture-assembly','painting','drywall-repair']),
- dict(slug='fence-repair', name='Fence Repair', short='Fence Repair', h1='Fence Repair', icon='fence.svg', gallery_h='Fence <em>before &amp; after</em>', gallery_r='4/3', gallery=[('fn-1.jpg', 'Old weathered wood fence before replacement', 'Fence Before'), ('fn-2.jpg', 'New wood privacy fence along a backyard garage wall', 'Fence After'), ('fn-3.jpg', 'New wood fence with straight pickets in a backyard', 'New Wood Fence')], photo=('img-05.jpg','Fence before and after repair'),
+ dict(slug='fence-repair', name='Fence Repair', short='Fence Repair', h1='Fence Repair', icon='fence.svg', gallery_h='Fence <em>before &amp; after</em>', gallery_r='4/3', gallery=[('old-weathered-wood-fence-before-replacement-wesley-chapel.jpg', 'Old weathered wood fence before replacement', 'Fence Before'), ('new-wood-privacy-fence-along-backyard-garage-wall-wesley-chapel.jpg', 'New wood privacy fence along a backyard garage wall', 'Fence After'), ('new-wood-fence-straight-pickets-backyard-wesley-chapel.jpg', 'New wood fence with straight pickets in a backyard', 'New Wood Fence')], photo=('fence-before-after-repair-wesley-chapel.jpg','Fence before and after repair'),
   desc="Fence repair in Wesley Chapel, FL: broken pickets, leaning posts and damaged gates. Keep your yard secure with Andrew Handyman Services.",
   lead="Broken pickets, leaning posts and damaged gates fixed or replaced to keep your yard secure and your fence looking sharp. Serving Wesley Chapel and nearby communities.",
   bullets=["Broken or rotted pickets and panels replaced","Leaning or loose posts straightened and secured","Gate repair: hinges, latches and sagging gates","Rails and boards reinforced","Staining or painting to refresh the look","Storm damage cleanup and repair"],
@@ -789,7 +789,21 @@ def main():
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
     urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
-    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n'
+    import re as _re, html as _html
+    def _imgs(u):
+        path = u.replace(DOMAIN, '').strip('/')
+        f = os.path.join(path, 'index.html') if path else 'index.html'
+        try: h = open(f, encoding='utf-8').read()
+        except OSError: return ''
+        seen, out = set(), ''
+        for tag in _re.findall(r'<img[^>]*>', h):
+            s = _re.search(r'src="/?(images/[^"]+\.jpg)"', tag); a = _re.search(r'alt="([^"]*)"', tag)
+            if not s or s.group(1) in seen or s.group(1).endswith('-sq.jpg'): continue
+            seen.add(s.group(1))
+            cap = f'<image:title>{_html.escape(_html.unescape(a.group(1)))}</image:title>' if a and a.group(1) else ''
+            out += f'<image:image><image:loc>{DOMAIN}/{s.group(1)}</image:loc>{cap}</image:image>'
+        return out
+    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + ''.join(f'  <url><loc>{u}</loc>{_imgs(u)}</url>\n' for u in urls) + '</urlset>\n'
     open('sitemap.xml', 'w').write(sm)
     open('tools/_nav.html', 'w', encoding='utf-8').write(nav_html())
     open('tools/_footer.html', 'w', encoding='utf-8').write(footer_html())
