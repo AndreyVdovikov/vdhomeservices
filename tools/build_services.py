@@ -241,9 +241,11 @@ def nav_html():
       <a href="/#contact" class="nav-dd-toggle" aria-haspopup="true">Locations <span class="nav-caret">&#9662;</span></a>
       <div class="nav-dd-menu nav-dd-loc">{locitems}</div>
     </li>
+    <li><a href="/subscription/" class="nav-hl">Subscription</a></li>
+    <li><a href="/gift/" class="nav-hl">🎁 Gift</a></li>
+    <li><a href="/blog/">Blog</a></li>
     <li><a href="/#reviews">Reviews</a></li>
     <li><a href="/faq/">FAQ</a></li>
-    <li><a href="/#contact">Area</a></li>
     <li><a href="tel:{PHONE_TEL}" class="nav-call">📞 {PHONE_DISPLAY}</a></li>
   </ul>
   <button class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile"><span></span><span></span><span></span></button>
@@ -255,7 +257,7 @@ def nav_html():
   <div class="nm-h">Locations</div>
   <div class="nm-list">{mobloc}</div>
   <div class="nm-h">More</div>
-  <div class="nm-list"><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
+  <div class="nm-list"><a href="/subscription/">Handyman Subscription</a><a href="/gift/">🎁 Gift Certificates</a><a href="/blog/">Blog</a><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
   <a href="tel:{PHONE_TEL}" class="nm-call">📞 Call {PHONE_DISPLAY}</a>
 </div>
 '''
@@ -283,7 +285,7 @@ def footer_html():
         <div class="f-contact-row">🕘 Opens 9 AM Tue–Sat</div>
         <div class="f-contact-row">👤 <a href="/about/" style="color:inherit;text-decoration:none">About Andrew</a></div>
         <div class="f-contact-row">❓ <a href="/faq/" style="color:inherit;text-decoration:none">FAQ</a></div>
-        <div class="f-contact-row">🔎 <a href="/guides/how-to-find-a-handyman-wesley-chapel/" style="color:inherit;text-decoration:none">How to find a handyman</a></div>
+        <div class="f-contact-row">🔎 <a href="/blog/" style="color:inherit;text-decoration:none">Blog &amp; guides</a></div>
         <div class="f-contact-row">🎁 <a href="/gift/" style="color:inherit;text-decoration:none">Gift certificates</a></div>
         <div class="f-contact-row">🔁 <a href="/subscription/" style="color:inherit;text-decoration:none">Handyman subscription</a></div>
         <div class="f-contact-row">📝 <a href="/posts/" style="color:inherit;text-decoration:none">Recent projects</a></div>
@@ -766,7 +768,7 @@ def guide_page():
 <section class="sp-hero">
   <div class="section-wrap sp-hero-inner">
     <div>
-      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> How to find a handyman</div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a></div>
       <h1 class="sp-h1">{GD.H1}</h1>
       <p class="sp-lead">{esc(GD.LEAD)}</p>
       <div class="post-meta">By Andrew · Updated November 14, 2026</div>
@@ -822,7 +824,7 @@ def article_page(a):
 <section class="sp-hero">
   <div class="section-wrap sp-hero-inner">
     <div>
-      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/services/{a['service']}/">Related service</a></div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a></div>
       <h1 class="sp-h1">{a['h1']}</h1>
       <p class="sp-lead">{esc(a['lead'])}</p>
       <div class="post-meta">By Andrew · Updated November 15, 2026</div>
@@ -933,6 +935,56 @@ def posts_index():
 <section class="sp-sec">
   <div class="section-wrap">
     <article class="post"><ul>{cards}</ul></article>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(title, desc, url, extra) + body
+
+def blog_cards():
+    """All blog entries: long guides first, then project posts."""
+    items = [(f'/guides/{a["slug"]}/', a['title'], a['lead'], f'/images/{a["hero"]}', a['hero_alt'], 'Guide') for a in AD.ARTICLES]
+    items.append((f'/guides/{GD.SLUG}/', GD.TITLE, GD.LEAD, '/images/hero-andrew.jpg', 'Andrew, handyman in Wesley Chapel', 'Guide'))
+    cards = ''.join(f'<a class="blog-card" href="{u}"><img src="{i}" alt="{esc(al)}" width="600" height="400" loading="lazy"><div class="blog-card-b"><span class="blog-tag">{tag}</span><h3>{esc(t)}</h3><p>{esc(l)}</p><span class="blog-more">Read the guide →</span></div></a>' for u,t,l,i,al,tag in items)
+    cards += ''.join(f'<a class="blog-card blog-card-text" href="/posts/{o["slug"]}/"><div class="blog-card-b"><span class="blog-tag">Project · {o["date"]}</span><h3>{esc(o["title"])}</h3><p>{esc(o["svc_name"])}</p><span class="blog-more">Read more →</span></div></a>' for o in PD.PROJECTS)
+    return cards
+
+def blog_page():
+    url = f'{DOMAIN}/blog/'
+    title = 'Handyman Blog: Guides, Costs & Projects | Andrew Handyman Wesley Chapel'
+    desc = 'Practical handyman guides for Florida homeowners: media wall costs, how to mount a TV, how to hire a handyman, plus recent projects in Wesley Chapel and Tampa Bay.'
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":"Blog","item":url}]}
+    extra = f'<script type="application/ld+json">{json.dumps(bc)}</script>\n'
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> Blog</div>
+      <h1 class="sp-h1">Handyman <em>blog</em></h1>
+      <p class="sp-lead">Straight answers on costs, how-tos and real projects from Wesley Chapel and Tampa Bay.</p>
+    </div>
+  </div>
+</section>
+<section class="sp-sec">
+  <div class="section-wrap">
+    <div class="blog-grid">{blog_cards()}</div>
+  </div>
+</section>
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Have a project in mind?</h2>
+    <p class="cta-text">Send a quick request or text a photo of the job. Free estimate.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="/#home" class="btn-ghost-cta">Book Online ↑</a>
+    </div>
   </div>
 </section>
 </main>
@@ -1232,6 +1284,8 @@ def main():
     for a in AD.ARTICLES:
         os.makedirs('guides/'+a['slug'], exist_ok=True)
         open('guides/'+a['slug']+'/index.html','w',encoding='utf-8').write(article_page(a))
+    os.makedirs('blog', exist_ok=True)
+    open('blog/index.html','w',encoding='utf-8').write(blog_page())
     os.makedirs('gift/redeem', exist_ok=True)
     open('gift/index.html','w',encoding='utf-8').write(gift_page())
     open('gift/redeem/index.html','w',encoding='utf-8').write(redeem_page())
@@ -1244,7 +1298,7 @@ def main():
         open('posts/'+pr['slug']+'/index.html','w',encoding='utf-8').write(post_page(pr))
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/guides/{a["slug"]}/' for a in AD.ARTICLES] + [f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/guides/{a["slug"]}/' for a in AD.ARTICLES] + [f'{DOMAIN}/blog/', f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     import re as _re, html as _html
     def _imgs(u):
         path = u.replace(DOMAIN, '').strip('/')
@@ -1288,6 +1342,7 @@ Notes: Andrew does not do work that legally requires a licensed electrician or p
 - [How to find a handyman in Wesley Chapel]({DOMAIN}/guides/{GD.SLUG}/)
 {art_lines}
 - [Christmas light installation guide and cost calculator]({DOMAIN}/services/christmas-light-installation/#guide)
+- [Blog]({DOMAIN}/blog/)
 - [Recent projects]({DOMAIN}/posts/)
 {post_lines}
 
