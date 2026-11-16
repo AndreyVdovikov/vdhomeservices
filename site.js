@@ -159,3 +159,26 @@ nightBtn.addEventListener('click', () => {
   }); });
   upd();
 })();
+
+/* Analytics events (GA4) */
+(function(){
+  function ev(n,p){ try{ if(window.gtag) gtag('event',n,p||{}); }catch(e){} }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a'); if(!a) return;
+    var h=a.getAttribute('href')||'';
+    if(h.indexOf('tel:')===0) ev('phone_click',{link_url:h,page:location.pathname});
+    else if(h.indexOf('sms:')===0) ev('sms_click',{link_url:h,page:location.pathname});
+    else if(/buy\.stripe\.com|stripe\.com/.test(h)) ev('order_click',{link_url:h,page:location.pathname});
+    else if(h.indexOf('/gift/redeem/')===0) ev('gift_order_click',{link_url:h});
+  },true);
+  document.addEventListener('submit',function(e){
+    var f=e.target; ev('form_submit',{form_id:f.id||'form',page:location.pathname});
+  },true);
+  var t=setInterval(function(){
+    if(window.emailjs&&emailjs.send&&!emailjs.__ga){
+      var o=emailjs.send; emailjs.__ga=1;
+      emailjs.send=function(){ ev('lead_sent',{page:location.pathname}); return o.apply(this,arguments); };
+      clearInterval(t);
+    }
+  },500); setTimeout(function(){clearInterval(t);},20000);
+})();
