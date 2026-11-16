@@ -801,7 +801,9 @@ def guide_page():
     return head(GD.TITLE, GD.DESC, url, extra) + body
 
 def article_page(a):
-    url = f'{DOMAIN}/guides/{a["slug"]}/'
+    import datetime as _dt
+    a = dict(a, date_h=_dt.date.fromisoformat(a['date']).strftime('%B %-d, %Y'))
+    url =f'{DOMAIN}/guides/{a["slug"]}/'
     faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(x)}</p></details>' for q,x in a['faq'])
     toc = ''.join(f'<a href="#{i}">{esc(t)}</a>' for i,t in a['toc'])
     areas = ', '.join(f'<a href="/locations/{l["slug"]}/">{esc(l["name"])}</a>' for l in LOCS)
@@ -827,7 +829,7 @@ def article_page(a):
       <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a></div>
       <h1 class="sp-h1">{a['h1']}</h1>
       <p class="sp-lead">{esc(a['lead'])}</p>
-      <div class="post-meta">By Andrew · Updated November 15, 2026</div>
+      <div class="post-meta">By Andrew · Updated {a['date_h']}</div>
     </div>
   </div>
 </section>
