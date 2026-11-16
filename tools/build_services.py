@@ -1260,7 +1260,7 @@ if(amt)document.getElementById('gAmt').textContent='Certificate: $'+amt+'.';
 function gSend(e){{e.preventDefault();var b=document.getElementById('gBtn');b.disabled=true;b.textContent='Sending...';
 var v=function(i){{return document.getElementById(i).value.trim()}};
 var msg='*** PAID GIFT CERTIFICATE'+(amt?' $'+amt:'')+' (confirm payment in Stripe by buyer email) ***\\n\\nBuyer: '+v('gbuyer')+' <'+v('gbemail')+'>\\nRecipient: '+v('gwho')+'\\nPhone: '+v('gphone')+'\\nAddress: '+v('gaddr')+'\\nPreferred time: '+(v('gtime')||'not specified')+'\\n\\nHelp needed:\\n'+v('gneed');
-emailjs.send('service_984008h','template_5dybn6g',{{from_name:'[GIFT'+(amt?' $'+amt:'')+' PAID] '+v('gwho'),phone:v('gphone'),message:msg,to_email:'vdovikov001@gmail.com',reply_to:v('gbemail')}})
+emailjs.send('service_984008h','template_5dybn6g',{{from_name:'[GIFT'+(amt?' $'+amt:'')+' PAID] '+v('gwho'),phone:v('gphone'),message:msg,reply_to:v('gbemail')}})
 .then(function(){{document.getElementById('gForm').style.display='none';document.getElementById('gOk').style.display='block';window.scrollTo(0,0)}})
 .catch(function(){{b.disabled=false;b.textContent='Send my request';alert('Something went wrong. Please call us directly at {PHONE_DISPLAY}')}});return false}}
 </script>

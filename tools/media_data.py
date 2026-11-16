@@ -66,7 +66,7 @@ function mwSend(e){e.preventDefault();var b=document.getElementById('mwBtn');b.d
 var v=function(i){return document.getElementById(i).value.trim()},files=document.getElementById('mwfiles').files;
 var msg='*** MEDIA / ACCENT WALL ESTIMATE ***\\nProject: '+v('mwtype')+'\\nWall: '+(v('mww')||'?')+' ft wide x '+(v('mwh')||'?')+' ft high\\nArea: '+(v('mwcity')||'not specified')+'\\n\\nNotes:\\n'+(v('mwnote')||'none');
 mwUpload(files).then(function(links){if(links.length)msg+='\\n\\nPhotos:\\n'+links.join('\\n');else if(files.length)msg+='\\n\\n[Customer added photo(s) but they could not be uploaded. Ask by phone/text.]';
-return emailjs.send('service_984008h','template_5dybn6g',{from_name:'[WALL ESTIMATE] '+v('mwname'),phone:v('mwphone'),message:msg,to_email:'vdovikov001@gmail.com',reply_to:v('mwphone')})})
+return emailjs.send('service_984008h','template_5dybn6g',{from_name:'[WALL ESTIMATE] '+v('mwname'),phone:v('mwphone'),message:msg,reply_to:v('mwphone')})})
 .then(function(){document.getElementById('mwForm').style.display='none';document.getElementById('mwOk').style.display='block'})
 .catch(function(){b.disabled=false;b.textContent='Request my free estimate';alert('Something went wrong. Please call us directly at {PHONE_DISPLAY}')});return false}
 </script>
