@@ -950,6 +950,10 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 .promo-card.blog{background:linear-gradient(135deg,#1f3a5f,#34547f)}
 .promo-ic{font-size:2rem}.promo-card h3{font-size:1.3rem;color:#fff}.promo-card p{color:rgba(255,255,255,.9);font-size:.95rem;line-height:1.5}
 .promo-go{margin-top:auto;font-weight:700}
+.sp-hero-xmas{background-size:cover;background-position:center 38%;background-repeat:no-repeat;min-height:600px;display:flex;align-items:center;padding:130px 0 70px}
+.sp-hero-xmas .sp-hero-inner{grid-template-columns:minmax(0,640px);justify-content:start;width:100%}
+.sp-hero-xmas .sp-hero-icon{display:none}
+@media(max-width:720px){.sp-hero-xmas{min-height:0;padding:100px 0 48px;background-position:70% 70%}}
 .post .btn-ghost-cta{color:var(--blue-mid);border:2px solid var(--blue-mid);background:transparent}
 .post .btn-cta{display:inline-block;margin:4px 8px 4px 0;background:var(--blue-mid);color:#fff}
 .post-hero{margin:0 0 1.5rem}.post-hero img{width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:18px;display:block}

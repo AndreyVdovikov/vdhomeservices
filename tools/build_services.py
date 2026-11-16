@@ -16,7 +16,7 @@ PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
 GA_ID = 'G-H9H5NEZSS8'
 GA_SNIPPET = f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","{GA_ID}");</script>'
-VER = '20261116b'   # bump to bust browser cache of site.css/site.js
+VER = '20261116c'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -387,7 +387,7 @@ def page(s):
     body = f'''<body>
 {nav_html()}
 <main>
-<section class="sp-hero">
+<section class="sp-hero{' sp-hero-xmas' if s['slug'].startswith('christmas-light-installation') else ''}"{" style=\"background-image:linear-gradient(90deg,rgba(6,12,24,.86) 0%,rgba(6,12,24,.55) 45%,rgba(6,12,24,.05) 100%),url('/images/blog/stucco-house-night.jpg')\"" if s['slug'].startswith('christmas-light-installation') else ''} >
   <div class="section-wrap sp-hero-inner">
     <div>
       <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> <a href="/#services">Services</a> <span>›</span> {crumb_parent}{esc(s["short"])}</div>
