@@ -168,7 +168,7 @@ nightBtn.addEventListener('click', () => {
     var h=a.getAttribute('href')||'';
     if(h.indexOf('tel:')===0) ev('phone_click',{link_url:h,page:location.pathname});
     else if(h.indexOf('sms:')===0) ev('sms_click',{link_url:h,page:location.pathname});
-    else if(/buy\.stripe\.com|stripe\.com/.test(h)) ev('order_click',{link_url:h,page:location.pathname});
+    else if(/buy\.stripe\.com|stripe\.com|square\.link|squareup\.com/.test(h)) ev('order_click',{link_url:h,page:location.pathname});
     else if(h.indexOf('/gift/redeem/')===0) ev('gift_order_click',{link_url:h});
   },true);
   document.addEventListener('submit',function(e){
