@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Diagram of a roof truss showing the bottom chord that must not be cut for an attic ladder opening">
+<rect width="1200" height="800" fill="#f4f8fc"/>
+<text x="40" y="60" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#1e3a5f">Roof truss: what holds the roof together</text>
+<text x="40" y="92" font-family="Arial,sans-serif" font-size="20" fill="#4a5d73">Simplified side view. The bottom chord is also your ceiling framing.</text>
+<g stroke="#b78f55" stroke-width="22" stroke-linecap="square" fill="none">
+<line x1="140" y1="600" x2="600" y2="190"/><line x1="1060" y1="600" x2="600" y2="190"/>
+</g>
+<g stroke="#c9a977" stroke-width="14" fill="none"><line x1="280" y1="600" x2="440" y2="262"/><line x1="440" y1="262" x2="600" y2="600"/><line x1="600" y1="600" x2="760" y2="262"/><line x1="760" y1="262" x2="920" y2="600"/><line x1="440" y1="262" x2="760" y2="262"/></g>
+<line x1="140" y1="600" x2="1060" y2="600" stroke="#e07b39" stroke-width="26"/>
+<rect x="0" y="640" width="1200" height="20" fill="#cfd9e6"/>
+<g font-family="Arial,sans-serif" fill="#1e3a5f">
+<text x="640" y="150" font-size="22" font-weight="700">Top chords (roof)</text>
+<text x="300" y="456" font-size="20">Web members</text>
+<text x="40" y="700" font-size="26" font-weight="700" fill="#b4531f">Bottom chord: do not cut without an engineer</text>
+<text x="40" y="735" font-size="20">An attic ladder opening should fit between trusses, not through them.</text>
+</g>
+<line x1="600" y1="640" x2="600" y2="690" stroke="#b4531f" stroke-width="3"/>
+</svg>

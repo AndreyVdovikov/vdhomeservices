@@ -920,13 +920,13 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 .post-lead{font-size:1.2rem!important;color:var(--blue-deep)!important}
 .post-meta{margin-top:14px;color:#6b7c93;font-size:.9rem}
 .post-fig{margin:1.4rem 0}
-.post-fig img{display:block;width:100%;height:auto;border-radius:16px}
+.post-fig img{display:block;width:auto;max-width:100%;max-height:640px;height:auto;margin:0 auto;border-radius:16px}.post-gallery .post-fig img{width:100%;max-height:none}
 .post-fig figcaption{font-size:.85rem;color:#6b7c93;margin-top:8px}
 .post-fig-narrow{max-width:420px}
 .post-hero{margin-top:0}
-.post-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.post-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:1.4rem 0}.post-gallery.three{grid-template-columns:repeat(3,1fr)}.post-gallery img{aspect-ratio:4/3;object-fit:cover}
 .post-gallery .post-fig{margin:0}
-@media(max-width:640px){.post-gallery{grid-template-columns:1fr}}
+@media(max-width:640px){.post-gallery,.post-gallery.three{grid-template-columns:1fr}}
 .post-toc{background:#fff;border:1px solid rgba(37,99,168,.14);border-radius:16px;padding:16px 20px;margin:1.6rem 0;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
 .post-toc b{width:100%;color:var(--blue-deep)}
 .post-toc a{text-decoration:none!important;font-weight:600;font-size:.95rem}
@@ -956,7 +956,7 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 @media(max-width:720px){.sp-hero-xmas{min-height:0;padding:100px 0 48px;background-position:70% 70%}}
 .post .btn-ghost-cta{color:var(--blue-mid);border:2px solid var(--blue-mid);background:transparent}
 .post .btn-cta{display:inline-block;margin:4px 8px 4px 0;background:var(--blue-mid);color:#fff}
-.post-hero{margin:0 0 1.5rem}.post-hero img{width:100%;height:auto;max-height:520px;object-fit:cover;border-radius:18px;display:block}
+.post-hero{margin:0 0 1.5rem}.post-hero img{width:100%;height:auto;max-height:520px;object-fit:cover;object-position:center 35%;border-radius:18px;display:block}
 .post-table{border-collapse:collapse;width:100%;min-width:560px;background:#fff;border-radius:14px;overflow:hidden}
 .post-table th,.post-table td{padding:12px 14px;text-align:left;border-bottom:1px solid rgba(37,99,168,.12);font-size:.95rem;color:#33475e;vertical-align:top}
 .post-table thead th{background:var(--blue-deep);color:#fff}

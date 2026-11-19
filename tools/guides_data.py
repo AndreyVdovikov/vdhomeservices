@@ -22,47 +22,28 @@ BODY = '''
 
 <div class="post-toc" role="navigation" aria-label="In this guide"><b>In this guide</b>{toc}</div>
 
+<figure class="post-fig"><img src="/images/hero-andrew.jpg" alt="Andrew, handyman in Wesley Chapel, FL" loading="lazy" style="max-width:380px"><figcaption>Andrew, your handyman in Wesley Chapel.</figcaption></figure>
+
 <h2 id="where">Where to look</h2>
-<h3>Google Maps</h3>
-<p>Search "handyman near me" in Google Maps and open a few profiles. Look at the number of reviews and how recent they are. A 5.0 with six reviews tells you less than a 4.7 with twenty-six.</p>
-<h3>Your neighbors</h3>
-<p>Neighborhood Facebook groups and Nextdoor are the fastest way to get a straight answer. Ask who fixed their fence or hung their TV, and what it cost. People in Epperson, Wiregrass Ranch and Meadow Pointe talk about this all the time.</p>
-<h3>Online marketplaces</h3>
-<p>Thumbtack, Angi and similar sites are useful for comparing quotes. Just check that the reviews belong to the person who will actually come to your house.</p>
+<p>Start with Google Maps. Search "handyman near me", open a few profiles and look at how many reviews each one has and how recent they are. A 5.0 with six reviews tells you less than a 4.7 with twenty-six. Your neighbors are the second best source, and the fastest way to get a straight answer. Neighborhood Facebook groups and Nextdoor are full of people asking who fixed their fence or hung their TV, and what it cost, and in Epperson, Wiregrass Ranch and Meadow Pointe that conversation never stops. Marketplaces like Thumbtack and Angi are useful for comparing quotes, as long as the reviews belong to the person who will actually come to your house.</p>
 
 <h2 id="check">What to check before you hire</h2>
-<ul>
-<li><b>A real name and a phone number that someone answers.</b> If you cannot reach them before the job, you will not reach them after it.</li>
-<li><b>Reviews with details.</b> "Great job" is fine. "Hung six pictures and a heavy mirror, everything was level" is better.</li>
-<li><b>Photos of real work.</b> Not stock photos, but jobs in actual houses.</li>
-<li><b>A clear estimate before the work starts.</b> In writing or in a text, so you both know what is included.</li>
-<li><b>Honesty about what they do.</b> A good handyman tells you when a job is not for him. In Florida, electrical, plumbing and A/C work must go to a licensed contractor, and you can check a license on the state's DBPR website. I don't do those jobs, and I will say so.</li>
-</ul>
+<p>Look for a real name and a phone number that someone answers. If you cannot reach a person before the job, you will not reach them after it. Reviews with details are worth more than praise: "great job" is fine, but "hung six pictures and a heavy mirror, everything was level" tells you something. Look at the photos too, and make sure they show real jobs in real houses and not stock pictures. Then ask for a clear estimate before the work starts, in writing or in a text, so you both know what is included.</p>
+<p>The last thing is honesty about what the handyman does. A good one tells you when a job is not for him. In Florida, electrical, plumbing and A/C work must go to a licensed contractor, and you can check any license on the state's DBPR website. I don't do those jobs, and I will say so.</p>
+
+[[gal french-double-doors-installed-trimmed-florida-home-wesley-chapel.jpg|French double doors installed and trimmed in a Florida home ;; new-wood-privacy-fence-along-backyard-garage-wall-wesley-chapel.jpg|New wood privacy fence along a backyard garage wall ;; white-kitchen-cabinets-granite-counters-island-wesley-chapel.jpg|White kitchen cabinets with granite counters and an island]]
 
 <h2 id="flags">Red flags</h2>
-<ul>
-<li>A large payment up front for a small job.</li>
-<li>No price, not even a range, and pressure to decide right now.</li>
-<li>No reviews, no photos and no address anywhere.</li>
-<li>A quote far below everyone else's, with "extras" showing up later.</li>
-<li>Someone who says yes to every job, including ones that need a licensed pro.</li>
-</ul>
+<p>Be careful with anyone who asks for a large payment up front for a small job, who will not give you a price, even a range, and pushes you to decide right now, or who has no reviews, no photos and no address anywhere. A quote far below everyone else's, with "extras" showing up later, is another warning sign. And someone who says yes to every job, including the ones that need a licensed pro, is telling you more about himself than about the work.</p>
 
 <h2 id="price">How pricing works</h2>
-<p>Handymen charge either by the job or by the hour. I give a free estimate for the job, so you know the number before I start. What changes the price: how many items there are, how big and heavy they are, what the wall or surface is made of (drywall, brick, tile, stucco) and how hard the spot is to reach.</p>
-<p>The fastest way to get an estimate is to text me a photo of the job. It takes you a minute and tells me most of what I need.</p>
+<p>Handymen charge either by the job or by the hour. I give a free estimate for the job, so you know the number before I start. What changes the price is how many items there are, how big and heavy they are, what the wall or surface is made of (drywall, brick, tile, stucco), and how hard the spot is to reach. The fastest way to get an estimate is to text me a photo of the job. It takes you a minute and tells me most of what I need.</p>
 
 <h2 id="visit">Get more from one visit</h2>
-<p>Most homeowners have a short list of small things that never get done. Write it down before the visit. I can often do several things in one trip, such as:</p>
-<ul>
-<li><a href="/services/picture-hanging/">Hanging pictures and mirrors</a></li>
-<li><a href="/services/tv-shelf-mounting/">Mounting a TV, shelves and curtain rods</a></li>
-<li><a href="/services/furniture-assembly/">Assembling furniture</a></li>
-<li><a href="/services/drywall-repair/">Patching drywall</a></li>
-<li><a href="/services/deck-repair/">Repairing a deck</a> or a <a href="/services/fence-repair/">fence</a></li>
-<li><a href="/services/painting/">Painting a room</a></li>
-</ul>
-<p>Moving into a new house is the best time for this. Boxes, empty walls and a long list: I can do the whole thing in one visit.</p>
+<p>Most homeowners have a short list of small things that never get done, so write it down before the visit. I can often do several in one trip, such as <a href="/services/picture-hanging/">hanging pictures and mirrors</a>, <a href="/services/tv-shelf-mounting/">mounting a TV, shelves and curtain rods</a>, <a href="/services/furniture-assembly/">assembling furniture</a>, <a href="/services/drywall-repair/">patching drywall</a>, <a href="/services/deck-repair/">repairing a deck</a> or a <a href="/services/fence-repair/">fence</a>, or <a href="/services/painting/">painting a room</a>. Moving into a new house is the best time for this, with boxes, empty walls and a long list, and I can do the whole thing in one visit.</p>
+
+[[fig tv-mounted-level-lanai-wall-level-top-wesley-chapel.jpg | TV mounted level on a lanai wall in Wesley Chapel | A typical small job: a TV mounted level on a lanai wall.]]
+
 <p><a class="btn-cta" href="/#home">Get a free estimate</a> <a class="btn-ghost-cta" href="sms:+16562311836">&#128172; Text a photo of the job</a></p>
 
 <h2 id="areas">Where I work</h2>
@@ -71,3 +52,6 @@ BODY = '''
 <h2 id="faq">FAQ</h2>
 <div class="sp-faq">{faq}</div>
 '''
+
+from articles_data import expand
+BODY = expand(BODY)
