@@ -8,6 +8,7 @@ from locations_data import LOCS
 import blog_data as BL
 import guides_data as GD
 import articles_data as AD
+import links_data as LK
 import projects_data as PD
 import media_data as MD
 
@@ -16,7 +17,7 @@ PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
 GA_ID = 'G-H9H5NEZSS8'
 GA_SNIPPET = f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","{GA_ID}");</script>'
-VER = '20261119c'   # bump to bust browser cache of site.css/site.js
+VER = '20261119d'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -448,6 +449,7 @@ def page(s):
   </div>
 </section>
 
+{guides_block(LK.SERVICE_GUIDES.get(s['slug'], []))}
 <section class="sp-sec{a_rel}">
   <div class="section-wrap">
     <div class="reveal">
@@ -785,6 +787,7 @@ def guide_page():
     </article>
   </div>
 </section>
+{keep_reading(GD.SLUG)}
 <section class="cta-wrap">
   <div class="cta-inner">
     <h2 class="cta-title">Need a hand around the house?</h2>
@@ -802,6 +805,12 @@ def guide_page():
 </html>
 '''
     return head(GD.TITLE, GD.DESC, url, extra) + body
+
+def keep_reading(slug):
+    gs, svcs = LK.GUIDE_LINKS.get(slug, ([], []))
+    cards = guide_cards(gs)
+    sv = ''.join(f'<a href="/services/{x}/" class="svc-card"><div class="svc-emoji"><img src="{ICON(BY[x])}" alt="" width="62" height="62" loading="lazy"></div><div class="svc-name">{esc(BY[x]["name"])}</div><span class="svc-more">Learn more →</span></a>' for x in svcs if x in BY)
+    return f'<section class="sp-sec"><div class="section-wrap"><div class="reveal"><div class="section-tag">Keep reading</div><h2 class="section-title">More <em>guides</em></h2></div><div class="blog-grid">{cards}</div><div class="reveal" style="margin-top:2.2rem"><div class="section-tag">Related services</div></div><div class="sp-related">{sv}</div></div></section>'
 
 def article_page(a):
     import datetime as _dt
@@ -843,6 +852,7 @@ def article_page(a):
     </article>
   </div>
 </section>
+{keep_reading(a['slug'])}
 <section class="cta-wrap">
   <div class="cta-inner">
     <h2 class="cta-title">Need a hand around the house?</h2>
@@ -899,6 +909,7 @@ def post_page(pr):
     </article>
   </div>
 </section>
+{guides_block(LK.POST_GUIDES.get(pr['slug'], []), 'Read <em>more</em>', 'Related guides')}
 <section class="cta-wrap">
   <div class="cta-inner">
     <h2 class="cta-title">Have a similar project?</h2>
@@ -949,6 +960,25 @@ def posts_index():
 </html>
 '''
     return head(title, desc, url, extra) + body
+
+def _gi():
+    idx = {a['slug']: (a['title'], a['lead'], '/images/'+a['hero'], a['hero_alt']) for a in AD.ARTICLES}
+    idx[GD.SLUG] = (GD.TITLE, GD.LEAD, '/images/hero-andrew.jpg', 'Andrew, handyman in Wesley Chapel')
+    return idx
+
+def guide_cards(slugs):
+    idx = _gi(); out = ''
+    for g in slugs:
+        if g not in idx: continue
+        t, l, i, al = idx[g]
+        st = SVGSTYLE if i.endswith('.svg') else ''
+        out += f'<a class="blog-card" href="/guides/{g}/"><img src="{i}" alt="{esc(al)}" width="600" height="400" loading="lazy"{st}><div class="blog-card-b"><span class="blog-tag">Guide</span><h3>{esc(t)}</h3><p>{esc(l)}</p><span class="blog-more">Read the guide →</span></div></a>'
+    return out
+
+def guides_block(slugs, title='Helpful <em>guides</em>', tag='From the blog'):
+    c = guide_cards(slugs)
+    if not c: return ''
+    return f'<section class="sp-sec"><div class="section-wrap"><div class="reveal"><div class="section-tag">{tag}</div><h2 class="section-title">{title}</h2></div><div class="blog-grid">{c}</div></div></section>'
 
 SVGSTYLE = ' style="object-fit:contain;background:#f4f8fc"'
 def blog_cards():
@@ -1306,6 +1336,8 @@ def main():
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
     urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/guides/{a["slug"]}/' for a in AD.ARTICLES] + [f'{DOMAIN}/blog/', f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     import re as _re, html as _html
+    _LM = {f'{DOMAIN}/guides/{a["slug"]}/': a['date'] for a in AD.ARTICLES}
+    _LM.update({f'{DOMAIN}/posts/{p["slug"]}/': p['date'] for p in PD.PROJECTS})
     def _imgs(u):
         path = u.replace(DOMAIN, '').strip('/')
         f = os.path.join(path, 'index.html') if path else 'index.html'
@@ -1319,7 +1351,7 @@ def main():
             cap = f'<image:title>{_html.escape(_html.unescape(a.group(1)))}</image:title>' if a and a.group(1) else ''
             out += f'<image:image><image:loc>{DOMAIN}/{s.group(1)}</image:loc>{cap}</image:image>'
         return out
-    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + ''.join(f'  <url><loc>{u}</loc><lastmod>2026-11-15</lastmod>{_imgs(u)}</url>\n' for u in urls) + '</urlset>\n'
+    sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + ''.join(f'  <url><loc>{u}</loc><lastmod>{_LM.get(u, "2026-11-19")}</lastmod>{_imgs(u)}</url>\n' for u in urls) + '</urlset>\n'
     open('sitemap.xml', 'w').write(sm)
 
     # --- AI / search discovery files ---
