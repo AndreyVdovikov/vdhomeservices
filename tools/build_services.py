@@ -1002,7 +1002,7 @@ def blog_page():
     return head(title, desc, url, extra) + body
 
 # Stripe Payment Links for the subscription plans. Paste the permanent links here; until then the buttons call.
-SUB_LINKS = {'basic': 'https://square.link/u/0dWJ2TVy', 'plus': '', 'home': ''}
+SUB_LINKS = {'basic': 'https://square.link/u/0dWJ2TVy', 'plus': 'https://square.link/u/6o35TBPh', 'home': ''}
 
 SUB_FAQ = [
  ("How does the handyman subscription work?","You pick a plan, send me your list or a quick request, and we schedule the time. You can also set one fixed day every month and I come by on that date. Call or text (656) 231-1836 to start."),
