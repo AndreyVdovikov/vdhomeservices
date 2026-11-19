@@ -16,7 +16,7 @@ PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
 GA_ID = 'G-H9H5NEZSS8'
 GA_SNIPPET = f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","{GA_ID}");</script>'
-VER = '20261119a'   # bump to bust browser cache of site.css/site.js
+VER = '20261119b'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -1130,10 +1130,10 @@ def subscription_page():
     return head(title, desc, url, extra) + body
 
 # Stripe Payment Links for gift certificates (after payment, redirect each to /gift/redeem/?amount=<value>)
-GIFT_AMOUNTS = [145, 285, 478]
-GIFT_LINKS = {145: 'https://square.link/u/phVZ0ckb', 285: '', 478: ''}
+GIFT_AMOUNTS = [145, 287, 478]
+GIFT_LINKS = {145: 'https://square.link/u/phVZ0ckb', 287: 'https://square.link/u/q0mDjQrB', 478: ''}
 GIFT_FAQ = [
- ("How does a gift certificate work?","You buy a certificate for $145, $285 or $478. Right after payment you fill in a short form with the address where the work will be done and what help is needed, and I contact the person to schedule a time. It works like a regular request, except the work is already paid for."),
+ ("How does a gift certificate work?","You buy a certificate for $145, $287 or $478. Right after payment you fill in a short form with the address where the work will be done and what help is needed, and I contact the person to schedule a time. It works like a regular request, except the work is already paid for."),
  ("Who fills in the form, me or the person receiving the gift?","Either. You can fill it in right after you pay, or pass the link to the person you are gifting and they fill in their own address and details."),
  ("What can the certificate be used for?","Everyday handyman work: TV and shelf mounting, picture hanging, furniture assembly, door and drywall repairs, painting touch-ups and similar jobs. Work that legally needs a licensed electrician or plumber is not included."),
  ("What if the job costs more than the certificate?","I tell you what the job needs before I start. If it costs more, the difference is agreed in advance. No surprises."),
@@ -1142,7 +1142,7 @@ GIFT_FAQ = [
 
 def gift_page():
     url = f'{DOMAIN}/gift/'
-    title = 'Handyman Gift Certificate Wesley Chapel FL – $145, $285, $478'
+    title = 'Handyman Gift Certificate Wesley Chapel FL – $145, $287, $478'
     desc = 'Give the gift of a fixed-up home: handyman gift certificates in Wesley Chapel, FL for parents, family and friends. Andrew Handyman Services.'
     faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in GIFT_FAQ)
     fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in GIFT_FAQ]}
@@ -1153,13 +1153,13 @@ def gift_page():
         l = GIFT_LINKS.get(a)
         if l: return f'<a href="{l}" class="btn-cta" target="_blank" rel="noopener">Buy now</a>'
         return f'<a href="tel:{PHONE_TEL}" class="btn-cta">Buy now</a>'
-    cards = ''.join(f'''<div class="sub-plan{' pop' if a==285 else ''}"><h3>Gift certificate</h3><div class="sub-price">${a}</div><div class="sub-hours">toward handyman work</div><ul><li>Any everyday repair or install</li><li>Pay now, schedule later</li><li>For one address of your choice</li></ul>{buy(a)}</div>''' for a in GIFT_AMOUNTS)
+    cards = ''.join(f'''<div class="sub-plan{' pop' if a==287 else ''}"><h3>Gift certificate</h3><div class="sub-price">${a}</div><div class="sub-hours">toward handyman work</div><ul><li>Any everyday repair or install</li><li>Pay now, schedule later</li><li>For one address of your choice</li></ul>{buy(a)}</div>''' for a in GIFT_AMOUNTS)
     why = [("🎁","A gift that actually helps","No more socks. Give someone a fixed door, a mounted TV or a finished to-do list."),
            ("👪","Perfect for parents","Help a parent or grandparent who needs a hand around the house, even if you live far away."),
            ("🏡","New homeowners","Housewarming present for people who just moved in and have a list of small jobs."),
            ("🤝","No searching for anyone","The person you gift does not have to find or vet a handyman. I take care of it.")]
     wc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{i}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for i,t,p in why)
-    steps = [("1","Choose an amount","$145, $285 or $478, toward any everyday handyman job."),
+    steps = [("1","Choose an amount","$145, $287 or $478, toward any everyday handyman job."),
              ("2","Pay online","Secure checkout. Right after payment you are taken to a short form."),
              ("3","Add the address","Fill in where the work is and what is needed, or pass the link to the person you are gifting. I contact them and schedule a time.")]
     sc = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{n}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for n,t,p in steps)
@@ -1261,7 +1261,7 @@ def redeem_page():
 {footer_html()}
 <script src="/site.js?v={VER}" defer></script>
 <script>
-var AM={{145:1,285:1,478:1}}, q=new URLSearchParams(location.search).get('amount'), amt=AM[q]?q:'';
+var AM={{145:1,287:1,478:1}}, q=new URLSearchParams(location.search).get('amount'), amt=AM[q]?q:'';
 if(amt)document.getElementById('gAmt').textContent='Certificate: $'+amt+'.';
 function gSend(e){{e.preventDefault();var b=document.getElementById('gBtn');b.disabled=true;b.textContent='Sending...';
 var v=function(i){{return document.getElementById(i).value.trim()}};
@@ -1339,7 +1339,7 @@ Notes: Andrew does not do work that legally requires a licensed electrician or p
 ## Pricing published on the site
 - Media & accent walls: accent wall with TV mounting and mantel from $1,500; full media wall typically $3,500 to $4,000; large custom projects $6,000 to $10,000+. See {DOMAIN}/services/media-accent-walls/
 - Handyman subscription: Basic $99/month (up to 2 hours), Plus $199/month (up to 4 hours), Home $299/month (up to 6 hours). Unused hours roll over for up to 3 months. See {DOMAIN}/subscription/
-- Gift certificates: $145, $285 or $478 toward handyman work. See {DOMAIN}/gift/
+- Gift certificates: $145, $287 or $478 toward handyman work. See {DOMAIN}/gift/
 
 ## Service areas
 {loc_lines}
