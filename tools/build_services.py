@@ -1131,7 +1131,7 @@ def subscription_page():
 
 # Stripe Payment Links for gift certificates (after payment, redirect each to /gift/redeem/?amount=<value>)
 GIFT_AMOUNTS = [145, 287, 478]
-GIFT_LINKS = {145: 'https://square.link/u/phVZ0ckb', 287: 'https://square.link/u/q0mDjQrB', 478: ''}
+GIFT_LINKS = {145: 'https://square.link/u/phVZ0ckb', 287: 'https://square.link/u/q0mDjQrB', 478: 'https://square.link/u/CIaVHAZW'}
 GIFT_FAQ = [
  ("How does a gift certificate work?","You buy a certificate for $145, $287 or $478. Right after payment you fill in a short form with the address where the work will be done and what help is needed, and I contact the person to schedule a time. It works like a regular request, except the work is already paid for."),
  ("Who fills in the form, me or the person receiving the gift?","Either. You can fill it in right after you pay, or pass the link to the person you are gifting and they fill in their own address and details."),
