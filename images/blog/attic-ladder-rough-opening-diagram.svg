@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Top view of an attic ladder rough opening between two ceiling joists with headers at each end and equal diagonals">
+<rect width="1200" height="800" fill="#f4f8fc"/>
+<text x="40" y="60" font-family="Georgia,serif" font-size="38" font-weight="700" fill="#1e3a5f">The rough opening, seen from above</text>
+<text x="40" y="92" font-family="Arial,sans-serif" font-size="20" fill="#4a5d73">Simplified. Your ladder's manual has the exact opening size for your model.</text>
+<rect x="440" y="120" width="60" height="660" fill="#c9a977"/>
+<rect x="708" y="120" width="60" height="660" fill="#c9a977"/>
+<rect x="500" y="190" width="208" height="26" fill="#b78f55"/>
+<rect x="500" y="690" width="208" height="26" fill="#b78f55"/>
+<rect x="500" y="216" width="208" height="474" fill="#ffffff" stroke="#2563a8" stroke-width="4" stroke-dasharray="14 8"/>
+<line x1="500" y1="216" x2="708" y2="690" stroke="#e07b39" stroke-width="3"/>
+<line x1="708" y1="216" x2="500" y2="690" stroke="#e07b39" stroke-width="3"/>
+<g font-family="Arial,sans-serif" fill="#1e3a5f">
+<text x="790" y="170" font-size="22">Header at each end</text>
+<line x1="780" y1="165" x2="715" y2="200" stroke="#1e3a5f" stroke-width="2"/>
+<text x="790" y="440" font-size="26" font-weight="700">Opening 22.5" x 54"</text>
+<text x="790" y="474" font-size="20">Diagonals must match</text>
+<text x="790" y="500" font-size="20">within 1/8"</text>
+<text x="40" y="440" font-size="22">Joist or truss chord</text>
+<text x="40" y="470" font-size="22">(do not cut trusses)</text>
+<line x1="330" y1="445" x2="435" y2="445" stroke="#1e3a5f" stroke-width="2"/>
+</g>
+<g stroke="#1e3a5f" stroke-width="3"><line x1="520" y1="760" x2="688" y2="760"/><line x1="520" y1="748" x2="520" y2="772"/><line x1="688" y1="748" x2="688" y2="772"/></g>
+<text x="560" y="752" font-family="Arial,sans-serif" font-size="22" fill="#1e3a5f">22.5"</text>
+</svg>

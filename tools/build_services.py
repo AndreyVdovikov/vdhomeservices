@@ -16,7 +16,7 @@ PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
 GA_ID = 'G-H9H5NEZSS8'
 GA_SNIPPET = f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","{GA_ID}");</script>'
-VER = '20261116d'   # bump to bust browser cache of site.css/site.js
+VER = '20261118a'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -950,11 +950,12 @@ def posts_index():
 '''
     return head(title, desc, url, extra) + body
 
+SVGSTYLE = ' style="object-fit:contain;background:#f4f8fc"'
 def blog_cards():
     """All blog entries: long guides first, then project posts."""
     items = [(f'/guides/{a["slug"]}/', a['title'], a['lead'], f'/images/{a["hero"]}', a['hero_alt'], 'Guide') for a in AD.ARTICLES]
     items.append((f'/guides/{GD.SLUG}/', GD.TITLE, GD.LEAD, '/images/hero-andrew.jpg', 'Andrew, handyman in Wesley Chapel', 'Guide'))
-    cards = ''.join(f'<a class="blog-card" href="{u}"><img src="{i}" alt="{esc(al)}" width="600" height="400" loading="lazy"><div class="blog-card-b"><span class="blog-tag">{tag}</span><h3>{esc(t)}</h3><p>{esc(l)}</p><span class="blog-more">Read the guide →</span></div></a>' for u,t,l,i,al,tag in items)
+    cards = ''.join(f'<a class="blog-card" href="{u}"><img src="{i}" alt="{esc(al)}" width="600" height="400" loading="lazy"{SVGSTYLE if i.endswith(".svg") else ""}><div class="blog-card-b"><span class="blog-tag">{tag}</span><h3>{esc(t)}</h3><p>{esc(l)}</p><span class="blog-more">Read the guide →</span></div></a>' for u,t,l,i,al,tag in items)
     cards += ''.join(f'<a class="blog-card blog-card-text" href="/posts/{o["slug"]}/"><div class="blog-card-b"><span class="blog-tag">Project · {o["date"]}</span><h3>{esc(o["title"])}</h3><p>{esc(o["svc_name"])}</p><span class="blog-more">Read more →</span></div></a>' for o in PD.PROJECTS)
     return cards
 

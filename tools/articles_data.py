@@ -580,3 +580,123 @@ ARTICLES.append(dict(
 <h2 id="faq">FAQ</h2>
 <div class="sp-faq">{faq}</div>
 '''))
+
+# ---------------------------------------------------------------------------------------------
+ARTICLES.append(dict(
+ slug='attic-ladder-installation-florida',
+ title="Attic Ladder Installation: Sizes, Trusses, Steps and Safety (Florida Guide)",
+ h1="Attic ladder installation: <em>what to know before you cut</em>",
+ desc="How a folding attic ladder is installed: measuring ceiling height and clearance, the rough opening, Florida trusses, the main steps, trimming the legs and safety. When it is a DIY job and when to call a pro. Wesley Chapel handyman guide.",
+ lead="Ceiling height, the opening, trusses and the order of the work. What a folding attic ladder really needs, and where a handyman job ends and a call to an engineer begins.",
+ date='2026-11-18',
+ hero='blog/attic-ladder-clearance-diagram.svg',
+ hero_alt='Diagram of the ceiling height and floor space a folding attic ladder needs',
+ service='drywall-repair',
+ toc=[('need','Do you need an attic ladder'),('measure','Measure before you buy'),('opening','The rough opening'),('trusses','Florida trusses: do not cut them'),('tools','Tools and help'),('steps','How the installation goes'),('legs','Trimming the legs'),('safety','Safety rules'),('mistakes','Common mistakes'),('hire','DIY or hire a pro'),('areas','Where I work'),('faq','FAQ')],
+ faq=[
+  ("How much ceiling height does a folding attic ladder need?","Most aluminum folding ladders fit ceilings from about 7'8\" to 10'3\", and the legs are trimmed to your exact height. Check the range printed for your model before you buy."),
+  ("How big is the opening for an attic ladder?","A common size is 22.5 by 54 inches, which fits between joists that are 24 inches apart. Some models use a wider opening, such as 25.5 by 54 inches. Always use the size from your ladder's manual."),
+  ("Can I put an attic ladder in a ceiling with trusses?","Many Florida homes have roof trusses. The bottom chord of a truss must not be cut without an engineer's approval. If your opening fits between trusses without cutting anything, it can work. If framing has to be cut, call a licensed contractor or an engineer first."),
+  ("Do I need two people to install an attic ladder?","Yes. One person works from below and one from the attic, and the ladder is heavy and awkward to lift into the opening. Do not try it alone."),
+  ("Why do the legs have to be trimmed?","Folding ladders come longer than most ceilings. The legs are cut to your ceiling height so the ladder sits flat on the floor and the sections close tight at the joints. A gap at a joint means the ladder is not safe to use."),
+  ("How long does the job take?","With a clear attic and a ready opening, usually a few hours. Making a new opening, framing and finishing the trim takes longer."),
+  ("Do you install attic ladders?","I install folding attic ladders in existing openings and help with the finishing work around them. If the job needs cutting trusses or structural changes, I will tell you and send you to a licensed contractor."),
+ ],
+ body='''
+<p class="post-lead">A folding attic ladder turns a hard-to-reach attic into usable storage, and it is a job people often try on their own. It can go well, but it is easy to get wrong: a ladder that is not fastened into the framing, or legs trimmed to the wrong length, is a fall waiting to happen. This guide explains how the installation works, what to measure first, the Florida detail that catches many people (trusses), and when to hand the job to someone else.</p>
+
+<div class="post-toc" role="navigation" aria-label="In this guide"><b>In this guide</b>{toc}</div>
+
+<h2 id="need">Do you need an attic ladder</h2>
+<p>If you store anything in the attic, or need to get to the A/C air handler, the water heater, wiring or insulation, a proper ladder is far safer than a stepladder on a shelf of boxes. In a Florida garage or hallway, it also frees up floor space that was going to storage anyway. If you only go up once a year, a stepladder and a small access hatch may be enough.</p>
+
+<h2 id="measure">Measure before you buy</h2>
+<p>Three numbers decide whether a ladder fits your house:</p>
+<ul>
+<li><b>Ceiling height (A).</b> Measure from the floor to the ceiling next to the opening. Most aluminum folding ladders cover about 7'8" to 10'3", with the legs trimmed to fit.</li>
+<li><b>Clear space from the opening to the foot (B).</b> About 67" for a common size. There should be nothing in the way, such as a door swing or a wall.</li>
+<li><b>Clear space while unfolding (C).</b> About 74" is needed for the sections to swing out.</li>
+</ul>
+<figure class="post-fig"><img src="/images/blog/attic-ladder-clearance-diagram.svg" alt="Diagram of the ceiling height and floor space a folding attic ladder needs" width="1200" height="800" loading="lazy"><figcaption>The room a typical folding ladder needs. Your model's numbers are in its manual.</figcaption></figure>
+<p>Choose the location with the attic in mind too. The space above the opening must be clear, with room to step off, and the ladder should not land on a spot that blocks a hallway or a door.</p>
+
+<h2 id="opening">The rough opening</h2>
+<p>The opening is the framed hole in the ceiling. A common size is <b>22.5" by 54"</b>, which fits between ceiling joists spaced 24" apart, so nothing needs to be cut. Some models are a little wider. Two things matter:</p>
+<ul>
+<li>The opening runs <b>along</b> the joists, with a header closing each end.</li>
+<li>It must be square. The two diagonals should match to within 1/8", or the ladder will bind and the lid will not close properly.</li>
+</ul>
+<figure class="post-fig post-fig-narrow"><img src="/images/blog/attic-ladder-rough-opening-diagram.svg" alt="Top view of an attic ladder rough opening between two ceiling joists with headers at each end and equal diagonals" width="1200" height="800" loading="lazy"><figcaption>The opening seen from above: between two joists, with a header at each end.</figcaption></figure>
+
+<h2 id="trusses">Florida trusses: do not cut them</h2>
+<p>Most newer Florida homes, including those in Wesley Chapel, are built with <b>roof trusses</b> and not with separate ceiling joists. The bottom chord of a truss is part of the structure holding the roof together. <b>It must not be cut</b> without an engineer's approval.</p>
+<ul>
+<li>If an opening fits between two trusses without cutting anything, the ladder can usually go there.</li>
+<li>If the only way is to cut a chord, stop. This is a job for a licensed contractor and an engineer, not a handyman.</li>
+<li>If your attic has old-style joists and one has to be removed, it needs temporary support, doubled headers and a proper structural fix first. This is not a casual cut.</li>
+</ul>
+<p>When I look at an attic ladder job, finding out what is above the ceiling is the first thing I do.</p>
+
+<h2 id="tools">Tools and help</h2>
+<ul>
+<li>Cordless drill and bits (the manual names the sizes), a socket or wrench for the hardware, a screwdriver and a rubber mallet.</li>
+<li>Tin snips, a hacksaw and cutters for the metal straps, the legs and the plastic ties.</li>
+<li>Tape measure, a level, a stepladder, shims and a few boards for temporary support.</li>
+<li>A flashlight and everything the person in the attic needs, because they cannot come down until the ladder is fastened.</li>
+</ul>
+<p><b>You need two people.</b> One works from below and one in the attic, and the ladder is awkward to lift into the opening.</p>
+
+<h2 id="steps">How the installation goes</h2>
+<p>These are the main stages. Follow your own model's manual for the exact order, hole sizes and hardware, since they differ.</p>
+<ol>
+<li><b>Prepare the ladder on the floor.</b> Fit the supplied bushings and the straps, and keep the lid closed and the sections tied until the right moment. The lid is under spring tension.</li>
+<li><b>Set up temporary supports.</b> Boards fixed into the joists hold the ladder frame while it is being fastened.</li>
+<li><b>Lift the ladder into the opening.</b> The helper above guides it, and the frame goes tight against the header on the hinge side and centered.</li>
+<li><b>Shim and check.</b> Shims fill the gaps on both sides. Measure the diagonals, make sure the frame is square and that the lid sits in the frame without catching.</li>
+<li><b>Fasten with the supplied hardware.</b> Use the lag screws that come with the ladder, drilled into the framing as the manual says. Do not swap in drywall or deck screws.</li>
+<li><b>Remove the temporary supports and test the lid</b> by opening and closing it a few times, with the pull cord installed.</li>
+<li><b>Cut the straps, unfold the ladder and trim the legs</b> to your ceiling height.</li>
+<li><b>Finish.</b> Trim the shims, add casing around the opening and tighten the hardware after the first few days of use.</li>
+</ol>
+
+<h2 id="legs">Trimming the legs</h2>
+<p>This is the step people worry about, and with good reason. The ladder is made longer than most ceilings need, and the legs are cut to fit. Your manual has a chart that matches your ceiling height to where to cut the side rails and whether the adjustable feet need trimming. Some tips:</p>
+<ul>
+<li>Measure the ceiling height at the opening, write it down, and read the chart twice before cutting.</li>
+<li>Cut one side rail, compare it with the other, then cut the second the same. Remove the burrs.</li>
+<li>Fit the adjustable feet so the whole rubber heel sits flat on the floor.</li>
+<li><b>Check the joints.</b> The sections must close tightly at each joint, and both feet must touch the floor. A gap at a joint, either too short or too long, makes the ladder unsafe. Fix it before anyone climbs.</li>
+</ul>
+
+<h2 id="safety">Safety rules</h2>
+<ul>
+<li>Do not open the lid or cut the strap on the sections until the manual says so. The spring tension is strong.</li>
+<li>Do not climb the ladder until every lag screw is in and the legs are trimmed.</li>
+<li>Use the supplied lag screws and not drywall or deck screws.</li>
+<li>Do not over-tighten the hardware. Aluminum frames bend, and then the lid will not close.</li>
+<li>Remove anything resting on the lid, and keep the floor below the ladder clear.</li>
+<li>Check the hardware again after the first few days, then now and then, and lubricate the hinges and arms with silicone spray.</li>
+<li>Keep within the load rating printed on the ladder.</li>
+</ul>
+
+<h2 id="mistakes">Common mistakes</h2>
+<ul>
+<li><b>Cutting a truss chord.</b> The most serious mistake in Florida attics.</li>
+<li><b>Not fastening into the framing.</b> Screws in drywall alone will not hold.</li>
+<li><b>Skipping the shims.</b> Gaps between the frame and the opening let the ladder twist.</li>
+<li><b>Out-of-square opening.</b> The lid binds and the ladder is stressed.</li>
+<li><b>Wrong leg cut.</b> Too short or too long leaves a gap at the joint.</li>
+<li><b>Forgetting the clear space.</b> A ladder that hits a door or a wall when unfolded is a bad location.</li>
+<li><b>Working alone.</b> The ladder is heavy and the person in the attic needs help.</li>
+</ul>
+
+<h2 id="hire">DIY or hire a pro</h2>
+<p>Installing a ladder into an existing, correctly framed opening is a reasonable job for two handy people who read the manual carefully. I would call someone when you want it done quickly and cleanly, when the ceiling is high, when the attic access is awkward, or when you are not sure what is above the ceiling. I install folding attic ladders and do the finishing work around them. I do not cut trusses or make structural changes, and if the job needs that, I will tell you honestly and point you to a licensed contractor.</p>
+<p><a class="btn-cta" href="/#home">Get a free estimate</a> <a class="btn-ghost-cta" href="sms:+16562311836">&#128172; Text a photo of the ceiling</a></p>
+
+<h2 id="areas">Where I work</h2>
+<p>I work in Wesley Chapel and around it, including: {areas}, Dade City and nearby neighborhoods.</p>
+
+<h2 id="faq">FAQ</h2>
+<div class="sp-faq">{faq}</div>
+'''))

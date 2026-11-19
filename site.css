@@ -942,7 +942,7 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 .blog-card p{font-size:.92rem;color:#4a5d73;line-height:1.5}
 .blog-tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-mid)}
 .blog-more{margin-top:auto;font-weight:700;color:var(--blue-mid);font-size:.9rem}
-.blog-card-text{border-left:4px solid var(--blue-mid)}
+.blog-card-text{border-left:4px solid var(--blue-mid);align-self:start}
 .promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:1.5rem}
 .promo-card{display:flex;flex-direction:column;gap:8px;padding:26px 24px;border-radius:20px;text-decoration:none;color:#fff;background:linear-gradient(135deg,#1e4f8a,#2563a8);box-shadow:0 10px 30px rgba(37,99,168,.25);transition:transform .2s}
 .promo-card:hover{transform:translateY(-3px)}
