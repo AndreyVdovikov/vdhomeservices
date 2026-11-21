@@ -17,7 +17,7 @@ PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
 GA_ID = 'G-H9H5NEZSS8'
 GA_SNIPPET = f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","{GA_ID}");</script>'
-VER = '20261120c'   # bump to bust browser cache of site.css/site.js
+VER = '20261121a'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
