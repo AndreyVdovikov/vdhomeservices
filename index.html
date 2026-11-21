@@ -21,7 +21,7 @@
 {"@context": "https://schema.org", "@type": "HomeAndConstructionBusiness", "@id": "https://andrewhandy.com/#business", "name": "Andrew Handyman Services", "url": "https://andrewhandy.com/", "telephone": "+1-656-231-1836", "description": "Handyman services in Wesley Chapel, FL and the northern Tampa Bay area: TV and shelf mounting, media and accent walls, painting, drywall repair, cabinets and kitchens, decks and fences, furniture assembly, flooring, Christmas light installation and more.", "image": "https://andrewhandy.com/images/img-02.jpg", "logo": "https://andrewhandy.com/apple-touch-icon.png", "address": {"@type": "PostalAddress", "addressLocality": "Wesley Chapel", "addressRegion": "FL", "postalCode": "33544", "addressCountry": "US"}, "areaServed": [{"@type": "City", "name": "Wesley Chapel"}, {"@type": "City", "name": "Land O' Lakes"}, {"@type": "City", "name": "Zephyrhills"}, {"@type": "City", "name": "Dade City"}, {"@type": "City", "name": "New Tampa"}, {"@type": "City", "name": "Lutz"}, {"@type": "City", "name": "Odessa"}, {"@type": "City", "name": "Tampa"}], "knowsAbout": ["Christmas Light Installation", "TV, Shelf & Curtain Rod Mounting", "Drywall Repair", "Wood Rot & Damage Repair", "Interior & Exterior Painting", "Cabinet Painting & Renovation", "New Kitchen Installation", "Hurricane Shutters", "Media & Accent Walls", "Deck Repair", "Picture, Mirror & Art Hanging", "Furniture Assembly", "Door Installation & Repair", "Flooring Installation", "Leather & Vinyl Repair", "Fence Repair"], "hasMap": "https://www.google.com/maps?cid=9147118600077160401", "sameAs": ["https://www.google.com/maps?cid=9147118600077160401", "https://share.google/M3UsYRjfswcYytOnC", "https://www.instagram.com/andrew_vd83/"]}
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css?v=20261118a">
+<link rel="stylesheet" href="/site.css?v=20261120a">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="text/javascript">
   (function(){
@@ -87,23 +87,12 @@
     <div class="form-card" id="formCard">
       <div class="form-head">
         <div class="form-head-title">Book a Free Estimate</div>
-        <div class="form-head-sub">I'll get back to you within a few hours ✌️</div>
+        <div class="form-head-sub">Leave your number and I'll call you back ✌️</div>
       </div>
       <div class="form-body" id="formBody">
-        <label class="f-label" for="fname">Your Name</label>
-        <input class="f-input" type="text" id="fname" placeholder="John Smith" autocomplete="name">
-        <label class="f-label" for="fphone">Phone Number</label>
-        <input class="f-input" type="tel" id="fphone" placeholder="(813) 000-0000" autocomplete="tel">
-        <label class="f-label" for="fissue">What needs fixing?</label>
-        <textarea class="f-input" id="fissue" placeholder="e.g. TV mounting, drywall patch, door repair…"></textarea>
-        <label class="f-label">Add a Photo <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-light)">(optional)</span></label>
-        <div class="upload-zone" id="dz" onclick="document.getElementById('photoInput').click()">
-          <input type="file" id="photoInput" multiple accept="image/*" onchange="handleFiles(this.files)">
-          <div class="upload-icon">📸</div>
-          <div class="upload-text"><strong>Tap to upload</strong> or drag & drop<span>JPG, PNG, HEIC — up to 5 photos</span></div>
-        </div>
-        <div class="photo-previews" id="previews"></div>
-        <button class="btn-send" onclick="submitForm()">🛠️ Send My Request</button>
+        <label class="f-label" for="fphone">Your phone number</label>
+         <input class="f-input" type="tel" id="fphone" placeholder="(813) 000-0000" autocomplete="tel" inputmode="tel">
+         <button class="btn-send" onclick="submitForm()">🛠️ Call Me Back</button>
       </div>
       <div class="form-success" id="formSuccess">
         <div class="success-ico">✓</div>
@@ -1148,101 +1137,24 @@ const io = new IntersectionObserver(entries => {
 }, {threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// Photo upload
-let files = [];
-function handleFiles(newFiles) {
-  const toAdd = Array.from(newFiles).filter(f => f.type.startsWith('image/')).slice(0, 5 - files.length);
-  files = [...files, ...toAdd];
-  renderPreviews();
-}
-function renderPreviews() {
-  const c = document.getElementById('previews');
-  c.innerHTML = '';
-  files.forEach((f, i) => {
-    const w = document.createElement('div'); w.className = 'thumb-wrap';
-    const img = document.createElement('img');
-    const r = new FileReader(); r.onload = e => img.src = e.target.result; r.readAsDataURL(f);
-    const btn = document.createElement('button'); btn.className = 'thumb-rm'; btn.innerHTML = '✕';
-    btn.onclick = ev => { ev.stopPropagation(); files.splice(i,1); renderPreviews(); };
-    w.appendChild(img); w.appendChild(btn); c.appendChild(w);
-  });
-}
-const dz = document.getElementById('dz');
-dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('over'); });
-dz.addEventListener('dragleave', () => dz.classList.remove('over'));
-dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); handleFiles(e.dataTransfer.files); });
-
-// Upload customer photos to an image host and return links (EmailJS free plan has no attachments)
-const IMGBB_KEY = '898415147d3d93549969294a89b294d5';
-function shrinkPhoto(file) {
-  return new Promise(resolve => {
-    const url = URL.createObjectURL(file), im = new Image();
-    im.onload = () => {
-      const s = Math.min(1, 1600 / Math.max(im.width, im.height));
-      const c = document.createElement('canvas');
-      c.width = Math.round(im.width * s); c.height = Math.round(im.height * s);
-      c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
-      URL.revokeObjectURL(url);
-      resolve(c.toDataURL('image/jpeg', 0.82).split(',')[1]);
-    };
-    im.onerror = () => { URL.revokeObjectURL(url); resolve(null); };
-    im.src = url;
-  });
-}
-async function uploadPhotos(list) {
-  if (!list || !list.length || IMGBB_KEY.indexOf('YOUR_') === 0) return [];
-  const out = await Promise.all(list.map(async f => {
-    try {
-      const b64 = await shrinkPhoto(f);
-      if (!b64) return null;
-      const fd = new FormData(); fd.append('image', b64);
-      const r = await fetch('https://api.imgbb.com/1/upload?expiration=15552000&key=' + IMGBB_KEY, { method: 'POST', body: fd });
-      const j = await r.json();
-      return j && j.success ? j.data.url : null;
-    } catch (e) { console.error('Photo upload failed', e); return null; }
-  }));
-  return out.filter(Boolean);
-}
-
 // Submit with EmailJS
 function submitForm() {
-  const name  = document.getElementById('fname').value.trim();
   const phone = document.getElementById('fphone').value.trim();
-  const issue = document.getElementById('fissue').value.trim();
-
-  // Validate
-  let valid = true;
-  ['fname','fphone'].forEach(id => {
-    const el = document.getElementById(id);
-    if (!el.value.trim()) {
-      el.style.borderColor = '#ef4444';
-      el.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.12)';
-      setTimeout(() => { el.style.borderColor=''; el.style.boxShadow=''; }, 2500);
-      valid = false;
-    }
-  });
-  if (!valid) return;
-
-  // Button loading state
+  const el = document.getElementById('fphone');
+  if (phone.replace(/\D/g,'').length < 10) {
+    el.style.borderColor = '#ef4444';
+    el.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.12)';
+    setTimeout(() => { el.style.borderColor=''; el.style.boxShadow=''; }, 2500);
+    return;
+  }
   const btn = document.querySelector('.btn-send');
   btn.innerHTML = '⏳ Sending...';
   btn.disabled = true;
-
-  const templateParams = {
-    from_name:    name,
-    phone:        phone,
-    message:      (issue || 'No description provided'),
-    to_email:     'vdovikov001@gmail.com',
-    reply_to:     phone,
-  };
-
-  uploadPhotos(files).then(links => {
-    if (links.length) {
-      templateParams.message += '\n\nPhotos:\n' + links.join('\n');
-    } else if (files.length) {
-      templateParams.message += '\n\n[Customer added photo(s), but they could not be uploaded. Please ask for them by phone/text.]';
-    }
-    return emailjs.send('service_984008h', 'template_5dybn6g', templateParams);
+  emailjs.send('service_984008h', 'template_5dybn6g', {
+    from_name: 'Callback request',
+    phone: phone,
+    message: 'Customer left only a phone number via the website form. Please call back.',
+    reply_to: phone
   })
     .then(() => {
       document.getElementById('formBody').style.display = 'none';
@@ -1250,7 +1162,7 @@ function submitForm() {
     })
     .catch((err) => {
       console.error('EmailJS error:', err);
-      btn.innerHTML = '🛠️ Send My Request';
+      btn.innerHTML = '📞 Call Me Back';
       btn.disabled = false;
       alert('Something went wrong. Please call us directly at (656) 231-1836');
     });
