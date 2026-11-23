@@ -198,6 +198,18 @@ S = [
        ("Can you fix a gate that does not close properly?","Yes. Sagging gates, loose hinges and broken latches are quick repairs that make a big difference."),
        ("Do you repair storm damage?","Yes. After a storm I repair broken boards, damaged panels and leaning posts so your yard is secure again.")],
   related=['deck-repair','wood-rot-repair','painting']),
+ dict(slug='appliance-repair', name='Appliance Repair & Replacement', short='Appliance Repair', h1='Appliance Repair & Replacement', icon='appliance.svg', photo=None,
+  desc="Appliance repair in Wesley Chapel, FL: dishwashers, garbage disposals, microwaves, ovens, refrigerators, washers and dryers repaired or replaced. Free estimate.",
+  lead="Dishwasher not draining, disposal humming, oven not heating or a fridge that stopped making ice? I repair and replace household appliances for homes in Wesley Chapel, Land O' Lakes, Zephyrhills and nearby. Call or text for a free estimate.",
+  bullets=["Dishwasher repair: not draining, not cleaning, leaking door, won't start","Dishwasher replacement: old unit out, new one in on the existing connections","Garbage disposal replacement and jams, leaks and humming units fixed","Over-the-range and built-in microwave repair and installation","Ovens, ranges and cooktops: burners, bake and broil elements, igniters, doors and knobs","Refrigerators: ice makers, door seals, fans, thermostats and drain problems","Washers and dryers: belts, pumps, door latches, hookups and dryer vents","Range hoods and vent fans installed or replaced","Honest advice when a repair is not worth it and replacement makes more sense"],
+  more_tag="Appliance repair", more=("Fix it or replace it, <em>honestly</em>",[("🔍","Find the problem first","I check what is actually wrong before I quote a part, so you do not pay for guesses."),("💲","Repair or replace?","If a 15-year-old dishwasher needs a pump and a control board, I tell you a new one may cost about the same and last longer."),("🔄","New appliance installed","Bought a new dishwasher, disposal, microwave or range? I take out the old one, install the new one and haul the old unit away on request."),("🏷️","Most major brands","Whirlpool, GE, Samsung, LG, Frigidaire, Maytag, KitchenAid, Bosch and other common household brands.")]),
+  faq=[("How much does appliance repair cost?","Estimates are free. The price depends on the appliance, the problem and the part needed. Text a photo or a short video of the problem and the model number to (656) 231-1836 and I will tell you what to expect."),
+       ("Can you replace my garbage disposal?","Yes. I remove the old disposal and install the new one on the existing sink drain and power connection, then test it for leaks. If there is no outlet or switch under the sink, a licensed electrician needs to add it first."),
+       ("Do you install new dishwashers?","Yes. I take out the old dishwasher and install the new one on the existing water, drain and power hookups, level it and check for leaks."),
+       ("Do you repair refrigerators that are not cooling?","Many cooling problems are caused by a failed fan, a thermostat, a defrost part or dirty coils, and those I can fix. Refrigerant (sealed system) work requires EPA certification, so if the problem is there I tell you honestly and point you to the right specialist."),
+       ("Do you work on gas appliances?","I can repair parts like igniters, burners and knobs. I do not run or modify gas lines; new gas connections are done by a licensed gas contractor."),
+       ("My appliance is still under warranty. Should I call you?","Call the manufacturer first, because outside repairs can affect the warranty. Once the warranty is over, I am happy to help.")],
+  related=['new-kitchen-installation','cabinet-painting-renovation','furniture-assembly']),
 ]
 # Search-snippet overrides (title / meta description) written for click-through
 TD = {
@@ -216,6 +228,7 @@ TD = {
  'christmas-light-installation-land-o-lakes': ("Christmas Light Installation Land O' Lakes FL | Install, Takedown & Storage", "Christmas light installation in Land O' Lakes, FL: C9 lights cut to fit, installed, taken down in January and stored. Free estimate: (656) 231-1836."),
  'tv-shelf-mounting': ("TV Mounting Wesley Chapel FL – Any Size, Over Fireplace, Hidden Wires", "TV mounting in Wesley Chapel, FL: 43 to 98 inch TVs, over fireplaces, lanai walls, hidden wires. Shelves and curtain rods too. Free estimate: (656) 231-1836."),
  'flooring-installation': ("Flooring Installation Wesley Chapel FL – Vinyl Plank & Laminate", "Flooring installation in Wesley Chapel, FL: vinyl plank and laminate floors with baseboards and transitions. Free estimate: (656) 231-1836."),
+ 'appliance-repair': ("Appliance Repair Wesley Chapel FL – Dishwasher, Disposal, Oven, Fridge", "Appliance repair in Wesley Chapel, FL: dishwashers, garbage disposals, microwaves, ovens, refrigerators, washers and dryers repaired or replaced. Free estimate: (656) 231-1836."),
  'leather-vinyl-repair': ("Leather & Vinyl Repair Wesley Chapel FL – Recliners, Sofas, Trim", "Leather and vinyl repair in Wesley Chapel, FL: cracks, tears and peeling on recliners, sofas and trim. Before and after photos. Free estimate."),
 }
 for _s in S:
@@ -227,7 +240,7 @@ def biz(area=None):
     """Full LocalBusiness entity used across the site (structured data for search engines and AI assistants)."""
     b = {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","@id":DOMAIN+"/#business",
          "name":"Andrew Handyman Services","url":DOMAIN+"/","telephone":"+1-656-231-1836",
-         "description":"Handyman services in Wesley Chapel, FL and the northern Tampa Bay area: TV and shelf mounting, media and accent walls, painting, drywall repair, cabinets and kitchens, decks and fences, furniture assembly, flooring, Christmas light installation and more.",
+         "description":"Handyman services in Wesley Chapel, FL and the northern Tampa Bay area: TV and shelf mounting, media and accent walls, painting, drywall repair, cabinets and kitchens, decks and fences, furniture assembly, flooring, appliance repair, Christmas light installation and more.",
          "image":DOMAIN+"/images/img-02.jpg","logo":DOMAIN+"/apple-touch-icon.png",
          "address":{"@type":"PostalAddress","addressLocality":"Wesley Chapel","addressRegion":"FL","postalCode":"33544","addressCountry":"US"},
          "areaServed":([{"@type":"City","name":area}] if area else [{"@type":"City","name":a} for a in AREAS]),

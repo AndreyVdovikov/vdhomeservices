@@ -34,6 +34,7 @@ SERVICE_GUIDES = {
  'furniture-assembly': [G_HIRE, G_ATTIC],
  'picture-hanging': [G_TV, G_HIRE],
  'door-installation': [G_HIRE, G_CAB],
+ 'appliance-repair': [G_CAB, G_HIRE],
 }
 
 # post -> guides
