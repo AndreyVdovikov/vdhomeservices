@@ -1,0 +1,22 @@
+name: IndexNow
+on:
+  push:
+    branches: [main]
+    paths: ['**.html', 'sitemap.xml']
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for Render deploy
+        run: sleep 150
+      - name: Submit all sitemap URLs to IndexNow
+        run: |
+          python3 - <<'PY'
+          import re, json, urllib.request
+          urls = re.findall(r'<loc>(.*?)</loc>', open('sitemap.xml', encoding='utf-8').read())
+          body = json.dumps({"host": "andrewhandy.com", "key": "b6b0155e47deac67c4bac54657656209", "keyLocation": "https://andrewhandy.com/b6b0155e47deac67c4bac54657656209.txt", "urlList": urls}).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8"})
+          print(urllib.request.urlopen(req).status, len(urls), "urls")
+          PY
