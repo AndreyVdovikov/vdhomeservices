@@ -410,5 +410,67 @@ ARTICLES.append(dict(
 <div class="sp-faq">{faq}</div>
 '''))
 
+ARTICLES.append(dict(
+ slug='rotted-window-sill-siding-trim-repair-tampa-bay',
+ title="Rotted Window Sill, Siding and Trim: Repair or Replace? (Tampa Bay Guide)",
+ h1="Rotted window sill, siding and trim: <em>repair or replace</em>",
+ desc="How to tell soft, rotted wood from termite damage, what can be repaired with epoxy or a patch, what has to be replaced, and what stops it from coming back. A Wesley Chapel handyman guide for Tampa Bay homes.",
+ lead="Soft window sills, bubbling siding and crumbling trim: how to check how far the rot goes, what a handyman can repair, and when a licensed contractor or pest company has to be called.",
+ date='2026-11-23',
+ hero='porch-platform-new-railing-posts-balusters-wesley-chapel.jpg',
+ hero_alt='Porch platform with new railing posts and balusters replacing rotted wood in Wesley Chapel',
+ service='wood-rot-repair',
+ toc=[('why','Why wood rots so fast here'),('test','How to check it'),('termites','Rot or termites'),('sill','Window sills'),('siding','Siding and trim'),('repair','Repair or replace'),('stop','What stops it coming back'),('limits','What I do and what I do not'),('faq','FAQ')],
+ faq=[
+  ("How do I know if a window sill is rotted?","Press a screwdriver or a key into the sill, especially at the corners and under the window. Sound wood pushes back. Rotted wood is soft, crumbles or sinks in, and the paint above it often bubbles or peels."),
+  ("Can a rotted window sill be repaired without replacing it?","If the rot is shallow and the wood around it is still solid, the soft part can be cut out and rebuilt with wood hardener and exterior filler, then sealed and painted. If the rot runs through the sill or into the window frame, the piece needs to be replaced."),
+  ("What is the difference between wood rot and termite damage?","Rot comes from moisture and the wood feels soft and spongy, often with dark staining. Termites leave tunnels, mud tubes or fine sawdust, and the wood can sound hollow. Termites need a licensed pest control company, and I will tell you if I see signs."),
+  ("Can you repair rotted siding?","I replace damaged boards and sections of siding and trim and repair small areas, then seal and paint them. If water has reached the framing or the wall behind the siding, that has to be dealt with first, and large siding jobs may need a licensed contractor."),
+  ("Why does wood keep rotting in the same spot?","Almost always because water keeps getting there: a missing caulk line, a sprinkler hitting the wall, a gutter that overflows, or bare end grain. Fix the water source or the repair will fail too."),
+  ("Is it worth repairing, or should I replace everything?","If the damage is limited to a sill, a few boards or a section of trim, repair or partial replacement costs far less than replacing everything. If the rot is widespread or has reached the structure, replacement is the honest answer."),
+  ("Do you work in Tampa, Lutz and Land O' Lakes?","Yes. I am based in Wesley Chapel and cover the northern Tampa Bay area, including Tampa, New Tampa, Carrollwood, Lutz, Odessa, Land O' Lakes and Zephyrhills. Send photos for a free estimate."),
+ ],
+ body='''
+<p class="post-lead">Soft wood around a window is one of the most common things I am called for in Tampa Bay homes. A sill that crumbles under a thumb, siding that bubbles at the bottom, trim that has gone dark and spongy: all of it is usually water, and all of it gets worse the longer it waits. This guide shows how to check how far the damage goes, what can be repaired, what has to be replaced, and how to make sure the new wood does not rot the same way.</p>
+
+<div class="post-toc" role="navigation" aria-label="In this guide"><b>In this guide</b>{toc}</div>
+
+<h2 id="why">Why wood rots so fast here</h2>
+<p>Wood rots when it stays wet, and Florida keeps it wet. Summer rain arrives almost every afternoon, humidity stays high for months, and the sun that dries a surface also cracks the paint and opens the gaps where water gets in. Window sills, the bottom of siding, door and window trim and fascia boards are the first to go, because water sits on them or runs down behind them. A small failure, such as a dried-out caulk line or a bare cut end, lets moisture into the wood, and from there the damage spreads quietly under the paint.</p>
+
+[[fig old-weathered-wood-fence-before-replacement-wesley-chapel.jpg | Old weathered wood fence boards before replacement in Wesley Chapel | Weathered wood that has been wet and dry for years, before it was replaced. Florida sun and rain do this to every exposed board.]]
+
+<h2 id="test">How to check it</h2>
+<p>You do not need tools to find out how far it goes. Take a flat screwdriver and press the tip into the wood in several places, at the corners of the window, under the sill, at the bottom of the siding and at the ends of the trim boards. Good wood pushes back and leaves a small dent. Rotted wood gives way, crumbles or lets the screwdriver sink in, and you can often feel the soft area spreading further than the paint shows. Look for paint that bubbles, peels or cracks, dark stains, caulk that has pulled away, and gaps where the wall meets the window. Then check from the inside: stains or soft drywall under the window mean the water has already gone past the outside surface.</p>
+
+<h2 id="termites">Rot or termites</h2>
+<p>The two look alike from a distance, and the repair is different. Rot is a moisture problem: the wood is soft and spongy, and it is usually dark or stained. Termite damage often leaves thin tunnels or mud tubes, small piles of fine sawdust or tiny wings near a window, and the wood can sound hollow when you tap it. Rot repair is my job. Termite treatment is not, and it needs a licensed pest control company. If I see signs of termites while I am working, I stop, tell you and show you what I found, because new wood on top of an active infestation is wasted money.</p>
+
+<h2 id="sill">Window sills</h2>
+<p>The sill is the shelf at the bottom of a window, and it takes more water than any other part of the opening. When the rot is shallow, I cut out the soft wood, treat what is left with a wood hardener, rebuild the shape with exterior-grade filler, sand it, prime it and paint it, and finish by sealing every joint so water cannot get back in. When the rot goes all the way through, or has reached the window frame, filler is only a patch. In that case the sill is replaced with new wood cut to fit, set so that it slopes slightly away from the window, and sealed on all sides. I look at the lower corners of the frame at the same time, since that is where the damage usually continues.</p>
+
+[[fig deck-repair-wesley-chapel.jpg | Before and after of a rotted porch railing replaced in Wesley Chapel | Before and after: rotted boards and posts replaced with new wood instead of being painted over.]]
+
+<h2 id="siding">Siding and trim</h2>
+<p>Siding and trim fail from the bottom up, because that is where splashing rain and sprinkler water land. A single damaged board can be cut out and replaced with a new one that is primed on every side, including the cut ends, which is where moisture enters first. Fascia, door casings and corner boards are handled the same way. Vinyl siding and trim do not rot, but they crack and come loose, and the wall behind them can still get wet, so a damaged piece is worth fixing before water gets behind it. If I open a wall and find that the sheathing or framing behind the siding is soft, the job changes, and I tell you before going further.</p>
+
+<h2 id="repair">Repair or replace</h2>
+<p>The honest rule is simple. Repair when the damage is shallow and the wood around it is solid, and replace when the rot runs through the piece, spreads along the board, or keeps coming back in the same place. Epoxy and filler are good for a small area, but they are not a cure for a board that is soft all the way along. Replacing a single sill or a few boards costs far less than a full replacement, so a partial replacement is often the sensible middle. The one thing I do not do is paint over soft wood. It hides the problem for a season and lets the rot continue underneath.</p>
+
+<h2 id="stop">What stops it coming back</h2>
+<p>New wood rots just like the old wood when the cause is still there, so the cause matters more than the repair. I check where the water is coming from: caulk that has dried and split, a gutter that overflows onto the wall, a sprinkler head that sprays the siding, soil or mulch piled against the wood, or cut ends that were never sealed. Then I fix those, prime every surface of the new wood including the back and the ends, caulk the joints with an exterior sealant, and paint with an exterior paint. Inspecting caulk lines once a year and repainting on schedule is cheap compared with replacing a sill.</p>
+
+[[fig front-porch-steps-teal-painted-wood-railings-wesley-chapel.jpg | Front porch steps with teal painted wood railings in Wesley Chapel | Painted and sealed wood lasts far longer in Florida weather than bare or neglected wood.]]
+
+<h2 id="limits">What I do and what I do not</h2>
+<p>I am a handyman, not a licensed general contractor. I repair and replace rotted trim, sills, fascia, door and window casings, porch posts and railings, and damaged sections of siding, and I paint them so the repair is protected. Structural work, such as rotted framing, a damaged wall behind the siding, or a large siding replacement, belongs to a licensed contractor, and termite treatment belongs to a licensed pest control company. I will tell you honestly which of these your house needs, and I will not take a job I should not do.</p>
+
+<p>If you are not sure how bad it is, send me photos. Take one close-up of the soft spot, one from a few feet back that shows the whole window or wall, and one from the inside if there are stains. I will tell you what I see and give you a free estimate. I work in Wesley Chapel and the northern Tampa Bay area, including Tampa, New Tampa, Carrollwood, Lutz, Odessa, Land O' Lakes and Zephyrhills.</p>
+<p><a class="btn-cta" href="/#home">Get a free estimate</a> <a class="btn-ghost-cta" href="sms:+16562311836">&#128172; Text photos of the damage</a></p>
+
+<h2 id="faq">FAQ</h2>
+<div class="sp-faq">{faq}</div>
+'''))
+
 for _a in ARTICLES:
     _a['body'] = expand(_a['body'])

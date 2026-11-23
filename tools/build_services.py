@@ -4,7 +4,7 @@ Run from the repo root:  python3 tools/build_services.py
 """
 import os, sys, json, html
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from locations_data import LOCS
+from locations_data import LOCS, EXTRA as LOC_EXTRA
 import blog_data as BL
 import guides_data as GD
 import articles_data as AD
@@ -665,13 +665,20 @@ def about_page():
     return head(title, desc, url, extra) + body
 
 
+def loc_photos(ex, city):
+    ph = ex.get('photos')
+    if not ph: return ''
+    fig = ''.join(f'<figure style="margin:0"><img src="/images/{f}" alt="{esc(a)}" width="600" height="400" loading="lazy" style="width:100%;height:auto;border-radius:14px;display:block"><figcaption style="font-size:.82rem;color:var(--text-light);margin-top:6px">{esc(c)}</figcaption></figure>' for f,a,c in ph)
+    return f'<section class="sp-sec"><div class="section-wrap"><div class="reveal"><div class="section-tag">Real work</div><h2 class="section-title">Recent work <em>near {esc(city)}</em></h2></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">{fig}</div></div></section>'
+
 def loc_page(l):
     url = f'{DOMAIN}/locations/{l["slug"]}/'
     city = l['city']
     title = f'Handyman in {city}, FL | Andrew Handyman Services'
     desc = f'{l["intro"]} Free estimate: call or text (656) 231-1836.'
     if len(desc) > 300: desc = desc[:297].rsplit(' ',1)[0] + '...'
-    faq = l['faq'] + [(f'How do I get a free estimate in {city}?', 'Fill in the request form on my website, or call or text (656) 231-1836. Photos help me give you a more accurate estimate. I usually get back to you within a few hours.')]
+    ex = LOC_EXTRA.get(l['slug'], {})
+    faq = l['faq'] + ex.get('faq2', []) + [(f'How do I get a free estimate in {city}?', 'Fill in the request form on my website, or call or text (656) 231-1836. Photos help me give you a more accurate estimate. I usually get back to you within a few hours.')]
     ld = biz(city)
     fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in faq]}
     bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -705,6 +712,7 @@ def loc_page(l):
       <div class="section-tag">{esc(l["group"])}</div>
       <h2 class="section-title">Your local handyman in <em>{esc(city)}</em></h2>
       <p class="sp-p">{esc(l["local"])}</p>
+      {''.join(f'<p class="sp-p">{esc(t)}</p>' for t in ex.get('more', []))}
       <p class="sp-p">Every job starts with a free, clear estimate and is backed by my personal guarantee. If you are not completely satisfied with the work, I will make it right.</p>
     </div>
     <div class="reveal"><div class="sp-side-card"><img src="/images/img-01.png" alt="" width="96" height="96"><h3>Free estimate</h3><p>Tell me what you need and I will get back to you within a few hours.</p><a class="btn-cta" href="/#home">Request an estimate</a><a class="sp-call" href="tel:{PHONE_TEL}">or call {PHONE_DISPLAY}</a></div></div>
@@ -720,7 +728,8 @@ def loc_page(l):
     <div class="sp-related">{cards}</div>
   </div>
 </section>
-
+{loc_photos(ex, city)}
+{guides_block(ex.get('guides', ['rotted-window-sill-siding-trim-repair-tampa-bay','how-to-find-a-handyman-wesley-chapel','deck-repair-or-replace-florida']), 'Helpful <em>guides</em>', 'Before you call')}
 <section class="sp-sec">
   <div class="section-wrap sp-two">
     <div class="reveal">
