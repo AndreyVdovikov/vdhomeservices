@@ -62,6 +62,7 @@ ARTICLES.append(dict(
 
 <h2 id="factors">What changes the price</h2>
 <p>The biggest factor is simply the size of the wall. More width and height means more material and more hours, and it moves the price more than any other choice. Right behind size comes the complexity of the design. A straight run of panels is much simpler than shelves at different depths, niches or corners, and floating shelves are lighter work than lower cabinets with doors and drawers.</p>
+[[fig white-shiplap-media-wall-wood-mantel-soundbar-electric-wesley-chapel.jpg | White shiplap media wall with a wood mantel, soundbar and electric fireplace in Wesley Chapel | The same TV wall can be built plain or with a mantel, soundbar and fireplace, and each addition changes the price.]]
 <p>The finish matters too, since painted boards, plywood, solid wood and stained wood are all priced differently. A fireplace feature adds framing, finishing and sometimes electrical work, and lighting adds materials and detail work. The condition of the wall also counts: a flat drywall wall is easy, while a block wall, an uneven surface or something that needs repairs first takes more time. If an old unit, mantel or TV mount has to come off before we start, that is extra work as well.</p>
 <p>That is why I ask for the wall's width and height and a couple of photos. Those two numbers plus a picture explain most of the price.</p>
 
@@ -136,6 +137,7 @@ ARTICLES.append(dict(
 
 <h2 id="fireplace">Over a fireplace</h2>
 <p>A TV over the fireplace is a popular look, but it is not always a good idea. The first question is heat. A wood-burning or gas fireplace can damage a TV, so always follow the manufacturer's clearances. An electric fireplace gives off much less heat, but check both manuals anyway. The second question is height, because a TV over a mantel often ends up too high for comfortable viewing. A tilting mount helps, and so does a custom <a href="/services/media-accent-walls/">media wall</a> that sets the TV lower and puts the fireplace beneath it.</p>
+[[fig white-shiplap-tv-wall-mounted-tv-mantel-linear-wesley-chapel.jpg | Wall-mounted TV above a wood mantel and linear electric fireplace on a white shiplap wall | A TV over an electric fireplace, mounted above a mantel.]]
 
 <h2 id="cables">Hiding the cables</h2>
 <p>Dangling cables spoil a clean mount. The quickest tidy fix is a paintable cord cover, a slim channel that sticks to the wall and runs down to the console, painted to match. Where the wall has an open path, low-voltage cables such as HDMI can run inside the wall, as long as they are rated for in-wall use. Power is a different matter: cords must not be extended inside the wall, and an outlet behind the TV is a job for a licensed electrician. I do not do electrical wiring, but I plan the mounting around it. Not every wall allows a hidden run, for example when there is block behind the surface, and in that case the cord cover is the clean solution.</p>
@@ -265,6 +267,7 @@ ARTICLES.append(dict(
 
 <h2 id="replace">When to replace</h2>
 <p>Replacement is the right call when the posts, beams or joists are soft or rotted and it is not just a single board, when the deck sags, slopes or bounces noticeably, or when the connection to the house is damaged. It is also the better choice when the rot or termite damage is so widespread that you would be replacing most of the deck anyway, or when the deck is old and the repairs cost more each year.</p>
+[[fig deck-repair-wesley-chapel.jpg | Before and after of a porch deck railing replaced in Wesley Chapel | Before and after: a worn-out porch railing replaced with new posts and balusters.]]
 <p>I am a handyman, not a licensed general contractor. Structural rebuilds, new decks and anything that needs a permit or an engineer's opinion should go to a licensed contractor. I will tell you honestly when that is the case, and what I can do in the meantime to keep the deck safe. Until then, keep people off a deck with soft posts, a sagging frame or a damaged connection to the house, do not lean on a loose railing, and fix wobbly stairs quickly, because falls happen there.</p>
 
 <h2 id="materials">Materials</h2>
@@ -278,6 +281,7 @@ ARTICLES.append(dict(
 
 <h2 id="maintain">How to make it last</h2>
 <p>Clean the deck once or twice a year and clear the leaves and debris out of the gaps. Re-seal or re-stain on schedule, which in Florida sun is more often than the can says. Keep plants, soil and mulch away from the wood, check the posts and stairs after storms, and fix loose hardware early. If you want me to look at yours, send photos of the deck, the damage and the stairs, and I will give you a clear price before any work starts. I repair decks, porches and railings in Wesley Chapel and around it, including {areas}, Dade City and nearby neighborhoods.</p>
+[[fig front-porch-steps-teal-painted-wood-railings-wesley-chapel.jpg | Front porch steps with teal painted wood railings in Wesley Chapel | Painted railings and steps hold up longer when they are re-sealed on schedule.]]
 <p><a class="btn-cta" href="/#home">Get a free estimate</a> <a class="btn-ghost-cta" href="sms:+16562311836">&#128172; Text photos of the deck</a></p>
 
 <h2 id="faq">FAQ</h2>
