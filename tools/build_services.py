@@ -199,6 +199,27 @@ S = [
        ("Do you repair storm damage?","Yes. After a storm I repair broken boards, damaged panels and leaning posts so your yard is secure again.")],
   related=['deck-repair','wood-rot-repair','painting']),
 ]
+# Search-snippet overrides (title / meta description) written for click-through
+TD = {
+ 'drywall-repair': ("Drywall Repair Wesley Chapel FL – Holes, Cracks, Water Damage", "Drywall repair in Wesley Chapel, FL: holes, cracks, water damage and texture matching, smooth and paint-ready. Free estimate: (656) 231-1836."),
+ 'wood-rot-repair': ("Wood Rot Repair Wesley Chapel FL – Sills, Siding, Trim, Posts", "Rotted wood repair in Wesley Chapel and Tampa Bay: window sills, siding, trim, posts and steps repaired, sealed and painted. Free estimate: (656) 231-1836."),
+ 'painting': ("Interior & Exterior Painting Wesley Chapel FL | Free Estimate", "Interior and exterior painting in Wesley Chapel, FL: walls, ceilings, trim and doors with careful prep. Free estimate from a local handyman: (656) 231-1836."),
+ 'cabinet-painting-renovation': ("Cabinet Painting Wesley Chapel FL – Refresh Your Kitchen", "Cabinet painting and renovation in Wesley Chapel, FL: a new kitchen look without replacing everything. Real before and after photos. Call (656) 231-1836."),
+ 'new-kitchen-installation': ("Kitchen Cabinet & Countertop Installation Wesley Chapel FL", "New kitchen installation in Wesley Chapel, FL: cabinets, countertops, backsplash and finishing. Clear estimate before work starts: (656) 231-1836."),
+ 'hurricane-shutters': ("Hurricane Shutter Installation Wesley Chapel FL | Free Estimate", "Hurricane shutter installation in Wesley Chapel, FL: roll-down, accordion and motorized shutters. Get ready before storm season: (656) 231-1836."),
+ 'deck-repair': ("Deck Repair Wesley Chapel FL – Boards, Railings, Stairs", "Deck and porch repair in Wesley Chapel, FL: new boards, loose railings, stairs and posts, plus staining and sealing. Free estimate: (656) 231-1836."),
+ 'fence-repair': ("Fence Repair Wesley Chapel FL – Pickets, Posts, Gates", "Fence repair in Wesley Chapel, FL: broken pickets, leaning posts and damaged gates fixed fast. Send photos for a free estimate: (656) 231-1836."),
+ 'picture-hanging': ("Picture & Mirror Hanging Service Wesley Chapel FL", "Picture, mirror and art hanging in Wesley Chapel, FL: gallery walls leveled, heavy mirrors anchored. Free estimate: call or text (656) 231-1836."),
+ 'furniture-assembly': ("Furniture Assembly Service Wesley Chapel FL – IKEA & More", "Furniture assembly in Wesley Chapel, FL: IKEA, Wayfair, Amazon and Costco beds, dressers and desks built right and anchored. Free estimate: (656) 231-1836."),
+ 'door-installation': ("Door Installation & Repair Wesley Chapel FL | Local Handyman", "Door installation and repair in Wesley Chapel, FL: French, patio, interior and entry doors hung and adjusted. Free estimate: call or text (656) 231-1836."),
+ 'christmas-light-installation': ("Christmas Light Installation Wesley Chapel FL – Install, Takedown & Storage", "Christmas light installation in Wesley Chapel, FL: C9 roofline lights cut to fit, installed, taken down in January and stored. The lights are yours. Free estimate."),
+ 'christmas-light-installation-land-o-lakes': ("Christmas Light Installation Land O' Lakes FL | Install, Takedown & Storage", "Christmas light installation in Land O' Lakes, FL: C9 lights cut to fit, installed, taken down in January and stored. Free estimate: (656) 231-1836."),
+ 'tv-shelf-mounting': ("TV Mounting Wesley Chapel FL – Any Size, Over Fireplace, Hidden Wires", "TV mounting in Wesley Chapel, FL: 43 to 98 inch TVs, over fireplaces, lanai walls, hidden wires. Shelves and curtain rods too. Free estimate: (656) 231-1836."),
+ 'flooring-installation': ("Flooring Installation Wesley Chapel FL – Vinyl Plank & Laminate", "Flooring installation in Wesley Chapel, FL: vinyl plank and laminate floors with baseboards and transitions. Free estimate: (656) 231-1836."),
+ 'leather-vinyl-repair': ("Leather & Vinyl Repair Wesley Chapel FL – Recliners, Sofas, Trim", "Leather and vinyl repair in Wesley Chapel, FL: cracks, tears and peeling on recliners, sofas and trim. Before and after photos. Free estimate."),
+}
+for _s in S:
+    if _s['slug'] in TD: _s['title'], _s['desc'] = TD[_s['slug']]
 BY = {s['slug']: s for s in S}
 
 GBP_URL = 'https://www.google.com/maps?cid=9147118600077160401'
@@ -674,9 +695,11 @@ def loc_photos(ex, city):
 def loc_page(l):
     url = f'{DOMAIN}/locations/{l["slug"]}/'
     city = l['city']
-    title = f'Handyman in {city}, FL | Andrew Handyman Services'
-    desc = f'{l["intro"]} Free estimate: call or text (656) 231-1836.'
-    if len(desc) > 300: desc = desc[:297].rsplit(' ',1)[0] + '...'
+    title = f'Handyman in {city}, FL – Free Estimate | Andrew Handyman'
+    if len(title) > 62: title = f'Handyman in {city.split(",")[0]}, FL – Free Estimate'
+    _intro = l["intro"].split('. ')[0].rstrip('.') + '.'
+    desc = f'{_intro} Free estimate: (656) 231-1836.'
+    if len(desc) > 158: desc = f'Handyman in {city}, FL: repairs, painting, mounting, fences and decks from a local handyman in Wesley Chapel. Free estimate: (656) 231-1836.'
     ex = LOC_EXTRA.get(l['slug'], {})
     faq = l['faq'] + ex.get('faq2', []) + [(f'How do I get a free estimate in {city}?', 'Fill in the request form on my website, or call or text (656) 231-1836. Photos help me give you a more accurate estimate. I usually get back to you within a few hours.')]
     ld = biz(city)
