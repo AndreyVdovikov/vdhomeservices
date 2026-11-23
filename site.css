@@ -1064,3 +1064,6 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 .nm-sub a { font-weight:500 !important; font-size:.95rem !important; }
 .nav-links .nav-dd-toggle { color:var(--text-mid); font-size:.875rem; font-weight:500; padding:8px 10px; border-radius:8px; transition:all .2s; }
 .nav-links .nav-dd-toggle:hover, .nav-dd.open .nav-dd-toggle { background:var(--blue-pale); color:var(--blue-mid); }
+.nav-links a, .nav-links .nav-dd-toggle { white-space:nowrap; }
+@media (max-width:1240px) { .nav-links > li:first-child { display:none; } .nav-links .nav-call { padding:8px 12px; font-size:.82rem; } .nav-logo-text span { display:none; } }
+@media (max-width:1040px) and (min-width:901px) { .nav-logo-text { display:none; } .nav-links a, .nav-links .nav-dd-toggle { padding:8px 8px; } }
