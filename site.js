@@ -11,6 +11,18 @@
     m.addEventListener('click',function(e){ if(e.target.closest('a')) close(); });
     window.addEventListener('resize',function(){ if(window.innerWidth>900) close(); });
   }
+  var dds=document.querySelectorAll('.nav-dd');
+  dds.forEach(function(d){
+    var t=d.querySelector('.nav-dd-toggle');
+    t.addEventListener('click',function(e){
+      e.stopPropagation();
+      var o=!d.classList.contains('open');
+      dds.forEach(function(x){ x.classList.remove('open'); x.querySelector('.nav-dd-toggle').setAttribute('aria-expanded','false'); });
+      if(o){ d.classList.add('open'); t.setAttribute('aria-expanded','true'); }
+    });
+  });
+  document.addEventListener('click',function(e){ if(!e.target.closest('.nav-dd')) dds.forEach(function(x){ x.classList.remove('open'); x.querySelector('.nav-dd-toggle').setAttribute('aria-expanded','false'); }); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') dds.forEach(function(x){ x.classList.remove('open'); }); });
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); },{threshold:0.1});
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });

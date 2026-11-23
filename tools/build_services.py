@@ -238,11 +238,11 @@ def nav_html():
     <li><a href="/">Home</a></li>
     <li><a href="/about/">About</a></li>
     <li class="nav-dd">
-      <a href="/#services" class="nav-dd-toggle" aria-haspopup="true">Services <span class="nav-caret">&#9662;</span></a>
+      <button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="nav-caret">&#9662;</span></button>
       <div class="nav-dd-menu">{items}</div>
     </li>
     <li class="nav-dd">
-      <a href="/#contact" class="nav-dd-toggle" aria-haspopup="true">Locations <span class="nav-caret">&#9662;</span></a>
+      <button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Locations <span class="nav-caret">&#9662;</span></button>
       <div class="nav-dd-menu nav-dd-loc">{locitems}</div>
     </li>
     <li><a href="/subscription/" class="nav-hl">Subscription</a></li>
@@ -256,10 +256,10 @@ def nav_html():
 </nav>
 <div class="nav-mobile" id="navMobile">
   <div class="nm-list"><a href="/">Home</a><a href="/about/">About</a></div>
-  <div class="nm-h">Services</div>
-  <div class="nm-list">{mob}</div>
-  <div class="nm-h">Locations</div>
-  <div class="nm-list">{mobloc}</div>
+  <div class="nm-list">
+    <details class="nm-acc"><summary>Services</summary><div class="nm-sub">{mob}</div></details>
+    <details class="nm-acc"><summary>Locations</summary><div class="nm-sub">{mobloc}</div></details>
+  </div>
   <div class="nm-h">More</div>
   <div class="nm-list"><a href="/subscription/">Handyman Subscription</a><a href="/realtors-property-managers/">For Realtors &amp; Property Managers</a><a href="/gift/">🎁 Gift Certificates</a><a href="/blog/">Blog</a><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
   <a href="tel:{PHONE_TEL}" class="nm-call">📞 Call {PHONE_DISPLAY}</a>
