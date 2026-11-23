@@ -9,6 +9,7 @@ import blog_data as BL
 import guides_data as GD
 import articles_data as AD
 import links_data as LK
+import realtors_data as RD
 import projects_data as PD
 import media_data as MD
 
@@ -17,7 +18,7 @@ PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
 GA_ID = 'G-H9H5NEZSS8'
 GA_SNIPPET = f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","{GA_ID}");</script>'
-VER = '20261121a'   # bump to bust browser cache of site.css/site.js
+VER = '20261122a'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -260,7 +261,7 @@ def nav_html():
   <div class="nm-h">Locations</div>
   <div class="nm-list">{mobloc}</div>
   <div class="nm-h">More</div>
-  <div class="nm-list"><a href="/subscription/">Handyman Subscription</a><a href="/gift/">🎁 Gift Certificates</a><a href="/blog/">Blog</a><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
+  <div class="nm-list"><a href="/subscription/">Handyman Subscription</a><a href="/realtors-property-managers/">For Realtors &amp; Property Managers</a><a href="/gift/">🎁 Gift Certificates</a><a href="/blog/">Blog</a><a href="/#reviews">Reviews</a><a href="/faq/">FAQ</a><a href="/#contact">Service Area &amp; Contact</a></div>
   <a href="tel:{PHONE_TEL}" class="nm-call">📞 Call {PHONE_DISPLAY}</a>
 </div>
 '''
@@ -291,6 +292,7 @@ def footer_html():
         <div class="f-contact-row">🔎 <a href="/blog/" style="color:inherit;text-decoration:none">Blog &amp; guides</a></div>
         <div class="f-contact-row">🎁 <a href="/gift/" style="color:inherit;text-decoration:none">Gift certificates</a></div>
         <div class="f-contact-row">🔁 <a href="/subscription/" style="color:inherit;text-decoration:none">Handyman subscription</a></div>
+        <div class="f-contact-row">🏡 <a href="/realtors-property-managers/" style="color:inherit;text-decoration:none">For realtors &amp; property managers</a></div>
         <div class="f-contact-row">📝 <a href="/posts/" style="color:inherit;text-decoration:none">Recent projects</a></div>
       </div>
     </div>
@@ -451,6 +453,7 @@ def page(s):
 </section>
 
 {guides_block(LK.SERVICE_GUIDES.get(s['slug'], []))}
+<section class="rl-banner"><div class="section-wrap"><b>Realtor, property manager or senior move agency?</b> <a href="/realtors-property-managers/">See move-in, move-out and turnover repairs →</a></div></section>
 <section class="sp-sec{a_rel}">
   <div class="section-wrap">
     <div class="reveal">
@@ -1045,6 +1048,75 @@ SUB_FAQ = [
  ("Can I still book a single job?","Of course. One-time jobs work exactly as before: send a request or text a photo and you get a free estimate."),
 ]
 
+def realtors_page():
+    url = f'{DOMAIN}/{RD.SLUG}/'
+    faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in RD.FAQ)
+    fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in RD.FAQ]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":"For realtors & property managers","item":url}]}
+    svc = {"@context":"https://schema.org","@type":"Service","name":"Handyman services for realtors, property managers and senior moves",
+           "serviceType":"Move-in, move-out and turnover repairs","description":RD.DESC,"url":url,
+           "provider":{"@id":DOMAIN+"/#business"},"areaServed":[{"@type":"City","name":a} for a in AREAS],
+           "audience":{"@type":"BusinessAudience","audienceType":"Real estate agents, property managers, landlords, senior move managers"}}
+    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (svc, fq, bc))
+    paras = lambda L: ''.join(f'<p class="rl-p">{esc(x)}</p>' for x in L)
+    who = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{i}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for i,t,p in RD.WHO)
+    jobs = ''.join(f'<div class="sp-why-card reveal"><b>{esc(t)}</b><p>{esc(p)}</p></div>' for t,p in RD.JOBS)
+    why = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{i}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for i,t,p in RD.WHY)
+    steps = ''.join(f'<div class="sp-why-card reveal"><div class="wc-icon">{n}</div><b>{esc(t)}</b><p>{esc(p)}</p></div>' for n,t,p in RD.STEPS)
+    gal = '<div class="post-gallery three">' + ''.join(f'<figure class="post-fig"><img src="/images/{f}" alt="{esc(a)}" loading="lazy"></figure>' for f,a in RD.GALLERY) + '</div>'
+    areas = ', '.join(f'<a href="/locations/{l["slug"]}/">{esc(l["name"])}</a>' for l in LOCS)
+    svc_links = [('tv-shelf-mounting','TV & shelf mounting'),('picture-hanging','Picture hanging'),('furniture-assembly','Furniture assembly'),('drywall-repair','Drywall repair'),('painting','Painting'),('door-installation','Door installation & repair'),('flooring-installation','Flooring installation'),('fence-repair','Fence repair')]
+    sl = ''.join(f'<a href="/services/{x}/" class="rl-chip">{esc(n)}</a>' for x,n in svc_links if x in BY)
+    def sec(tag, h, ps, alt=False):
+        return f'<section class="sp-sec{" sp-alt" if alt else ""}"><div class="section-wrap rl-wrap"><div class="reveal"><div class="section-tag">{tag}</div><h2 class="section-title">{h}</h2></div>{paras(ps)}</div></section>'
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> For realtors &amp; property managers</div>
+      <h1 class="sp-h1">{RD.H1}</h1>
+      <p class="sp-lead">{esc(RD.LEAD)}</p>
+      <div class="sp-actions">
+        <a class="btn-cta" href="tel:{PHONE_TEL}">📞 Call {PHONE_DISPLAY}</a>
+        <a class="btn-ghost-cta" href="sms:{PHONE_TEL}">💬 Text the address &amp; list</a>
+      </div>
+    </div>
+    <div class="sp-hero-icon"><img src="/images/hero-andrew.jpg" alt="Andrew, handyman for realtors and property managers in Wesley Chapel, FL" width="280" height="301" style="border-radius:22px;width:min(280px,100%);height:auto"></div>
+  </div>
+</section>
+<section class="sp-sec"><div class="section-wrap rl-wrap"><div class="reveal"><div class="section-tag">Who this is for</div><h2 class="section-title">One handyman for the <em>handoff</em></h2></div>{paras(RD.INTRO)}<div class="sp-why rl-4">{who}</div></div></section>
+{sec('Move-out', RD.MOVEOUT_H, RD.MOVEOUT, True)}
+{sec('Move-in', RD.MOVEIN_H, RD.MOVEIN)}
+<section class="sp-sec sp-alt"><div class="section-wrap rl-wrap"><div class="reveal"><div class="section-tag">Real jobs</div><h2 class="section-title">Work I have done <em>for homes like yours</em></h2></div>{gal}</div></section>
+{sec('Inspections', RD.INSPECT_H, RD.INSPECT)}
+{sec('Seniors', RD.SENIOR_H, RD.SENIOR, True)}
+<section class="sp-sec"><div class="section-wrap"><div class="reveal"><div class="section-tag">Services</div><h2 class="section-title">{RD.JOBS_H}</h2></div><div class="sp-why rl-3">{jobs}</div></div></section>
+<section class="sp-sec sp-alt"><div class="section-wrap"><div class="reveal"><div class="section-tag">How it works</div><h2 class="section-title">Three steps from list to <em>done</em></h2></div><div class="sp-why rl-3">{steps}</div></div></section>
+<section class="sp-sec"><div class="section-wrap"><div class="reveal"><div class="section-tag">Why agencies call me</div><h2 class="section-title">Built for <em>deadlines</em></h2></div><div class="sp-why rl-3">{why}</div></div></section>
+<section class="sp-sec sp-alt"><div class="section-wrap rl-wrap"><div class="reveal"><div class="section-tag">Service area</div><h2 class="section-title">Where I work</h2></div><p class="rl-p">I handle turnover, move-in and repair jobs across Wesley Chapel and northern Tampa Bay: {areas}. Related services: </p><div class="rl-chips">{sl}</div></div></section>
+{guides_block([GD.SLUG])}
+<section class="sp-sec"><div class="section-wrap rl-wrap"><div class="reveal"><div class="section-tag">FAQ</div><h2 class="section-title">Questions from <em>agents and managers</em></h2></div><div class="sp-faq">{faq}</div></div></section>
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Have a closing, a turnover or a move coming up?</h2>
+    <p class="cta-text">Text the address and the list. I will get back to you with a price.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="sms:{PHONE_TEL}" class="btn-ghost-cta">💬 Text the address &amp; list</a>
+    </div>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(RD.TITLE, RD.DESC, url, extra) + body
+
 def subscription_page():
     url = f'{DOMAIN}/subscription/'
     title = 'Handyman Subscription Wesley Chapel FL – Monthly Plans from $99'
@@ -1326,6 +1398,8 @@ def main():
     os.makedirs('gift/redeem', exist_ok=True)
     open('gift/index.html','w',encoding='utf-8').write(gift_page())
     open('gift/redeem/index.html','w',encoding='utf-8').write(redeem_page())
+    os.makedirs(RD.SLUG, exist_ok=True)
+    open(RD.SLUG+'/index.html','w',encoding='utf-8').write(realtors_page())
     os.makedirs('subscription', exist_ok=True)
     open('subscription/index.html','w',encoding='utf-8').write(subscription_page())
     os.makedirs('posts', exist_ok=True)
@@ -1335,7 +1409,7 @@ def main():
         open('posts/'+pr['slug']+'/index.html','w',encoding='utf-8').write(post_page(pr))
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/guides/{a["slug"]}/' for a in AD.ARTICLES] + [f'{DOMAIN}/blog/', f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/guides/{a["slug"]}/' for a in AD.ARTICLES] + [f'{DOMAIN}/blog/', f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/{RD.SLUG}/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     import re as _re, html as _html
     _LM = {f'{DOMAIN}/guides/{a["slug"]}/': a['date'] for a in AD.ARTICLES}
     _LM.update({f'{DOMAIN}/posts/{p["slug"]}/': p['date'] for p in PD.PROJECTS})
@@ -1373,6 +1447,7 @@ Notes: Andrew does not do work that legally requires a licensed electrician or p
 - Media & accent walls: accent wall with TV mounting and mantel from $1,500; full media wall typically $3,500 to $4,000; large custom projects $6,000 to $10,000+. See {DOMAIN}/services/media-accent-walls/
 - Handyman subscription: Basic $99/month (up to 2 hours), Plus $199/month (up to 4 hours), Home $299/month (up to 6 hours). Unused hours roll over for up to 3 months. See {DOMAIN}/subscription/
 - Gift certificates: $147, $287 or $478 toward handyman work. See {DOMAIN}/gift/
+- For realtors, property managers, landlords and senior move agencies: move-in, move-out and turnover repairs, post-inspection fixes, TV and picture hanging, furniture assembly. See {DOMAIN}/{RD.SLUG}/
 
 ## Service areas
 {loc_lines}
