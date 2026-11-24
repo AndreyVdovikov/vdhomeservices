@@ -10,6 +10,7 @@ import guides_data as GD
 import articles_data as AD
 import links_data as LK
 import realtors_data as RD
+import calc_data as CD
 import projects_data as PD
 import media_data as MD
 
@@ -18,7 +19,7 @@ PHONE_DISPLAY = '(656) 231-1836'
 PHONE_TEL = '+16562311836'
 GA_ID = 'G-H9H5NEZSS8'
 GA_SNIPPET = f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag("js",new Date());gtag("config","{GA_ID}");</script>'
-VER = '20261122a'   # bump to bust browser cache of site.css/site.js
+VER = '20261124a'   # bump to bust browser cache of site.css/site.js
 AREAS = ["Wesley Chapel", "Land O' Lakes", "Zephyrhills", "Dade City", "New Tampa", "Lutz", "Odessa", "Tampa"]
 AREAS_TXT = "Wesley Chapel, Land O' Lakes, Zephyrhills, Dade City, New Tampa, Lutz, Odessa"
 
@@ -1163,6 +1164,191 @@ def realtors_page():
 '''
     return head(RD.TITLE, RD.DESC, url, extra) + body
 
+CALC_JS = r'''
+(function(){
+var C = __CFG__;
+var st = {size:65, qty:1, wall:'drywall', room:44, addons:{}};
+var $ = function(id){return document.getElementById(id)};
+function tier(d){for(var i=0;i<C.tiers.length;i++){if(d<=C.tiers[i].upto)return C.tiers[i];}return C.tiers[C.tiers.length-1];}
+function money(n){return '$'+(Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:(n%1?2:0),maximumFractionDigits:2});}
+function dims(d){return {w:d*0.8715,h:d*0.4902};}
+function calc(){
+  var t=tier(st.size), lines=[], total=0;
+  var base=t.price*st.qty;
+  lines.push([st.qty+' TV'+(st.qty>1?'s':'')+', '+t.label.toLowerCase(), base]); total+=base;
+  if(st.wall==='masonry'){var m=Math.round(base*C.masonry)/100; lines.push(['Concrete / brick / block wall (+'+C.masonry+'%)', m]); total+=m;}
+  C.addons.forEach(function(a){ if(st.addons[a.id]){var p=a.price*st.qty; lines.push([a.name+(st.qty>1?' x'+st.qty:''), p]); total+=p;} });
+  return {lines:lines,total:total,tier:t};
+}
+function fmtIn(x){return (Math.round(x*10)/10).toString().replace(/\.0$/,'')+'"';}
+function wallSvg(){
+  var S=3, W=420, H=300, floor=288;
+  var d=dims(st.size), tw=d.w*S, th=d.h*S;
+  var cy=floor-st.room*S, top=cy-th/2, bot=cy+th/2, cx=W/2;
+  var bh=st.room-d.h/2; var warn=bh<8||top<4;
+  var fill=st.wall==='masonry'?'url(#tc-brick)':'#f3ede2';
+  var s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Wall diagram with a '+st.size+' inch TV">';
+  s+='<defs><pattern id="tc-brick" width="36" height="18" patternUnits="userSpaceOnUse"><rect width="36" height="18" fill="#c9755a"/><path d="M0 9H36M0 0V9M18 9V18" stroke="#e8c9b8" stroke-width="2" fill="none"/></pattern></defs>';
+  s+='<rect x="0" y="0" width="'+W+'" height="'+floor+'" fill="'+fill+'"/>';
+  s+='<rect x="0" y="'+floor+'" width="'+W+'" height="'+(H-floor)+'" fill="#8a6a4a"/>';
+  s+='<rect x="'+(cx-tw/2)+'" y="'+top+'" width="'+tw+'" height="'+th+'" rx="4" fill="#12202f" stroke="#0a131d" stroke-width="3"/>';
+  s+='<rect x="'+(cx-tw/2+5)+'" y="'+(top+5)+'" width="'+(tw-10)+'" height="'+(th-10)+'" rx="2" fill="#2563a8" opacity=".85"/>';
+  s+='<text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" fill="#fff" font-size="'+Math.max(14,Math.min(26,tw/6))+'" font-weight="700">'+st.size+'"</text>';
+  // height arrow (floor to bottom of TV), left of the TV
+  var ax=cx-tw/2-22; if(ax<26)ax=26;
+  s+='<g stroke="#f97316" stroke-width="2" fill="#f97316"><line x1="'+ax+'" y1="'+floor+'" x2="'+ax+'" y2="'+bot+'"/><polygon points="'+(ax-4)+','+(floor-8)+' '+(ax+4)+','+(floor-8)+' '+ax+','+floor+'" stroke="none"/><polygon points="'+(ax-4)+','+(bot+8)+' '+(ax+4)+','+(bot+8)+' '+ax+','+bot+'" stroke="none"/></g>';
+  var ly=(floor+bot)/2;
+  s+='<rect x="'+(ax+5)+'" y="'+(ly-12)+'" width="92" height="22" rx="6" fill="#fff" opacity=".95"/><text x="'+(ax+10)+'" y="'+(ly+4)+'" fill="#b45309" font-size="14" font-weight="700">'+fmtIn(Math.max(0,bh))+' to floor</text>';
+  // width arrow above TV
+  var wy=Math.max(14,top-14);
+  s+='<g stroke="#1a3a5c" stroke-width="2" fill="#1a3a5c"><line x1="'+(cx-tw/2)+'" y1="'+wy+'" x2="'+(cx+tw/2)+'" y2="'+wy+'"/><polygon points="'+(cx-tw/2+8)+','+(wy-4)+' '+(cx-tw/2+8)+','+(wy+4)+' '+(cx-tw/2)+','+wy+'" stroke="none"/><polygon points="'+(cx+tw/2-8)+','+(wy-4)+' '+(cx+tw/2-8)+','+(wy+4)+' '+(cx+tw/2)+','+wy+'" stroke="none"/></g>';
+  s+='<rect x="'+(cx-45)+'" y="'+(wy-22)+'" width="90" height="19" rx="6" fill="#fff" opacity=".95"/><text x="'+cx+'" y="'+(wy-8)+'" text-anchor="middle" fill="#1a3a5c" font-size="14" font-weight="700">'+fmtIn(d.w)+' wide</text>';
+  // height of TV, right
+  var hx=cx+tw/2+16;
+  s+='<g stroke="#1a3a5c" stroke-width="2" fill="#1a3a5c"><line x1="'+hx+'" y1="'+top+'" x2="'+hx+'" y2="'+bot+'"/></g>';
+  s+='<rect x="'+(hx+3)+'" y="'+(cy-11)+'" width="46" height="21" rx="6" fill="#fff" opacity=".95"/><text x="'+(hx+8)+'" y="'+(cy+5)+'" fill="#1a3a5c" font-size="14" font-weight="700">'+fmtIn(d.h)+'</text>';
+  s+='</svg>';
+  return s;
+}
+function render(){
+  var r=calc(), d=dims(st.size);
+  $('tc-total').textContent=money(r.total);
+  $('tc-lines').innerHTML=r.lines.map(function(l){return '<li><span>'+l[0]+'</span><b>'+money(l[1])+'</b></li>';}).join('');
+  $('tc-wall').innerHTML=wallSvg();
+  var lo=st.size*1.0/12, hi=st.size*1.5/12;
+  $('tc-facts').innerHTML='<div><b>'+fmtIn(d.w)+' x '+fmtIn(d.h)+'</b><span>screen width x height</span></div>'+
+    '<div><b>'+fmtIn(st.room)+'</b><span>to the center of the screen</span></div>'+
+    '<div><b>'+fmtIn(Math.max(0,st.room-d.h/2))+'</b><span>to the bottom edge</span></div>'+
+    '<div><b>'+(Math.round(lo*10)/10)+' to '+(Math.round(hi*10)/10)+' ft</b><span>good seating distance for 4K</span></div>';
+  document.querySelectorAll('.tc-size').forEach(function(b){b.classList.toggle('on',+b.dataset.size===st.size);});
+  $('tc-custom').value=st.size;
+  $('tc-qty').textContent=st.qty;
+}
+function bindChoice(sel,fn){document.querySelectorAll(sel).forEach(function(b){b.addEventListener('click',function(){fn(b);render();});});}
+bindChoice('.tc-size',function(b){st.size=+b.dataset.size;});
+bindChoice('.tc-wallbtn',function(b){st.wall=b.dataset.wall;document.querySelectorAll('.tc-wallbtn').forEach(function(x){x.classList.toggle('on',x===b);});});
+bindChoice('.tc-roombtn',function(b){st.room=+b.dataset.h;document.querySelectorAll('.tc-roombtn').forEach(function(x){x.classList.toggle('on',x===b);});});
+$('tc-custom').addEventListener('input',function(){var v=parseInt(this.value,10);if(v>=20&&v<=120){st.size=v;render();}});
+$('tc-minus').addEventListener('click',function(){if(st.qty>1){st.qty--;render();}});
+$('tc-plus').addEventListener('click',function(){if(st.qty<8){st.qty++;render();}});
+document.querySelectorAll('.tc-add input').forEach(function(i){i.addEventListener('change',function(){
+  st.addons[i.value]=i.checked;
+  if(i.checked&&(i.value==='mount'||i.value==='mountf')){var o=i.value==='mount'?'mountf':'mount';st.addons[o]=false;document.querySelector('.tc-add input[value="'+o+'"]').checked=false;}
+  render();});});
+$('tc-send').addEventListener('click',function(){
+  var ph=$('tc-phone').value.trim(), btn=this;
+  if(ph.replace(/\D/g,'').length<10){$('tc-phone').style.borderColor='#ef4444';setTimeout(function(){$('tc-phone').style.borderColor='';},2500);return;}
+  var r=calc(), nm=$('tc-name').value.trim();
+  var msg='TV MOUNTING CALCULATOR. TV size: '+st.size+'". Number of TVs: '+st.qty+'. Wall: '+(st.wall==='masonry'?'concrete/brick/block':'drywall')+'. Extras: '+(C.addons.filter(function(a){return st.addons[a.id];}).map(function(a){return a.name;}).join(', ')||'none')+'. Calculator estimate: '+money(r.total)+'. Customer name: '+(nm||'not given')+'.';
+  var label=btn.innerHTML; btn.innerHTML='Sending...'; btn.disabled=true;
+  emailjs.send('service_984008h','template_5dybn6g',{from_name:'[TV CALCULATOR '+money(r.total)+'] '+(nm||'Callback'),phone:ph,message:msg,reply_to:ph})
+   .then(function(){ $('tc-formbox').innerHTML='<div class="form2-ok">Got it! Andrew will confirm the price and call you shortly.</div>'; if(window.gtag)gtag('event','calculator_lead',{value:r.total,currency:'USD'}); })
+   .catch(function(){btn.innerHTML=label;btn.disabled=false;alert('Something went wrong. Please call or text (656) 231-1836');});
+});
+render();
+})();
+'''
+
+def calc_page():
+    url = f'{DOMAIN}/{CD.SLUG}/'
+    cfg = json.dumps({'tiers':CD.TIERS,'masonry':CD.MASONRY_PCT,'addons':CD.ADDONS})
+    faq = ''.join(f'<details class="sp-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q,a in CD.FAQ)
+    fq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in CD.FAQ]}
+    bc = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":"TV mounting cost calculator","item":url}]}
+    app = {"@context":"https://schema.org","@type":"WebApplication","name":"TV mounting cost calculator","url":url,"applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"provider":{"@id":DOMAIN+"/#business"}}
+    extra = ''.join(f'<script type="application/ld+json">{json.dumps(x)}</script>\n' for x in (app, fq, bc))
+    paras = lambda L: ''.join(f'<p class="rl-p">{esc(x)}</p>' for x in L)
+    # TV size cards (true 16:9 proportions at one common scale)
+    cards = ''
+    for d in CD.SIZES:
+        w, h = d*0.8715*0.95, d*0.4902*0.95
+        x, y = (100-w)/2, 6+(46-h)
+        tier = next(t for t in CD.TIERS if d <= t['upto'])
+        cards += (f'<button type="button" class="tc-size" data-size="{d}" aria-label="{d} inch TV, ${tier["price"]}">'
+                  f'<svg viewBox="0 0 100 56" aria-hidden="true"><rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="2" fill="#12202f"/>'
+                  f'<rect x="{x+1.5:.1f}" y="{y+1.5:.1f}" width="{w-3:.1f}" height="{h-3:.1f}" rx="1" fill="#3b82d4"/></svg>'
+                  f'<b>{d}"</b><span>${tier["price"]}</span></button>')
+    adds = ''.join(f'<label class="tc-add"><input type="checkbox" value="{a["id"]}"><span><b>{esc(a["name"])}</b><i>{esc(a["note"])}</i></span><em>+${a["price"]}</em></label>' for a in CD.ADDONS)
+    rows = ''
+    for d in (32,43,50,55,65,75,85,98):
+        tier = next(t for t in CD.TIERS if d <= t['upto'])
+        rows += f'<tr><td>{d}"</td><td>{d*0.8715:.1f}" x {d*0.4902:.1f}"</td><td>{44-d*0.4902/2:.0f}"</td><td>{d/12:.1f} to {d*1.5/12:.1f} ft</td><td>${tier["price"]}</td></tr>'
+    tbl = f'<div class="tc-tablewrap"><table class="tc-table"><thead><tr><th>TV size</th><th>Width x height</th><th>Bottom edge from floor*</th><th>4K seating distance</th><th>Mounting price</th></tr></thead><tbody>{rows}</tbody></table></div><p class="tc-note">*With the center of the screen 44 inches from the floor. Prices are for a drywall wall, TV already unboxed, mount supplied by you.</p>'
+    body = f'''<body>
+{nav_html()}
+<main>
+<section class="sp-hero">
+  <div class="section-wrap sp-hero-inner">
+    <div>
+      <div class="sp-crumbs"><a href="/">Home</a> <span>›</span> TV mounting cost calculator</div>
+      <h1 class="sp-h1">{CD.H1}</h1>
+      <p class="sp-lead">{esc(CD.LEAD)}</p>
+    </div>
+  </div>
+</section>
+<section class="sp-sec"><div class="section-wrap">
+ <div class="tc-grid">
+  <div class="tc-left">
+   <div class="tc-step"><h2>1. Pick your TV size</h2>
+    <div class="tc-sizes">{cards}</div>
+    <label class="tc-custom">Other size: <input id="tc-custom" type="number" min="20" max="120" inputmode="numeric" value="65"> inches</label>
+   </div>
+   <div class="tc-step"><h2>2. How many TVs?</h2>
+    <div class="tc-qty"><button type="button" id="tc-minus" aria-label="Fewer TVs">−</button><b id="tc-qty">1</b><button type="button" id="tc-plus" aria-label="More TVs">+</button></div>
+   </div>
+   <div class="tc-step"><h2>3. What is the wall?</h2>
+    <div class="tc-seg"><button type="button" class="tc-wallbtn on" data-wall="drywall">Drywall / wood studs</button><button type="button" class="tc-wallbtn" data-wall="masonry">Concrete, brick or block <em>+{CD.MASONRY_PCT}%</em></button></div>
+   </div>
+   <div class="tc-step"><h2>4. Any extras?</h2>
+    <div class="tc-adds">{adds}</div>
+   </div>
+   <div class="tc-step"><h2>5. Where will it hang?</h2>
+    <div class="tc-seg"><button type="button" class="tc-roombtn on" data-h="44">Living room (sitting)</button><button type="button" class="tc-roombtn" data-h="52">Bedroom (lying down)</button><button type="button" class="tc-roombtn" data-h="60">Above a fireplace</button></div>
+   </div>
+  </div>
+  <aside class="tc-right">
+   <div class="tc-result">
+    <div class="tc-total-l">Your estimate</div>
+    <div class="tc-total" id="tc-total">$120</div>
+    <ul class="tc-lines" id="tc-lines"></ul>
+    <p class="tc-note">Free estimate. The final price is confirmed before any work starts.</p>
+    <div id="tc-formbox" class="tc-form">
+     <input class="f-input" id="tc-name" type="text" placeholder="Your name (optional)" autocomplete="name">
+     <input class="f-input" id="tc-phone" type="tel" placeholder="(813) 000-0000" autocomplete="tel" inputmode="tel" aria-label="Your phone number">
+     <button type="button" class="btn-send" id="tc-send">📞 Confirm this price</button>
+    </div>
+    <div class="tc-or"><a href="tel:{PHONE_TEL}">Call {PHONE_DISPLAY}</a> · <a href="sms:{PHONE_TEL}">Text a photo of the wall</a></div>
+   </div>
+   <div class="tc-wallbox" id="tc-wall"></div>
+   <div class="tc-facts" id="tc-facts"></div>
+  </aside>
+ </div>
+</div></section>
+<section class="sp-sec sp-alt"><div class="section-wrap rl-wrap"><div class="reveal"><div class="section-tag">TV mounting in Wesley Chapel</div><h2 class="section-title">What decides the <em>price</em></h2></div>{paras(CD.INTRO)}<h3 class="tc-h3">{CD.HOW_H}</h3>{paras(CD.HOW)}<p class="rl-p">See what a finished job looks like on the <a href="/services/tv-shelf-mounting/">TV mounting service page</a>, or read the <a href="/guides/how-to-mount-a-tv-height-wall-types/">guide to TV height and wall types</a>.</p></div></section>
+<section class="sp-sec"><div class="section-wrap rl-wrap"><div class="reveal"><div class="section-tag">Size chart</div><h2 class="section-title">{CD.SIZE_H}</h2></div>{paras(CD.SIZE_P)}{tbl}</div></section>
+<section class="sp-sec sp-alt"><div class="section-wrap rl-wrap"><div class="reveal"><div class="section-tag">FAQ</div><h2 class="section-title">TV mounting <em>questions</em></h2></div><div class="sp-faq">{faq}</div></div></section>
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2 class="cta-title">Ready to get the TV on the wall?</h2>
+    <p class="cta-text">Text a photo of the wall and the TV size. I will confirm the price and the first open day.</p>
+    <div class="cta-btns">
+      <a href="tel:{PHONE_TEL}" class="btn-cta">📞 Call {PHONE_DISPLAY}</a>
+      <a href="sms:{PHONE_TEL}" class="btn-ghost-cta">💬 Text a photo</a>
+    </div>
+  </div>
+</section>
+</main>
+{footer_html()}
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init({{ publicKey: "AWfp-WF5xgbFiPQ3a" }});</script>
+<script>{CALC_JS.replace('__CFG__', cfg)}</script>
+<script src="/site.js?v={VER}" defer></script>
+</body>
+</html>
+'''
+    return head(CD.TITLE, CD.DESC, url, extra) + body
+
 def subscription_page():
     url = f'{DOMAIN}/subscription/'
     title = 'Handyman Subscription Wesley Chapel FL – Monthly Plans from $99'
@@ -1446,6 +1632,8 @@ def main():
     open('gift/redeem/index.html','w',encoding='utf-8').write(redeem_page())
     os.makedirs(RD.SLUG, exist_ok=True)
     open(RD.SLUG+'/index.html','w',encoding='utf-8').write(realtors_page())
+    os.makedirs(CD.SLUG, exist_ok=True)
+    open(CD.SLUG+'/index.html','w',encoding='utf-8').write(calc_page())
     os.makedirs('subscription', exist_ok=True)
     open('subscription/index.html','w',encoding='utf-8').write(subscription_page())
     os.makedirs('posts', exist_ok=True)
@@ -1455,7 +1643,7 @@ def main():
         open('posts/'+pr['slug']+'/index.html','w',encoding='utf-8').write(post_page(pr))
     os.makedirs('faq', exist_ok=True)
     open('faq/index.html','w',encoding='utf-8').write(faq_page())
-    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/guides/{a["slug"]}/' for a in AD.ARTICLES] + [f'{DOMAIN}/blog/', f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/{RD.SLUG}/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
+    urls = [DOMAIN + '/', DOMAIN + '/faq/', DOMAIN + '/about/', f'{DOMAIN}/guides/{GD.SLUG}/',] + [f'{DOMAIN}/guides/{a["slug"]}/' for a in AD.ARTICLES] + [f'{DOMAIN}/blog/', f'{DOMAIN}/subscription/', f'{DOMAIN}/gift/', f'{DOMAIN}/{RD.SLUG}/', f'{DOMAIN}/{CD.SLUG}/', f'{DOMAIN}/posts/'] + [f'{DOMAIN}/posts/{p["slug"]}/' for p in PD.PROJECTS] + [f'{DOMAIN}/services/{s["slug"]}/' for s in S] + [f'{DOMAIN}/locations/{l["slug"]}/' for l in LOCS]
     import re as _re, html as _html
     _LM = {f'{DOMAIN}/guides/{a["slug"]}/': a['date'] for a in AD.ARTICLES}
     _LM.update({f'{DOMAIN}/posts/{p["slug"]}/': p['date'] for p in PD.PROJECTS})

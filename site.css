@@ -1067,3 +1067,58 @@ a.about-svc{text-decoration:none}a.about-svc:hover{background:var(--blue-mid);co
 .nav-links a, .nav-links .nav-dd-toggle { white-space:nowrap; }
 @media (max-width:1240px) { .nav-links > li:first-child { display:none; } .nav-links .nav-call { padding:8px 12px; font-size:.82rem; } .nav-logo-text span { display:none; } }
 @media (max-width:1040px) and (min-width:901px) { .nav-logo-text { display:none; } .nav-links a, .nav-links .nav-dd-toggle { padding:8px 8px; } }
+
+/* TV mounting cost calculator */
+.tc-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;align-items:start}
+.tc-step{background:#fff;border-radius:18px;padding:22px 22px 20px;box-shadow:var(--shadow-sm);margin-bottom:16px}
+.tc-step h2{font-size:1.05rem;color:var(--blue-deep);margin:0 0 14px;font-family:inherit;font-weight:700}
+.tc-sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tc-size{border:2px solid #e3eaf3;background:var(--blue-pale);border-radius:14px;padding:8px 4px 10px;cursor:pointer;font:inherit;display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s}
+.tc-size svg{width:100%;height:auto}
+.tc-size b{color:var(--blue-deep);font-size:1.02rem}
+.tc-size span{color:var(--text-mid);font-size:.85rem}
+.tc-size:hover{border-color:var(--blue-bright)}
+.tc-size.on{border-color:var(--orange);background:#fff7ed;box-shadow:0 0 0 3px rgba(249,115,22,.15)}
+.tc-custom{display:block;margin-top:14px;color:var(--text-mid);font-size:.95rem}
+.tc-custom input{width:84px;padding:8px 10px;border:2px solid #e3eaf3;border-radius:10px;font:inherit;margin:0 4px}
+.tc-qty{display:inline-flex;align-items:center;gap:14px}
+.tc-qty button{width:44px;height:44px;border-radius:12px;border:2px solid #e3eaf3;background:#fff;font-size:1.4rem;cursor:pointer;color:var(--blue-deep)}
+.tc-qty b{min-width:28px;text-align:center;font-size:1.3rem;color:var(--blue-deep)}
+.tc-seg{display:flex;gap:10px;flex-wrap:wrap}
+.tc-seg button{flex:1 1 150px;padding:12px 14px;border-radius:12px;border:2px solid #e3eaf3;background:#fff;font:inherit;font-weight:600;color:var(--text-dark);cursor:pointer;min-height:48px}
+.tc-seg button em{font-style:normal;color:var(--orange);margin-left:4px}
+.tc-seg button.on{border-color:var(--orange);background:#fff7ed}
+.tc-adds{display:grid;gap:10px}
+.tc-add{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid #e3eaf3;border-radius:12px;cursor:pointer;min-height:48px}
+.tc-add input{width:22px;height:22px;flex:none;accent-color:var(--orange)}
+.tc-add span{flex:1}
+.tc-add b{display:block;font-size:.95rem;color:var(--text-dark)}
+.tc-add i{display:block;font-style:normal;font-size:.82rem;color:var(--text-mid)}
+.tc-add em{font-style:normal;font-weight:700;color:var(--blue-deep)}
+.tc-right{position:sticky;top:96px}
+.tc-result{background:var(--blue-deep);color:#fff;border-radius:20px;padding:24px;box-shadow:0 14px 40px rgba(26,58,92,.25)}
+.tc-total-l{opacity:.8;font-size:.9rem}
+.tc-total{font-size:3rem;font-weight:800;line-height:1.1;margin:2px 0 10px}
+.tc-lines{list-style:none;margin:0 0 10px;padding:0;border-top:1px solid rgba(255,255,255,.2)}
+.tc-lines li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:.92rem}
+.tc-result .tc-note{opacity:.8;font-size:.82rem;margin:0 0 14px}
+.tc-form{display:grid;gap:10px}
+.tc-form .f-input{width:100%}
+.tc-form .btn-send{width:100%}
+.tc-or{margin-top:12px;font-size:.9rem;text-align:center}
+.tc-or a{color:#fff;text-decoration:underline}
+.tc-wallbox{margin-top:18px;background:#fff;border-radius:18px;padding:10px;box-shadow:var(--shadow-sm)}
+.tc-wallbox svg{width:100%;height:auto;display:block;border-radius:10px}
+.tc-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.tc-facts div{background:#fff;border-radius:14px;padding:12px 14px;box-shadow:var(--shadow-sm)}
+.tc-facts b{display:block;color:var(--blue-deep);font-size:1.05rem}
+.tc-facts span{font-size:.8rem;color:var(--text-mid)}
+.tc-h3{margin:22px 0 8px;color:var(--blue-deep);font-size:1.2rem}
+.tc-tablewrap{overflow-x:auto;margin:16px 0 8px}
+.tc-table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;font-size:.95rem}
+.tc-table th,.tc-table td{padding:11px 14px;text-align:left;border-bottom:1px solid #e8eef6;white-space:nowrap}
+.tc-table th{background:var(--blue-pale);color:var(--blue-deep)}
+.tc-section .tc-note,.tc-tablewrap + .tc-note{color:var(--text-mid);font-size:.85rem}
+@media (max-width:900px){.tc-grid{grid-template-columns:1fr}.tc-right{position:static}.tc-sizes{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:480px){.tc-sizes{grid-template-columns:repeat(4,1fr);gap:6px}.tc-size b{font-size:.9rem}.tc-total{font-size:2.5rem}}
+.tc-form .f-input,.tc-form .btn-send{display:block;width:100%;max-width:none;box-sizing:border-box;margin:0}
