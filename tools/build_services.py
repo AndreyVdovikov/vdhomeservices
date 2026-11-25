@@ -489,6 +489,7 @@ def page(s):
 </section>
 
 {guides_block(LK.SERVICE_GUIDES.get(s['slug'], []))}
+{('<section class="rl-banner"><div class="section-wrap"><b>Wondering what TV mounting costs?</b> <a href="/tv-mounting-cost-calculator/">Try the TV mounting cost calculator →</a></div></section>' if s['slug']=='tv-shelf-mounting' else '')}
 <section class="rl-banner"><div class="section-wrap"><b>Realtor, property manager or senior move agency?</b> <a href="/realtors-property-managers/">See move-in, move-out and turnover repairs →</a></div></section>
 <section class="sp-sec{a_rel}">
   <div class="section-wrap">
@@ -531,7 +532,7 @@ FAQ = [
   ("Is the estimate really free?","Yes. Estimates are free, and you get a clear price before any work starts, so there are no surprises on the final bill."),
   ("How do I book?","Fill in the form at the top of the home page, call or text (656) 231-1836. I usually get back to you within a few hours."),
   ("Can I send photos of the job?","Yes. The request form has a photo upload, and you can also text photos to (656) 231-1836. Photos help me give you a more accurate estimate."),
-  ("Do you give prices over the phone or online?","I do not publish fixed prices, because every home and job is different. Call or text with a few details and a photo, and I will give you a free estimate."),
+  ("Do you give prices over the phone or online?","Most jobs are priced after a few details and a photo, because every home is different, and the estimate is free. TV mounting is the exception: the TV mounting cost calculator on this site gives you a price in seconds, and I confirm it before any work starts."),
   ("Do I need to buy the materials myself?","It depends on the job. You can pick your own materials, such as a TV mount, paint or cabinets, or I can recommend and supply them. Either way I tell you everything in the estimate before work starts."),
   ("How long will my job take?","Small jobs such as a TV mount or a drywall patch are often done in a few hours. Larger jobs such as cabinets, kitchens or media walls take longer, and I give you a timeline in the estimate."),
  ]),
